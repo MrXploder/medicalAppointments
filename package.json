@@ -1,5 +1,5 @@
 {
-  "name": "medicalAppointments",
+  "name": "support",
   "version": "0.1.0",
   "description": "",
   "main": "gruntfile.js",
@@ -23,15 +23,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MrXploder/medicalAppointments.git"
+    "url": "git+https://github.com/MrXploder/appMixtura.git"
   },
   "author": "MrXploder",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MrXploder/medicalAppointments/issues"
+    "url": "https://github.com/MrXploder/appMixtura/issues"
   },
-  "homepage": "https://github.com/MrXploder/medicalAppointments#readme",
-  "debug": {
-    "mode": "development"
-  }
+  "homepage": "https://github.com/MrXploder/appMixtura#readme"
 }

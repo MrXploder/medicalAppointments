@@ -1,9 +1,9 @@
 <?php
 /*
-* @params $nbr  (number) -> first, second, third or fourth day of month
-* @params $day  (string) -> name of the day in the week
-* @params $mon  (number) -> number of the month to seach
-* @params $year (number) -> number of the year to search
+* @params $nbr  -> first, second, third or fourth day of month
+* @params $day  -> name of the day in the week
+* @params $mon  -> number of the month to seach
+* @params $year -> number of the year to search
 * @author MrXploder
 */
 

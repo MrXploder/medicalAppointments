@@ -8,8 +8,8 @@ Header("Pragma: no-cache");
 // Notificar solamente errores de ejecución
 error_reporting(E_ERROR);
 
-require $_SERVER['DOCUMENT_ROOT'].'/php/functions/sanitizeInput.php';
-require $_SERVER['DOCUMENT_ROOT'].'/php/dependencies/meekrodb.class.php';
+require $_SERVER['DOCUMENT_ROOT'].'/server/functions/sanitizeInput.php';
+require $_SERVER['DOCUMENT_ROOT'].'/server/dependencies/meekrodb.class.php';
 //DB::debugMode();
 
 /////////////////////////////////////////////////////////////////////////

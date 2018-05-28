@@ -2,18 +2,19 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    gitinfo: {},
+    gitinfo: {
+    },
     ngconstant: {
       options: {
         space: ' ',
         wrap: true,
-        deps: ['ngRoute', 'ngStorage', 'ngResource', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize'],
-        name: 'medicalAppointment',
-        dest: 'src/module/<%= pkg.name %>/10index.js',
+        deps: ['ngAnimate', 'ngRoute', 'ngStorage', 'ngResource', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize'],
+        dest: 'src/module/support/10index.js',
+        name: 'support'
       },
       dist: {
         constants: {
-          'ENV': '<%= gitinfo.local.branch.current %>',
+          'ENV': '<%= gitinfo.local.branch.current %>'
         }
       }
     },
@@ -24,10 +25,10 @@ module.exports = function(grunt) {
         {constName: 'envShortSHA', constValue: '<%= gitinfo.local.branch.current.shortSHA %>'},
         {constName: 'envAuthor', constValue: '<%= gitinfo.local.branch.current.lastCommitAuthor %>'},
         {constName: 'envLastCommitTime', constValue: '<%= gitinfo.local.branch.current.lastCommitTime %>'},
-        {constName: 'envDebug', constValue: '<%= pkg.debug.mode %>'}
+        {constName: 'envBranch', constValue: '<%= gitinfo.local.branch.current.name %>'}
         ],
-        src: 'server/enviroment.php',
-        dest: 'server/enviroment.php'
+        src: 'php/enviroment.php',
+        dest: 'php/enviroment.php'
       },
     },
     concat: {
@@ -35,7 +36,7 @@ module.exports = function(grunt) {
         separator: '\n',
       },
       js: {
-        src: ['src/vendor/*.js', 'src/module/<%= pkg.name %>/*.js', 'src/directive/**/*.js', 'src/factory/**/*.js', 'src/filter/**/*.js',  'src/module/<%= pkg.name %>/modal/**/*.js', 'src/module/<%= pkg.name %>/route/**/*.js'],
+        src: ['src/vendor/*.js', 'src/module/support/*.js', 'src/directive/**/*.js', 'src/factory/**/*.js', 'src/filter/**/*.js',  'src/module/support/modal/**/*.js', 'src/module/support/route/**/*.js'],
         dest: 'dist/<%= gitinfo.local.branch.current.SHA %>.js',
       },
       css:{
@@ -65,13 +66,18 @@ module.exports = function(grunt) {
       }
     },
     obfuscator: {
-      options: {},
+      options: {
+      },
       task1: {
-        options: {},
-        files: {'dist/<%= gitinfo.local.branch.current.SHA %>.min.obs.js': ['dist/<%= gitinfo.local.branch.current.SHA %>.min.js']},
+        options: {
+            // options for each sub task
+          },
+          files: {
+            'dist/<%= gitinfo.local.branch.current.SHA %>.min.obs.js': ['dist/<%= gitinfo.local.branch.current.SHA %>.min.js']
+          }
+        }
       }
-    }
-  });
+    });
 
   grunt.loadNpmTasks('grunt-gitinfo');
   grunt.loadNpmTasks('grunt-ng-constant');

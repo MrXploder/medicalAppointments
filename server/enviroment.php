@@ -1,10 +1,22 @@
 <?php
 /*DO NOT MODIFY THIS FILE BECAUSE IS POPULATED AUTOMATICALLY WITH GRUNT */
 
-define('envSHA', '67a693e3b0936da8321ce94f79730d816984796e');
-define('envShortSHA', '67a693e');
+define('envSHA', '982dcae21ba643582c7c50970b6510ebd8e97149');
+define('envShortSHA', '982dcae');
 define('envAuthor', '"MrXploder"');
-define('envLastCommitTime', '"2018-05-21 23:16:54 -0400"');
-define('envDebug', 'development');
+define('envLastCommitTime', '"2018-05-22 00:56:28 -0400"');
+define('envBranch', 'development');
+
+define('hashPrefix', 'elvisIsNotDead');
+
+date_default_timezone_set("America/Santiago");
+
+require $_SERVER['DOCUMENT_ROOT'].'/server/dependencies/Medoo.php';
+use Medoo\Medoo;
+$db = new Medoo(array(
+	'database_type' => 'sqlite',
+	'database_file' => $_SERVER['DOCUMENT_ROOT'].'/medicalapointments.db',
+	'option'        => array(\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION)
+));
 
 ?>
