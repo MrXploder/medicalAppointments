@@ -16,10 +16,13 @@ try{
 	if($_SERVER['REQUEST_METHOD'] === 'GET'){
 		$id = sanitizeInput($_GET["id"]);
 		if(empty($id)){
-			$payLoad = $db->select("appointments", "*");
+			$payLoad = $db->query("SELECT `appointments`.*, `patients`.`full_name` AS patient_name, `doctors`.`full_name` AS doctor_name FROM `appointments` INNER JOIN `patients` ON `appointments`.`patient_id` = `patients`.`id` INNER JOIN `doctors` ON `appointments`.`doctor_id` = `doctors`.`id`")->fetchAll(PDO::FETCH_ASSOC);
 		}
 		else if(!empty($id)){
-			$payLoad = $db->select("appointments", "*", array("appointments.id" => $id, "LIMIT" => 1))[0];
+			$payLoad = $db->select("appointments", "*",[
+				"appointments.id" => $id,
+				"LIMIT" => 1,
+			])[0];	
 		}
 		else{
 			http_response_code(400); /* Bad Request */

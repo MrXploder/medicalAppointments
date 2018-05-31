@@ -6,12 +6,14 @@
 				<div class="card-content">
 					<div class="row">
 						<div input-field class="col l5">
+							<i class="prefix fas fa-arrow-right"></i>
 							<label>Fecha de Inicio</label>
-							<input input-date type="text" ng-model="mcc.filters.sinceDateFilter" first-day="1" format="dd/mm/yyyy" disable="[false, 6, 7]">
+							<input input-date type="text" ng-model="mcc.filters.sinceDate" first-day="1" format="dd-mm-yyyy" disable="[false, 6, 7]">
 						</div>
 						<div input-field class="col offset-l2 l5">
+							<i class="postfix fas fa-arrow-left"></i>
 							<label>Fecha de Termino</label>
-							<input input-date type="text" ng-model="mcc.filters.tillDateFilter" first-day="1" format="dd/mm/yyyy" disable="[false, 6, 7]">
+							<input input-date type="text" ng-model="mcc.filters.tillDate" first-day="1" format="dd-mm-yyyy" disable="[false, 6, 7]">
 						</div>
 					</div>
 					<div class="row">
@@ -23,6 +25,7 @@
 					</div>
 					<div class="row">
 						<div input-field class="col l5">
+							<i class="prefix fas fa-user"></i>
 							<label ng-class="{'active': mcc.filters.byPatient != null}">Filtrar por Paciente:</label>
 							<select ng-model="mcc.filters.byPatient" material-select watch>
 								<option value="-1">Todos</option>
@@ -30,6 +33,7 @@
 							</select>
 						</div>
 						<div input-field class="col offset-l2 l5">
+							<i class="prefix fas fa-user-md"></i>
 							<label ng-class="{'active': mcc.filters.byDoctor != null}">Filtrar por Doctor:</label>
 							<select ng-model="mcc.filters.byDoctor" material-select watch>
 								<option value="-1">Todos</option>
@@ -52,19 +56,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="appointment in mcc.appointments | filter: mcc.filters.searchTerm | filter: ((mcc.filters.byPatient >= 0)||undefined)&&{patient_id: mcc.filters.byPatient} | filter: ((mcc.filters.byDoctor >= 0)||undefined)&&{doctor_id: mcc.filters.byDoctor} track by appointment.id">
+									<tr ng-repeat="appointment in mcc.appointments | dateRange: mcc.filters.sinceDate : mcc.filters.tillDate | filter: mcc.filters.searchTerm | filter: ((mcc.filters.byPatient >= 0) || undefined) && {patient_id: mcc.filters.byPatient} | filter: ((mcc.filters.byDoctor >= 0)||undefined)&&{doctor_id: mcc.filters.byDoctor}">
 										<td>{{$index + 1}}</td>
 										<td>{{appointment.date + ' ' + appointment.time}}</td>
-										<td>{{appointment.patient_id}}</td>
-										<td>{{appointment.doctor_id}}</td>
-										<td><a class="btn-flat waves-effect waves-light"><i class="fas fa-info-circle blue-text"></i></a></td>
-										<td><a class="btn-flat waves-effect waves-light"><i class="fas fa-trash red-text"></i></a></td>
+										<td>{{appointment.patient_name}}</td>
+										<td>{{appointment.doctor_name}}</td>
+										<td><a class="btn-floating btn-flat waves-effect waves-light"><i class="fas fa-info-circle blue-text"></i></a></td>
+										<td><a class="btn-floating btn-flat waves-effect waves-light"><i class="fas fa-trash red-text"></i></a></td>
 										<td>
 											<div class="fixed-action-btn horizontal" style="position: relative; right: 10%; top: 0px">
 												<a class="btn-floating btn-flat waves-effect waves-light">
 													<i class="fas" ng-class="appointment.status == 'pending' ? 'fa-minus orange-text' : appointment.status == 'done' ? 'fa-check green-text' : 'fa-times red-text'"></i>
 												</a>
-												<ul style="right: -63px; top: 120%">
+												<ul style="right: -190px; top: 15%">
 													<li><a class="btn-floating btn-flat waves-effect waves-light green"><i class="fas fa-check white-text"></i></a></li>
 													<li><a class="btn-floating btn-flat waves-effect waves-light orange"><i class="fas fa-minus white-text"></i></a></li>
 													<li><a class="btn-floating btn-flat waves-effect waves-light red"><i class="fas fa-times white-text"></i></a></li>
