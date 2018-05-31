@@ -9,7 +9,7 @@
 		var hmc = this;
 
 		licenseVerificator
-		.validate({key: $localStorage.currentLicense.key})
+		.isValid({key: $localStorage.currentLicense.key})
 		.$promise
 		.catch(function error(response){
 			if(response.status === 402){

@@ -1,0 +1,68 @@
+<div class="container">
+	<div class="row">
+		<div class="input-field">
+			<i class="prefix fas fa-search"></i>
+			<input id="icon_prefix" ng-model="mcc.searchTerm" type="search">
+			<label for="icon_prefix">Buscar</label>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l5">
+			<label ng-class="{'active': mcc.patientFilter != null}">Filtrar por Paciente:</label>
+			<select ng-model="mcc.patientFilter" material-select watch>
+				<option value="-1">Todos</option>
+				<option ng-repeat="patient in mcc.patients" value="{{patient.id}}">{{patient.full_name}}</option>
+			</select>
+		</div>
+		<div input-field class="col offset-l2 l5">
+			<label ng-class="{'active': mcc.doctorFilter != null}">Filtrar por Doctor:</label>
+			<select ng-model="mcc.doctorFilter" material-select watch>
+				<option value="-1">Todos</option>
+				<option ng-repeat="doctor in mcc.doctors" value="{{doctor.id}}">{{doctor.full_name}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col l12">
+			<div class="card grey lighten-4">
+				<div class="card-content">
+					<table class="bordered highlight centered-table">
+						<thead class="grey darken-3 white-text">
+							<tr>
+								<th>#</th>
+								<th>Fecha</th>
+								<th>Paciente</th>
+								<th>Doctor</th>
+								<th>Detalles</th>
+								<th>Eliminar</th>
+								<th>Estado</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="appointment in mcc.appointments track by appointment.id">
+								<td>{{$index + 1}}</td>
+								<td>{{appointment.date + ' ' + appointment.time}}</td>
+								<td>{{appointment.patient_id}}</td>
+								<td>{{appointment.doctor_id}}</td>
+								<td><a class="btn-flat waves-effect waves-light"><i class="fas fa-info-circle blue-text"></i></a></td>
+								<td><a class="btn-flat waves-effect waves-light"><i class="fas fa-trash red-text"></i></a></td>
+								<td>
+									<div class="fixed-action-btn horizontal" style="position: relative; right: 10%; top: 0px">
+										<a class="btn-floating btn-flat waves-effect waves-light">
+											<i class="fas" ng-class="appointment.status == 'pending' ? 'fa-minus orange-text' : appointment.status == 'done' ? 'fa-check green-text' : 'fa-times red-text'"></i>
+										</a>
+										<ul style="right: -63px; top: 120%">
+											<li><a class="btn-floating btn-flat waves-effect waves-light green"><i class="fas fa-check white-text"></i></a></li>
+											<li><a class="btn-floating btn-flat waves-effect waves-light orange"><i class="fas fa-minus white-text"></i></a></li>
+											<li><a class="btn-floating btn-flat waves-effect waves-light red"><i class="fas fa-times white-text"></i></a></li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

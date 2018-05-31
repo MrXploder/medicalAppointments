@@ -5,13 +5,18 @@ nav a{
   color: black;
 }
 
+.top-nav{
+  height: 122px;
+  box-shadow: none;
+}
+
 th{
   text-align: center !important;
   vertical-align: middle !important;
 }
 
 body {
-  background-color: #ddd; 
+  background-image: radial-gradient(circle, #ffffff, #eef1ff, #d3e6ff, #adddff, #7bd6fd);
 }
 
 p.box {
@@ -88,34 +93,18 @@ nav.top-nav a.page-title {
   background-color: #4caf50;
   color: white;
 }
-.colored-table-green th{
-  background-color: #4caf50;
-  color: white;
+.centered-table td{
+  vertical-align: middle;
+  text-align: center;
 }
-.colored-table-amber th{
-  background-color: #ffc107;
-  color: black;
-}
-.colored-table-deeporange th{
-  background-color: #ff5722;
-  color: black;
-}
-.colored-table-blue th{
-  background-color: #2196f3;
-  color: black;
-}
+
 .btn-small {
   height: 100%;
   width: 100%;
   line-height: 25px;
   padding: 0 0.5rem;
 }
-.btn{
-  width: 100%;
-}
-.btnForTable{
-  padding: 0 0rem !important;
-}
+
 .modal-topbordered{
   border-top-style: solid;
   border-top-width: 10px;

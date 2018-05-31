@@ -1,0 +1,80 @@
+<div class="container">
+	<div class="row">
+		<div class="col l12">
+			<div class="card grey lighten-4">
+				<div class="card-content">
+					<span class="card-title">Agendar Nuevo Turno</span>
+					<br>
+					<ng-form name="naForm">
+						<div class="row">
+							<div input-field class="col l12">
+								<input type="text" list="patientsList" ng-model="nac.form.patient_fullname">
+								<datalist id="patientsList">
+									<option ng-repeat="patient in nac.patients | limitTo: 10">{{patient.full_name}}</option>
+								</datalist>
+								<label for="patientSelect">Elegir Paciente</label>
+							</div>
+						</div>
+						<div class="row">
+							<div input-field class="col l12">
+								<label ng-class="nac.form.doctor_id != null && 'active'">Asignar Doctor</label>
+								<select material-select ng-model="nac.form.doctor_id" watch ng-options="doctor.id as doctor.name for doctor in nac.doctors"></select>
+							</div>
+						</div>
+						<div class="row">
+							<div input-field class="col l6 file-field">
+								<button class="btn col l3" ng-click="nac.showSchedule()"><i class="fas fa-calendar-alt"></i></button>
+								<div class="file-path-wrapper">
+									<label style="left: 90px;">Elige una fecha</label>
+									<input input-date type="text" id="patientDatePicker" ng-model="nac.form.date" first-day="1" format="dd/mm/yyyy" disable="[false, 6, 7]">
+								</div>
+							</div>
+							<div input-field class="col offset-l1 l5">
+								<label>Elige una hora</label>
+								<input input-clock type="text" twelvehour="false" ng-model="nac.form.time">
+							</div>
+						</div>
+						<div class="row">
+							<div input-field class="col l12">
+								<label ng-class="nac.form.comes_from != null && 'active'">Procedencia</label>
+								<select ng-model="nac.form.comes_from" material-select>
+									<option>CAE Adulto</option>
+									<option>CAE PED</option>
+									<option>TMT</option>
+									<option>UEH</option>
+									<option>PAB</option>
+									<option>Control</option>
+									<option>Yeso</option>
+									<option>Otro</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div input-field class="col l12">
+								<label ng-class="nac.form.reason != null && 'active'">Motivo</label>
+								<select ng-model="nac.form.reason" material-select>
+									<option>Control de Herida</option>
+									<option>Curaciones</option>
+									<option>Control de Rutina</option>
+								</select>
+							</div>
+						</div>
+					</ng-form>
+				</div>
+				<div class="card-action">
+					<div class="row">
+						<div class="col l4">
+							<a class="btn waves-effect waves-light red" ng-click="nac.form = {}">Reset <i class="fas fa-eraser"></i></a>
+						</div>
+						<div class="col l4">
+							<a class="btn waves-effect waves-light green" ng-click="nac.createAppointment()">Enviar <i class="fas fa-location-arrow"></i></a>
+						</div>
+						<div class="col l4">
+							<a class="btn waves-effect waves-light grey">Vista Previa <i class="fas fa-print"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

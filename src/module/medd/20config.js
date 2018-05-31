@@ -34,31 +34,29 @@
 			templateUrl: "/src/module/medd/route/home/template.html",
 			controller: "homeController",
 			controllerAs: "hmc",
-			resolve: { 
-				initialData: defaultResolve,
-			},
+			resolve: { initialData: defaultResolve },
 		})
 		.when("/login", {
 			controller: "loginController",
 			controllerAs: "lg",
-			template: " ",
+			template: '<div></div>',
 			resolve: { isLoggedIn: loginResolve },
 		})
 		.when("/exit",{
 			controller: "exitController",
-			template: " ",
+			template: '<div></div>',
 		})
-		.when("/viewTickets", {
-			controller: "viewTicketsController",
-			controllerAs: "vt",
-			templateUrl : "/src/module/medd/route/viewTickets/template.html",
-			resolve: { isLoggedIn: defaultResolve	},
+		.when("/newAppointment", {
+			controller: "newAppointmentController",
+			controllerAs: "nac",
+			templateUrl: "/src/module/medd/route/newAppointment/template.html",
+			resolve: { isLoggedIn: loginResolve },
 		})
-		.when("/createTickets", {
-			controller: "createTicketsController",
-			controllerAs: "ct",
-			templateUrl: "/src/module/medd/route/createTickets/template.html",
-			resolve: { isLoggedIn: defaultResolve },
+		.when("/manageCensus", {
+			controller: "manageCensusController",
+			controllerAs: "mcc",
+			templateUrl: "/src/module/medd/route/manageCensus/template.html",
+			resolve: { isLoggedIn: loginResolve },
 		})
 		.otherwise({
 			redirectTo: "/home",

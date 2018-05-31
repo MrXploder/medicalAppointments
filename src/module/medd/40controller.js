@@ -23,22 +23,12 @@
 
 		mc.form = { name: null, pass: null };
 		mc.logIn = logIn;
-		mc.onLine = $window.navigator.onLine;
 		mc.isRouteLoading = false;
 
 		function logIn(){
 			$scope.$broadcast('attemptToLogIn', mc.form); //"main" (parent) -> "login" (child) controller
+			mc.form = {};
 		}
-
-		$window.addEventListener("online", function () {
-			mc.onLine = true;
-			$scope.$digest();
-		}, true);
-
-		$window.addEventListener("offline", function () {
-			mc.onLine = false;
-			$scope.$digest();
-		}, true);
 
 		$rootScope.$on('$routeChangeStart', function(){
 			mc.isRouteLoading = true;

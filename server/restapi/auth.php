@@ -44,7 +44,6 @@ try{
 				$payLoad["user"] = array(
 					"id"	   => $userInfo["id"], 
 					"name"   => $userInfo["name"],
-					"avatar" => $userInfo["avatar"],
 					"token"  => $hash,
 				);
 				http_response_code(200);

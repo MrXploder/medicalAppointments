@@ -2,15 +2,8 @@
 <!DOCTYPE html>
 <html ng-app="angularApp" ng-controller="mainController as mc" ng-strict-di>
 <head>
-  <title>supportApp</title>
-  <!--META-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Citas Medicas</title>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-  <!--NOSCRIPT-->
-  <noscript><meta http-equiv="Refresh" content="0; URL=./nojs.html"></noscript>
-  <link rel="manifest" href="../manifest.json">
-  <!--No descuidar el orden de los archivos CCS y JS-->
-  <!--CSS DEPENDENCIES-->
   <?php
   if(constant("envBranch") == "development"){
     $globsJS = ["{/src/vendor/*.js}", "{/src/module/medd/*.js}", "{/src/directive/**/*.js}", "{/src/filter/**/*.js}", "{/src/factory/**/*.js}", "{/src/module/medd/route/**/*.js}", "{/src/module/medd/modal/**/*.js}"];
@@ -49,15 +42,15 @@
         <li>
           <div input-field class="container row">
             <i class="fas fa-user-tie prefix"></i>
-            <label for="userName" class="active">Nombre de Usuario</label>
-            <input type="text" id="userName" ng-model="mc.form.name" required>
+            <label class="active">Nombre de Usuario</label>
+            <input type="text" id="loginUserName" ng-model="mc.form.name" placeholder=" " required>
           </div>
         </li>
         <li>
           <div input-field class="container row">
             <i class="fas fa-key prefix"></i>
-            <label for="userPass" class="active">Contraseña</label>
-            <input type="password" id="userPass" ng-model="mc.form.pass" required>
+            <label >Contraseña</label>
+            <input type="password" id="loginUserPass" ng-model="mc.form.pass" autocomplete="new-password" placeholder=" " required>
           </div>
         </li>
         <li>
@@ -77,11 +70,13 @@
           <br>
         </div>
       </li>
-      <li><a href="#!/createTickets" class="white-text"><i class="fas fa-ticket-alt white-text"></i>Crear Tickets</a></li>
-      <li><a href="#!/viewTickets" class="white-text"><i class="fas fa-toolbox white-text"></i>Administrar Tickets</a></li>
-      <li><a href="#!/billTickets" class="white-text"><i class="fas fa-money-bill-alt white-text"></i>Facturar Tickets</a></li>
+      <li><a href="#!/newAppointment" class="white-text"><i class="fas fa-notes-medical fa-2x white-text"></i>Nuevo Turno</a></li>
+      <li><a href="#!/manageCensus" class="white-text"><i class="fas fa-calendar-alt fa-2x white-text"></i>Censos</a></li>
       <li><div class="divider"></div></li>
-      <li><a href="#!/exit" class="white-text"><i class="fas fa-search white-text"></i>LogOut</a></li>
+      <li><a href="#!/manageMedics" class="white-text"><i class="fas fa-user-md fa-2x white-text"></i>Administrar Medicos</a></li>
+      <li><a href="#!/managePatients" class="white-text"><i class="fas fa-user fa-2x white-text"></i>Administrar Pacientes</a></li>
+      <li><div class="divider"></div></li>
+      <li><a href="#!/exit" class="white-text"><i class="fas fa-sign-out-alt fa-2x white-text"></i>LogOut</a></li>
     </ul>
     <a class="btn-floating btn-large btn-flat waves-effect waves-light button-collapse hide-on-med-and-up" data-activates="apps-side-nav"><i class="fas fa-plus"></i></a>
     
@@ -94,9 +89,9 @@
       </div>
     </div>
   </main>
-  <footer class="footer grey darken-3" style="padding-top: 10px; padding-bottom: 10px;">
+  <footer class="footer grey darken-4" style="padding-top: 10px; padding-bottom: 10px;">
     <div class="container">
-      <div class="footer-copyright grey darken-3 right">
+      <div class="footer-copyright right">
         <a class="grey-text text-lighten-4" href="mailto: l.arancibiaf@gmail.com">© <?php echo constant("envAuthor") ?> AngularJS Dev</a><br>
         <a class="grey-text text-lighten-4" href="#!/">Compilación: <?php echo constant("envShortSHA") ?></a><br>
         <a class="gre-text text-lighten-4" href="#!/">Modo: <?php echo constant("envBranch") ?></a>

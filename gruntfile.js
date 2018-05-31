@@ -8,9 +8,9 @@ module.exports = function(grunt) {
       options: {
         space: ' ',
         wrap: true,
-        deps: ['ngAnimate', 'ngRoute', 'ngStorage', 'ngResource', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize'],
-        dest: 'src/module/support/10index.js',
-        name: 'support'
+        deps: ['ngRoute', 'ngStorage', 'ngResource', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize'],
+        dest: "src/module/medd/10index.js",
+        name: 'angularApp'
       },
       dist: {
         constants: {
@@ -27,8 +27,8 @@ module.exports = function(grunt) {
         {constName: 'envLastCommitTime', constValue: '<%= gitinfo.local.branch.current.lastCommitTime %>'},
         {constName: 'envBranch', constValue: '<%= gitinfo.local.branch.current.name %>'}
         ],
-        src: 'php/enviroment.php',
-        dest: 'php/enviroment.php'
+        src: 'server/enviroment.php',
+        dest: 'server/enviroment.php'
       },
     },
     concat: {
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
         separator: '\n',
       },
       js: {
-        src: ['src/vendor/*.js', 'src/module/support/*.js', 'src/directive/**/*.js', 'src/factory/**/*.js', 'src/filter/**/*.js',  'src/module/support/modal/**/*.js', 'src/module/support/route/**/*.js'],
+        src: ['src/vendor/*.js', 'src/module/medd/*.js', 'src/directive/**/*.js', 'src/factory/**/*.js', 'src/filter/**/*.js',  'src/module/medd/modal/**/*.js', 'src/module/medd/route/**/*.js'],
         dest: 'dist/<%= gitinfo.local.branch.current.SHA %>.js',
       },
       css:{

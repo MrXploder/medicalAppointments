@@ -11,7 +11,16 @@
 		return $resource("http://validateand.servehttp.com/restapi/license.php",{},{
 			validate:{
 				method: 'GET',
+				params: {
+					validate: true,
+				}
 			},
+			isValid:{
+				method: 'GET',
+				params: {
+					verify: true,
+				}
+			}
 		});
 	};
 })();
