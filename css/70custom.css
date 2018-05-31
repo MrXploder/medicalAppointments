@@ -170,3 +170,7 @@ nav.top-nav a.page-title {
 .material-tooltip {
   width: 200px !important;
 }
+
+.row{
+  margin-bottom: 0px !important;
+}
