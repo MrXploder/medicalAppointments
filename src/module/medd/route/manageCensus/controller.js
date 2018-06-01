@@ -8,7 +8,7 @@
 	function manageCensusController(Appointments, Doctors, Patients, Operators, $scope, $timeout, $location, $localStorage){
 		var mcc = this;
 
-		mcc.filters 		 = {byPatient: '-1', byDoctor: '-1', searchTerm: null, sinceDate: null, tillDate: null};
+		mcc.filters 		 = {byPatient: '-1', byDoctor: '-1', searchTerm: '', sinceDate: null, tillDate: null};
 		mcc.hover 			 = {details: false, delete: false, status: false};
 		mcc.appointments = Appointments.query();
 		mcc.doctors 		 = Doctors.query();

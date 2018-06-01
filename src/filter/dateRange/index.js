@@ -6,12 +6,15 @@
   function dateRange(){
     return function(items, fromDate, toDate){
       var filtered = [];
-      if(fromDate) toDate = fromDate;
-      var from_date = moment(fromDate).format("DD-MM-YYYY");
-      var to_date = moment(toDate).format("DD-MM-YYYY");
+      if(!fromDate){ fromDate = moment().format("DD-MM-YYYY"); }
+      if(!toDate){ toDate = fromDate; }
+      var from_date = moment(fromDate, "DD-MM-YYYY");
+      var to_date = moment(toDate, "DD-MM-YYYY");
+      var now_date = null;
       angular.forEach(items, function(item){
-        var now_date = moment(item.date).format("DD-MM-YYYY");
-        if(from_date <= now_date && to_date >= now_date){ 
+        now_date = moment(item.date, "DD-MM-YYYY");
+        console.log(from_date, to_date, now_date);
+        if(from_date <= now_date && now_date <= to_date){ 
           filtered.push(item); 
         }
       });
