@@ -94,7 +94,8 @@
       <div class="footer-copyright right">
         <a class="grey-text text-lighten-4" href="mailto: l.arancibiaf@gmail.com">© <?php echo constant("envAuthor") ?> AngularJS Dev</a><br>
         <a class="grey-text text-lighten-4" href="#!/">Compilación: <?php echo constant("envShortSHA") ?></a><br>
-        <a class="gre-text text-lighten-4" href="#!/">Modo: <?php echo constant("envBranch") ?></a>
+        <a class="grey-text text-lighten-4" href="#!/">Modo: <?php echo constant("envBranch") ?></a><br>
+        <a class="grey-text text-lighten-4" href="/phpliteadmin.php">PHPLiteAdmin</a>
       </div>
     </div>
   </footer>
