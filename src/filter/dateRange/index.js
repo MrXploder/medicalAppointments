@@ -13,7 +13,6 @@
       var now_date = null;
       angular.forEach(items, function(item){
         now_date = moment(item.date, "DD-MM-YYYY");
-        console.log(from_date, to_date, now_date);
         if(from_date <= now_date && now_date <= to_date){ 
           filtered.push(item); 
         }

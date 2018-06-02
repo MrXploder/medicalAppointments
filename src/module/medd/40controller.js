@@ -23,6 +23,7 @@
 
 		mc.form = { name: null, pass: null };
 		mc.logIn = logIn;
+		mc.onLine = $window.navigator.onLine;
 		mc.isRouteLoading = false;
 
 		function logIn(){
@@ -36,6 +37,14 @@
 
 		$rootScope.$on('$routeChangeSuccess', function(){
 			mc.isRouteLoading = false;
+		});
+
+		$window.addEventListener('offline', function(){
+			mc.onLine = false;
+		});
+
+		$window.addEventListener('online', function(){
+			mc.onLine = true;
 		});
 	}
 })();

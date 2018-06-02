@@ -8,11 +8,8 @@
 					<ng-form name="naForm">
 						<div class="row">
 							<div input-field class="col l12">
-								<input type="text" list="patientsList" ng-model="nac.form.patient_fullname">
-								<datalist id="patientsList">
-									<option ng-repeat="patient in nac.patients | limitTo: 10">{{patient.full_name}}</option>
-								</datalist>
-								<label for="patientSelect">Elegir Paciente</label>
+								<label>Elegir Paciente</label>
+								<input type="text" ng-model="ncc.form.patient_fullname" id="patient-autocomplete" class="autocomplete">
 							</div>
 						</div>
 						<div class="row">

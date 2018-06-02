@@ -188,3 +188,7 @@ nav.top-nav a.page-title {
 .input-field .postfix.active {
     color: #26a69a;
 }
+
+.autocomplete-content{
+  position: absolute !important;
+}

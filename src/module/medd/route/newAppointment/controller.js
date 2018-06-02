@@ -16,6 +16,21 @@
 		nac.showSchedule = showSchedule;
 		nac.createAppointment = createAppointment;
 
+
+		nac.patients
+		.$promise
+		.then(function success(response){
+			let autocompleteData = {};
+			nac.patients.forEach(function(patient){
+				autocompleteData[patient.full_name] = null;
+			});
+			$('#patient-autocomplete').autocomplete({
+				data: autocompleteData,
+				limit: 20,
+				minLength: 1,
+			});
+		});		
+
 		function showSchedule(){
 
 		}

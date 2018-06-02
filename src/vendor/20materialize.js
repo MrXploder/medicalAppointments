@@ -5911,9 +5911,9 @@ if (Vel) {
       var offsetY, offsetX;
 
       if (horizontal === true) {
-        offsetX = 40;
+        offsetX = 0;
       } else {
-        offsetY = 40;
+        offsetY = 0;
       }
 
       $this.addClass('active');

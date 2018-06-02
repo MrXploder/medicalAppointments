@@ -12,7 +12,7 @@
 		.isValid({key: $localStorage.currentLicense.key})
 		.$promise
 		.catch(function error(response){
-			if(response.status === 402){
+			if(response.status === 402){ /*execute only on specific cases (402 error code) */
 				$timeout(function(){
 					$localStorage.currentLicense.key = null;
 					$location.path("/firstTime");
