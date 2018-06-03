@@ -18,15 +18,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    html2js: {
-      options: {
-        base: " ",
-      },
-      main: {
-        src: ['src/**/*.html'],
-        dest: 'tmp/templates.js'
-      },
-    },
     php_constants: {
       static_option: {
         options: [
@@ -40,12 +31,21 @@ module.exports = function(grunt) {
         dest: 'server/enviroment.php'
       },
     },
+    html2js: {
+      options: {
+        base: "",
+      },
+      main: {
+        src: ['src/**/*.html'],
+        dest: 'src/vendor/90templates.js'
+      },
+    },
     concat: {
       options: {
         separator: '\n',
       },
       js: {
-        src: ['src/vendor/*.js', 'tmp/templates.js', 'src/module/medd/*.js', 'src/directive/**/*.js', 'src/factory/**/*.js', 'src/filter/**/*.js',  'src/module/medd/modal/**/*.js', 'src/module/medd/route/**/*.js'],
+        src: ['src/vendor/*.js', 'src/module/medd/*.js', 'src/directive/**/*.js', 'src/factory/**/*.js', 'src/filter/**/*.js',  'src/module/medd/modal/**/*.js', 'src/module/medd/route/**/*.js'],
         dest: 'dist/<%= gitinfo.local.branch.current.SHA %>.js',
       },
       css:{
@@ -84,6 +84,15 @@ module.exports = function(grunt) {
           'dist/<%= gitinfo.local.branch.current.SHA %>.min.obs.js': ['dist/<%= gitinfo.local.branch.current.SHA %>.min.js']
         }
       }
+    },
+    clean: {
+      options: {
+        'no-write': false
+      },
+      src_folder: ['src/'],
+      tmp_folder: ['tmp/'],
+      css_folder: ['css/'],
+      final_cleanup: ['dist/*.css', 'dist/*.js', '!dist/*.min.css', '!dist/*.min.obs.js'],
     }
   });
 
@@ -97,7 +106,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-html2js');
 
-  grunt.registerTask('default', ['gitinfo', 'ngconstant', 'php_constants', 'html2js', 'concat', 'uglify', 'cssmin', 'obfuscator']);
+  grunt.registerTask('default', ['gitinfo', 'ngconstant', 'php_constants', 'html2js', 'concat', 'uglify', 'cssmin', 'clean']);
   grunt.registerTask('dev', ['gitinfo', 'ngconstant', 'php_constants']);
-  grunt.registerTask('test', ['html2js']);
+  grunt.registerTask('test', ['clean']);
 };
