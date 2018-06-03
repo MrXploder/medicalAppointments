@@ -1,4 +1,4 @@
-(function(){
+/*(function(){
 	'use strict';
 
 	angular
@@ -11,7 +11,7 @@
 		$httpProvider.interceptors.push('preventTemplateCache');
 	}
 })();
-
+*/
 (function(){
 	'use strict';
 

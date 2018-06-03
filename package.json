@@ -9,11 +9,14 @@
   },
   "devDependencies": {
     "grunt": "^1.0.2",
+    "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-cssmin": "^2.2.1",
     "grunt-contrib-obfuscator": "^4.0.0",
     "grunt-contrib-uglify": "^3.3.0",
+    "grunt-contrib-uglify-es": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
     "grunt-gitinfo": "^0.1.8",
+    "grunt-html2js": "^0.5.1",
     "grunt-ng-constant": "^2.0.1",
     "grunt-php-config": "^0.1.6",
     "grunt-php-constants": "^0.2.0"

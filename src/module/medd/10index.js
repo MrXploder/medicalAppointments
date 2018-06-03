@@ -1,9 +1,9 @@
 (function(angular, undefined) {
 'use strict';
 
-angular.module('angularApp', ['ngRoute', 'ngStorage', 'ngResource', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize'])
+angular.module('angularApp', ['ngRoute', 'ngStorage', 'ngResource', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'templates-main'])
 
-.constant('ENV', {lastCommitAuthor:'"MrXploder"',lastCommitMessage:'"login and license done!\r\n"',lastCommitTime:'"2018-05-28 14:10:12 -0400"',currentUser:'MrXploder',shortSHA:'77504dd',SHA:'77504dd8a034c8cba542777732dc29cfcc6e7936',name:'development',lastCommitNumber:'4'})
+.constant('ENV', {lastCommitMessage:'"update\r\n"',lastCommitTime:'"2018-06-02 20:39:27 -0400"',currentUser:'MrXploder',shortSHA:'0955fd7',SHA:'0955fd7daa3a8e30a817a5edd975c44b11e059d6',name:'master',lastCommitAuthor:'"MrXploder"',lastCommitNumber:'11'})
 
 ;
 })(angular);

@@ -1,14 +1,15 @@
 <?php
 /*DO NOT MODIFY THIS FILE BECAUSE IS POPULATED AUTOMATICALLY WITH GRUNT */
 
-define('envSHA', '77504dd8a034c8cba542777732dc29cfcc6e7936');
-define('envShortSHA', '77504dd');
+define('envSHA', '0955fd7daa3a8e30a817a5edd975c44b11e059d6');
+define('envShortSHA', '0955fd7');
 define('envAuthor', '"MrXploder"');
-define('envLastCommitTime', '"2018-05-28 14:10:12 -0400"');
-define('envBranch', 'development');
+define('envLastCommitTime', '"2018-06-02 20:39:27 -0400"');
+define('envBranch', 'master');
+
+/************************************************************************/
 
 define('hashPrefix', 'elvisIsNotDead');
-
 date_default_timezone_set("America/Santiago");
 
 require $_SERVER['DOCUMENT_ROOT'].'/server/dependencies/Medoo.php';

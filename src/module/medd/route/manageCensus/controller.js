@@ -33,8 +33,7 @@
 			appointment
 			.$delete({id: appointment.id})
 			.then(function success(response){
-				let index = mcc.appointments.indexOf(appointment);
-				mcc.appointments.splice(index, 1);
+				mcc.appointments.splice(mcc.appointments.indexOf(appointment), 1);
 				Materialize.toast("Borrado", 5000, "green");
 			});
 		}
