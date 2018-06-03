@@ -26,12 +26,12 @@
 	function routeProvider($routeProvider){
 		$routeProvider
 		.when("/firstTime", {
-			templateUrl: "/src/module/medd/route/firstTime/template.html",
+			templateUrl: "src/module/medd/route/firstTime/template.html",
 			controller: "firstTimeController",
 			controllerAs: "ftc",
 		})
 		.when("/home", {
-			templateUrl: "/src/module/medd/route/home/template.html",
+			templateUrl: "src/module/medd/route/home/template.html",
 			controller: "homeController",
 			controllerAs: "hmc",
 			resolve: { initialData: defaultResolve },
@@ -49,13 +49,13 @@
 		.when("/newAppointment", {
 			controller: "newAppointmentController",
 			controllerAs: "nac",
-			templateUrl: "/src/module/medd/route/newAppointment/template.html",
+			templateUrl: "src/module/medd/route/newAppointment/template.html",
 			resolve: { isLoggedIn: loginResolve },
 		})
 		.when("/manageCensus", {
 			controller: "manageCensusController",
 			controllerAs: "mcc",
-			templateUrl: "/src/module/medd/route/manageCensus/template.html",
+			templateUrl: "src/module/medd/route/manageCensus/template.html",
 			resolve: { isLoggedIn: loginResolve },
 		})
 		.otherwise({
