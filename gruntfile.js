@@ -106,7 +106,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-html2js');
 
-  grunt.registerTask('default', ['gitinfo', 'ngconstant', 'php_constants', 'html2js', 'concat', 'uglify', 'cssmin', 'clean']);
+  grunt.registerTask('default', ['gitinfo', 'ngconstant', 'php_constants', 'html2js', 'concat', 'uglify', 'cssmin', 'obfuscator', 'clean']);
   grunt.registerTask('dev', ['gitinfo', 'ngconstant', 'php_constants']);
-  grunt.registerTask('test', ['clean']);
 };
