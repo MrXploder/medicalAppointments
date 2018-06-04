@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       options: {
         space: ' ',
         wrap: true,
-        deps: ['ngRoute', 'ngStorage', 'ngResource', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize'],
+        deps: ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'templates-main'],
         dest: "src/module/medd/10index.js",
         name: 'angularApp'
       },
@@ -29,6 +29,15 @@ module.exports = function(grunt) {
         ],
         src: 'server/enviroment.php',
         dest: 'server/enviroment.php'
+      },
+    },
+    html2js: {
+      options: {
+        base: "",
+      },
+      main: {
+        src: ['src/**/*.html'],
+        dest: 'src/vendor/90templates.js'
       },
     },
     concat: {
@@ -70,24 +79,33 @@ module.exports = function(grunt) {
       },
       task1: {
         options: {
-            // options for each sub task
-          },
-          files: {
-            'dist/<%= gitinfo.local.branch.current.SHA %>.min.obs.js': ['dist/<%= gitinfo.local.branch.current.SHA %>.min.js']
-          }
+        },
+        files: {
+          'dist/<%= gitinfo.local.branch.current.SHA %>.min.obs.js': ['dist/<%= gitinfo.local.branch.current.SHA %>.min.js']
         }
       }
-    });
+    },
+    clean: {
+      options: {
+        'no-write': false
+      },
+      src_folder: ['src/'],
+      tmp_folder: ['tmp/'],
+      css_folder: ['css/'],
+      final_cleanup: ['dist/*.css', 'dist/*.js', '!dist/*.min.css', '!dist/*.min.obs.js'],
+    }
+  });
 
   grunt.loadNpmTasks('grunt-gitinfo');
   grunt.loadNpmTasks('grunt-ng-constant');
   grunt.loadNpmTasks('grunt-php-constants');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-uglify-es');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-obfuscator');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-html2js');
 
-  grunt.registerTask('default', ['gitinfo', 'ngconstant', 'php_constants', 'concat', 'uglify', 'cssmin', 'obfuscator']);
+  grunt.registerTask('default', ['gitinfo', 'ngconstant', 'php_constants', 'html2js', 'concat', 'uglify', 'cssmin', 'obfuscator', 'clean']);
   grunt.registerTask('dev', ['gitinfo', 'ngconstant', 'php_constants']);
-
 };

@@ -5,9 +5,9 @@
 	.module('angularApp')
 	.controller('newAppointmentController', newAppointmentController);
 
-	newAppointmentController.$inject = ["Doctors", "Patients", "Appointments", "$scope", "$filter", "Modal", "$timeout", "$location"];
+	newAppointmentController.$inject = ["Doctors", "Patients", "Appointments", "Printer", "$scope", "$filter", "Modal", "$timeout", "$location"];
 
-	function newAppointmentController(Doctors, Patients, Appointments, $scope, $filter, Modal, $timeout, $location){
+	function newAppointmentController(Doctors, Patients, Appointments, Printer, $scope, $filter, Modal, $timeout, $location){
 		var nac = this;
 
 		nac.form = {};
@@ -15,21 +15,23 @@
 		nac.doctors = Doctors.query();
 		nac.showSchedule = showSchedule;
 		nac.createAppointment = createAppointment;
+		nac.printTest = printTest;
 
-
-		nac.patients
-		.$promise
-		.then(function success(response){
-			let autocompleteData = {};
-			nac.patients.forEach(function(patient){
-				autocompleteData[patient.full_name] = null;
-			});
-			$('#patient-autocomplete').autocomplete({
-				data: autocompleteData,
-				limit: 20,
-				minLength: 1,
-			});
-		});		
+		angular.element(function(){
+			nac.patients
+			.$promise
+			.then(function success(response){
+				let autocompleteData = {};
+				nac.patients.forEach(function(patient){
+					autocompleteData[patient.full_name] = null;
+				});
+				$('#patient-autocomplete').autocomplete({
+					data: autocompleteData,
+					limit: 20,
+					minLength: 1,
+				});
+			});		
+		});
 
 		function showSchedule(){
 
@@ -49,6 +51,16 @@
 				Materialize.toast(response.statusText, 5000, "red");
 			});
 		};
+
+		function printTest(){
+			Printer.print('src/module/medd/print/firstReport/template.html', {
+				patient: {
+					name: 'Ram Kumar', 
+					dateOfBirth: '1978-08-23', 
+					gender: 'M'
+				}
+			});
+		}
 
 		$scope.$watch('nac.form.patient_fullname', function(){
 			if(nac.form.patient_fullname === undefined) return;
