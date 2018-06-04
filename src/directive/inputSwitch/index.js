@@ -1,8 +1,8 @@
 (function(){
 	'use strict';
 	angular
-		.module('angularApp')
-		.directive('inputSwitch', inputSwitch);
+	.module('angularApp')
+	.directive('inputSwitch', inputSwitch);
 
 	//inputSwitch.$inject = [""];
 

@@ -71,7 +71,9 @@
         </div>
       </li>
       <li><a href="#!/newAppointment" class="white-text"><i class="fas fa-notes-medical fa-2x white-text"></i>Nuevo Turno</a></li>
-      <li><a href="#!/manageCensus" class="white-text"><i class="fas fa-calendar-alt fa-2x white-text"></i>Censos</a></li>
+      <li><a href="#!/patientControlList" class="white-text"><i class="fas fa-clipboard-list fa-2x white-text"></i>Pacientes en Control</a></li>
+      <li><a href="#!/dailyStatistics" class="white-text"><i class="fas fa-calendar-alt fa-2x white-text"></i>Estadisticas Diarias</a></li>
+      <li><a href="#!/monthlyReport" class="white-text"><i class="fas fa-bug fa-2x white-text"></i>Reporte Mensual</a></li>
       <li><div class="divider"></div></li>
       <li><a href="#!/manageMedics" class="white-text"><i class="fas fa-user-md fa-2x white-text"></i>Administrar Medicos</a></li>
       <li><a href="#!/managePatients" class="white-text"><i class="fas fa-user fa-2x white-text"></i>Administrar Pacientes</a></li>
@@ -91,11 +93,13 @@
   </main>
   <footer class="footer grey darken-4" style="padding-top: 10px; padding-bottom: 10px;">
     <div class="container">
-      <div class="footer-copyright right">
+      <div class="footer-copyright left">
         <a class="grey-text text-lighten-4" href="mailto: l.arancibiaf@gmail.com">© <?php echo constant("envAuthor") ?> AngularJS Dev</a><br>
-        <a class="grey-text text-lighten-4" href="#!/">Compilación: <?php echo constant("envShortSHA") ?></a><br>
-        <a class="grey-text text-lighten-4" href="#!/">Modo: <?php echo constant("envBranch") ?></a><br>
         <a class="grey-text text-lighten-4" href="/phpliteadmin.php">PHPLiteAdmin</a>
+      </div>
+      <div class="footer-copyright right">
+        <a class="grey-text text-lighten-4" href="#!/">Compilación: <?php echo constant("envShortSHA") ?></a><br>
+        <a class="grey-text text-lighten-4" href="#!/">Modo: <?php echo constant("envBranch") ?></a>
       </div>
     </div>
   </footer>

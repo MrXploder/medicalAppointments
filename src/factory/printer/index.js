@@ -38,7 +38,7 @@
 					} 
 					else {
 						/* Replace printHtml with openNewWindow for debugging*/
-						printHtml(element.html()).then(function () {
+						openNewWindow(element.html()).then(function () {
 							$rootScope.isBeingPrinted = false;
 							renderAndPrintPromise.resolve();
 						});

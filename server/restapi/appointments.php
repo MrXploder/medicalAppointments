@@ -50,14 +50,32 @@ try{
 		$postdata = file_get_contents("php://input");
 		if(!empty($postdata)){
 			$request = json_decode($postdata, true);
+			if($request["patient_id"] === 0){
+				$db->insert("patients", array(
+					"full_name" => $request["patient_fullname"],
+					"rut"				=> $request["patient_rut"],
+				));
+				$patient_id = $db->id();
+			}
+			else{
+				$patient_id = $request["patient_id"];
+			}
 
 			$insertQuery = $db->insert("appointments", array(
-				"patient_id" => $request["patient_id"],
-				"doctor_id"  => $request["doctor_id"],
-				"comes_from" => $request["comes_from"],
-				"reason"     => $request["reason"],
-				"date"       => $request["date"],
-				"time"			 => $request["time"],
+				"patient_id" 				=> $patient_id,
+				"doctor_id" 				=> $request["doctor_id"],
+				"comes_from" 				=> $request["comes_from"],
+				"date" 							=> $request["date"],
+				"time" 							=> $request["time"],
+				"procedure_perform" => $request["procedure_perform"],
+				"notes" 						=> $request["notes"],
+				"status" 						=> $request["status"],
+				"injury_type" 			=> $request["injury_type"],
+				"process_code"		 	=> $request["process_code"],
+				"diagnosis_code" 		=> $request["diagnosis_code"],
+				"membership" 				=> $request["membership"],
+				"observations" 			=> $request["observations"],
+				"diagnosis_text" 		=> $request["diagnosis_text"],
 			));
 			if($insertQuery->rowCount() > 0){
 				http_response_code(202); /* Created */

@@ -73,7 +73,7 @@
 				modalBase.appendTo('body').modal(openModalOptions);
 				$timeout(function(){
 					modalBase.modal('open');
-				}, 250, true);
+				}, 0, true);
 
 			}, function (error) {
 				deferred.reject({ templateError: error });
@@ -142,7 +142,7 @@
 			$timeout(function () {
 				scope.$destroy();
 				modalBase.remove();
-			}, 2000, true);
+			}, 0, true);
 		}
 
 		return service;

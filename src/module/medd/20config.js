@@ -38,10 +38,16 @@
 			templateUrl: "src/module/medd/route/newAppointment/template.html",
 			resolve: { isLoggedIn: loginResolve },
 		})
-		.when("/manageCensus", {
-			controller: "manageCensusController",
-			controllerAs: "mcc",
-			templateUrl: "src/module/medd/route/manageCensus/template.html",
+		.when("/dailyStatistics", {
+			controller: "dailyStatisticsController",
+			controllerAs: "dsc",
+			templateUrl: "src/module/medd/route/dailyStatistics/template.html",
+			resolve: { isLoggedIn: loginResolve },
+		})
+		.when("/patientControlList", {
+			controller: "patientControlListController",
+			controllerAs: "pclc",
+			templateUrl: "src/module/medd/route/patientControlList/template.html",
 			resolve: { isLoggedIn: loginResolve },
 		})
 		.otherwise({

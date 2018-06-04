@@ -1,0 +1,92 @@
+<div class="container">
+	<div class="row">
+		<div class="col l12">
+			<div class="card grey lighten-4">
+				<div class="card-content">
+					<div class="row">
+						<div class="col l12">
+							<a class="btn btn-block waves-effect waves-light grey darken-3" ng-click="dsc.addOcationalAppointment()">Agendar Cita Ocacional</a>
+						</div>
+					</div>
+					<div class="row">
+						<div input-field class="col l5">
+							<i class="prefix fas fa-arrow-right"></i>
+							<label>Fecha de Inicio</label>
+							<input input-date type="text" ng-model="dsc.filters.sinceDate" first-day="1" format="dd-mm-yyyy" disable="[false, 6, 7]">
+						</div>
+						<div input-field class="col offset-l2 l5">
+							<i class="postfix fas fa-arrow-left"></i>
+							<label>Fecha de Termino</label>
+							<input input-date type="text" ng-model="dsc.filters.tillDate" first-day="1" format="dd-mm-yyyy" disable="[false, 6, 7]">
+						</div>
+					</div>
+					<div class="row">
+						<div input-field class="col l12">
+							<i class="prefix fas fa-search"></i>
+							<label>Buscar</label>
+							<input ng-model="dsc.filters.searchTerm" type="search">
+						</div>
+					</div>
+					<div class="row">
+						<div input-field class="col l5">
+							<i class="prefix fas fa-user"></i>
+							<label ng-class="{'active': dsc.filters.byPatient != null}">Filtrar por Paciente:</label>
+							<select ng-model="dsc.filters.byPatient" material-select watch>
+								<option value="-1">Todos</option>
+								<option ng-repeat="patient in dsc.patients" value="{{patient.id}}">{{patient.full_name}}</option>
+							</select>
+						</div>
+						<div input-field class="col offset-l2 l5">
+							<i class="prefix fas fa-user-md"></i>
+							<label ng-class="{'active': dsc.filters.byDoctor != null}">Filtrar por Medico:</label>
+							<select ng-model="dsc.filters.byDoctor" material-select watch>
+								<option value="-1">Todos</option>
+								<option ng-repeat="doctor in dsc.doctors" value="{{doctor.id}}">{{doctor.full_name}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col l12">
+							<table class="bordered highlight centered-table">
+								<thead class="grey darken-3 white-text">
+									<tr>
+										<th>#</th>
+										<th>Fecha</th>
+										<th>Paciente</th>
+										<th>Medico</th>
+										<th>Eliminar</th>
+										<th>Estado</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="appointment in dsc.filteredAppointments = (dsc.appointments | dateRange: dsc.filters.sinceDate : dsc.filters.tillDate | filter: dsc.filters.searchTerm | filter: ((dsc.filters.byPatient >= 0) || undefined) && {patient_id: dsc.filters.byPatient} | filter: ((dsc.filters.byDoctor >= 0)||undefined)&&{doctor_id: dsc.filters.byDoctor})">
+										<td>{{appointment.id}}</td>
+										<td>{{appointment.date + ' ' + appointment.time}}</td>
+										<td>{{appointment.patient_name}}</td>
+										<td>{{appointment.doctor_name}}</td>
+										<td><a class="btn-floating btn-flat waves-effect waves-light" ng-click="dsc.deleteAppointment(appointment)"><i class="fas fa-trash red-text"></i></a></td>
+										<td>
+											<div class="fixed-action-btn horizontal" style="position: relative; right: 10%; top: 0px">
+												<a class="btn-floating btn-flat waves-effect waves-light">
+													<i class="fas" ng-class="appointment.status == 'pending' ? 'fa-minus orange-text' : appointment.status == 'done' ? 'fa-check green-text' : 'fa-times red-text'"></i>
+												</a>
+												<ul style="right: -190px; top: 15%">
+													<li><a id="menu" class="btn-floating btn-flat waves-effect waves-light green" tooltipped data-delay="50" data-position="bottom" data-tooltip="Presente" ng-click="dsc.changeAppointmentStatus('done', appointment)"><i class="fas fa-check white-text"></i></a></li>
+													<li><a class="btn-floating btn-flat waves-effect waves-light orange" tooltipped data-delay="50" data-position="bottom" data-tooltip="Pendiente" ng-click="dsc.changeAppointmentStatus('pending', appointment)"><i class="fas fa-minus white-text"></i></a></li>
+													<li><a class="btn-floating btn-flat waves-effect waves-light red" tooltipped data-delay="50" data-position="bottom" data-tooltip="Ausente" ng-click="dsc.changeAppointmentStatus('absent', appointment)"><i class="fas fa-times white-text"></i></a></li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+									<tr ng-if="dsc.filteredAppointments.length === 0">
+										<td colspan="7">Sin Coincidencias...</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
