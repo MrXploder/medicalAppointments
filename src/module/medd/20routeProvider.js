@@ -6,8 +6,7 @@
 	.config(routeProvider);
 
 	routeProvider.$inject  = ["$routeProvider"];
-	defaultResolve.$inject = ["userAuthentication", "$timeout", "$location", "$localStorage"];
-	loginResolve.$inject 	 = ["userAuthentication", "$rootScope", "$location", "$localStorage"];
+	
 
 	function routeProvider($routeProvider){
 		$routeProvider
@@ -20,13 +19,12 @@
 			templateUrl: "src/module/medd/route/home/template.html",
 			controller: "homeController",
 			controllerAs: "hmc",
-			resolve: { initialData: defaultResolve },
+			resolve: { preCondition:  common},
 		})
 		.when("/login", {
 			controller: "loginController",
 			controllerAs: "lg",
 			template: '<div></div>',
-			resolve: { isLoggedIn: loginResolve },
 		})
 		.when("/exit",{
 			controller: "exitController",
@@ -36,48 +34,54 @@
 			controller: "newAppointmentController",
 			controllerAs: "nac",
 			templateUrl: "src/module/medd/route/newAppointment/template.html",
-			resolve: { isLoggedIn: loginResolve },
+			resolve: { preCondition: authorized },
 		})
 		.when("/dailyStatistics", {
 			controller: "dailyStatisticsController",
 			controllerAs: "dsc",
 			templateUrl: "src/module/medd/route/dailyStatistics/template.html",
-			resolve: { isLoggedIn: loginResolve },
+			resolve: { preCondition: authorized },
 		})
 		.when("/patientControlList", {
 			controller: "patientControlListController",
 			controllerAs: "pclc",
 			templateUrl: "src/module/medd/route/patientControlList/template.html",
-			resolve: { isLoggedIn: loginResolve },
+			resolve: { preCondition: authorized },
 		})
 		.otherwise({
 			redirectTo: "/home",
 		});
 	};
 
-	function defaultResolve(userAuthentication, $timeout, $location, $localStorage){
+	common.$inject = ["userAuthentication", "$rootScope", "$location", "$localStorage"];
+	function common(userAuthentication, $rootScope, $location, $localStorage){
 		userAuthentication
 		.isLoggedIn({token: $localStorage.currentUser.token})
 		.$promise
-		.then(function success(response){
-			$timeout(function(){
-				if($localStorage.currentLicense.status !== "pristine"){
-					$location.path("/firstTime");
-				}
-			},0);
+		.then(() => {
+			if($localStorage.currentLicense.status !== "pristine"){
+				$rootScope.$evalAsync(() => { $location.path("/firstTime");	});
+			}
 		})
-		.catch(function error(response){
-			$timeout(function(){$location.path("/login")},0);
+		.catch(() => {
+			$rootScope.$evalAsync(() => { 
+				$location.path("/login"); 
+			});
 		}); 
 	};
 
-	function loginResolve(userAuthentication, $rootScope, $location, $localStorage){
+	authorized.$inject = ["userAuthentication", "$rootScope", "$location", "$localStorage"];
+	function authorized(userAuthentication, $rootScope, $location, $localStorage){
 		userAuthentication
 		.isLoggedIn({token: $localStorage.currentUser.token})
 		.$promise
-		.catch(function error(response){
-			$('#apps-side-nav').hide("fast");
-			$("#login-side-nav").show("slow").css({left: "38%"});
+		.then(response => {
+			if($localStorage.currentLicense.status !== "pristine"){
+				$rootScope.$evalAsync(() => { $location.path("/firstTime");	});
+			}
+		})
+		.catch(response => {
+			$rootScope.$evalAsync(() => { $location.path("/login"); });
 		}); 
 	};
 })();

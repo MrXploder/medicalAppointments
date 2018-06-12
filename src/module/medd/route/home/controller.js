@@ -3,9 +3,9 @@
 	.module('angularApp')
 	.controller('homeController', homeController);
 
-	homeController.$inject = ["licenseVerificator", "$localStorage", "$timeout", "$location"];
+	homeController.$inject = ["Doctors", "licenseVerificator", "$localStorage", "$rootScope", "$location"];
 
-	function homeController(licenseVerificator, $localStorage, $timeout, $location){
+	function homeController(Doctors, licenseVerificator, $localStorage, $rootScope, $location){
 		var hmc = this;
 
 		licenseVerificator
@@ -13,10 +13,8 @@
 		.$promise
 		.catch(function error(response){
 			if(response.status === 402){ /*execute only on specific cases (402 error code) */
-				$timeout(function(){
-					$localStorage.currentLicense.key = null;
-					$location.path("/firstTime");
-				},0);
+				$localStorage.currentLicense = { key: null, status: "dirty" };
+				$rootScope.$evalAsync(()=> { $location.path("/firstTime"); });
 			}
 		});
 	}

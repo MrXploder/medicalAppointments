@@ -8,7 +8,7 @@ module.exports = function(grunt) {
       options: {
         space: ' ',
         wrap: true,
-        deps: ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'templates-main'],
+        deps: ['templates-main', 'ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'platanus.rut', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'ui.calendar', 'indexedDB'],
         dest: "src/module/medd/10index.js",
         name: 'angularApp'
       },

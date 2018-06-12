@@ -9,6 +9,7 @@
 	function inputAutocomplete(){
 		return {
 			restrict: 'E',
+			replace: true,
 			scope: {},
 			controller: 'inputAutocompleteController',
 			controllerAs: 'vm',

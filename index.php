@@ -55,7 +55,7 @@
         </li>
         <li>
           <div class="container">
-            <a class="btn waves-effect waves-light blue" ng-click="mc.logIn()" ng-disabled="!lg.$valid">LogIn</a>
+            <a class="btn btn-block waves-effect waves-light blue" ng-click="mc.logIn()" ng-disabled="!lg.$valid">LogIn</a>
           </div>
         </li>
       </ng-form>

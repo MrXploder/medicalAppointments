@@ -1,30 +1,35 @@
 <ng-form name="ocForm">
   <div class="row">
     <div input-field class="col l12">
+      <i class="prefix fas fa-user"></i>
       <label ng-class="oac.form.patient_fullname != null && 'active'">Escribir Nombre del Paciente</label>
       <input-autocomplete bind="oac.form.patient_fullname" data="oac.patients"></input-autocomplete>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
+      <i class="prefix fas fa-id-card"></i>
       <label>RUT</label>
-      <input type="text" ng-model="oac.form.patient_rut" required>
+      <input ng-rut type="text" ng-model="oac.form.patient_rut" required>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
+      <i class="prefix fas fa-file-alt"></i>
       <label>Diagnóstico</label>
       <textarea type="text" ng-model="oac.form.diagnosis_text"  class="materialize-textarea" required></textarea>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
+      <i class="prefix fas fa-user-md"></i>
       <label ng-class="oac.form.doctor_id != null && 'active'">Asignar Doctor</label>
       <select material-select ng-model="oac.form.doctor_id" watch ng-options="doctor.id as doctor.full_name for doctor in oac.doctors" required></select>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
+      <i class="prefix fas fa-compass"></i>
       <label ng-class="oac.form.comes_from != null && 'active'">Procedencia</label>
       <select ng-model="oac.form.comes_from" material-select required>
         <option>CAE Adulto</option>
@@ -39,12 +44,14 @@
   </div>
   <div class="row">
     <div input-field class="col l12">
+      <i class="prefix fas fa-align-left"></i>
       <label>Procedimiento Realizado</label>
       <textarea type="text" ng-model="oac.form.procedure_perform" class="materialize-textarea" required></textarea>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
+      <i class="prefix fas fa-list-ul"></i>
       <label ng-class="oac.form.process_code != null && 'active'">Procedimiento Segun Estadistica Mensual</label>
       <select ng-model="oac.form.process_code" material-select required>
         <option value="21-01-001">21-01-001 - Infiltración local medicamentos (bursas, tendones, yuxta articular)</option>
@@ -70,6 +77,7 @@
   </div>
   <div class="row">
     <div input-field class="col l12">
+      <i class="prefix fas fa-list-ul"></i>
       <label ng-class="oac.form.diagnosis_code != null && 'active'">Procedimiento Segun Diagnostico Mensual</label>
       <select ng-model="oac.form.diagnosis_code" material-select required>
         <option value="21-07-001">21-07-001 - Luxaciones de articulaciones medianas (hombro, codo, rodilla, tobillo, muñeca, torso y esternovascular)</option>
@@ -81,6 +89,7 @@
   </div>
   <div class="row">
     <div input-field class="col l12">
+      <i class="prefix fas fa-band-aid"></i>
       <label ng-class="oac.form.injury_type != null && 'active'">Tipo de Lesión</label>
       <select ng-model="oac.form.injury_type" material-select required>
         <option>1</option>
@@ -92,6 +101,7 @@
   </div>
   <div class="row"> 
     <div input-field class="col l12">
+      <i class="prefix fas fa-money-check"></i>
       <label ng-class="oac.form.membership != null && 'active'">Afiliación</label>
       <select ng-model="oac.form.membership" material-select required>
         <option>Capredena</option>

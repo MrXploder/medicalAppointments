@@ -3,9 +3,9 @@
 	.module('angularApp')
 	.controller('dailyStatisticsController', dailyStatisticsController);
 
-	dailyStatisticsController.$inject = ["Appointments", "Doctors", "Patients", "Operators", "Modal", "ngDialog", "$scope", "$timeout", "$location", "$localStorage"];
+	dailyStatisticsController.$inject = ["Appointments", "Doctors", "Patients", "Operators", "ngDialog", "$scope", "$timeout", "$location", "$localStorage"];
 
-	function dailyStatisticsController(Appointments, Doctors, Patients, Operators, Modal, ngDialog, $scope, $timeout, $location, $localStorage){
+	function dailyStatisticsController(Appointments, Doctors, Patients, Operators, ngDialog, $scope, $timeout, $location, $localStorage){
 		var dsc = this;
 		$scope.$storage = $localStorage;
 
@@ -46,14 +46,6 @@
 		}
 
 		function addOcationalAppointment(){
-			/*Modal.open({
-				scope: $scope,
-				controller: 'ocationalAppointmentController', 
-				controllerAs: 'oac',
-				bindToInstance: {},              
-				templateUrl: "src/module/medd/modal/ocationalAppointment/template.html", 
-			});
-			*/
 			ngDialog
 			.open({
 				templateUrl: "src/module/medd/modal/ocationalAppointment/template.html",
@@ -64,7 +56,7 @@
 			.closePromise
 			.then(function(response){
 				dsc.appointments = Appointments.query();
-			})
+			});
 		}
 	}
 })();

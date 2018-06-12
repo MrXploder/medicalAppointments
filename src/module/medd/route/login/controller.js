@@ -8,19 +8,26 @@
 	function loginController(userAuthentication, $location, $timeout, $scope, $localStorage){
 		var lg = this;
 
-		$("#apps-side-nav").hide();
-		$("#login-side-nav").css({left: "38%"});
+		$("#login-side-nav").css({left: 0});
+		$("#apps-side-nav").hide("fast");
+		$("#login-side-nav").animate({"left": "38%"}, "fast");
+		$("#login-side-nav").show("slow");
+		$("footer").css({paddingLeft: 0});
 
-		$scope.$on('attemptToLogIn', function(event, logInData){
-			userAuthentication.logIn({name: logInData.name, pass: logInData.pass}).$promise.then(function success(response){
+		/* this event comes from the main controller called "mainController" that handles the sidenavs */
+		$scope.$on('attemptToLogIn', (event, logInData) => {
+			userAuthentication.logIn(logInData)
+			.$promise
+			.then(response => {
 				$localStorage.currentUser = response.user;
+				$("footer").animate({"paddingLeft": 300}, "fast");
 				$.when($("#login-side-nav").animate({"left":"0%"}, "slow")).done(function(){
 					$.when($('#apps-side-nav').show("slow")).done(function(){
 						$('.button-collapse').sideNav({menuWidth: 300, edge: 'left', closeOnClick: true, draggable: true,});
 					});
 					$("#login-side-nav").hide("slow");
-					Materialize.toast('Bienvenido '+response.user.name, 5000, 'green');
-					$timeout(function(){$location.path("/home");},0);
+					Materialize.toast('Bienvenido '+ response.user.name, 5000, 'green');
+					$location.path("/home");
 				});
 			});
 		});

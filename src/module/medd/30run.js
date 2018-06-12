@@ -12,9 +12,9 @@
 	.module('angularApp')
 	.run(support);
 
-	support.$inject = ["$localStorage", "$window"];
+	support.$inject = ["$rootScope", "$localStorage"];
 
-	function support($localStorage){
+	function support($rootScope, $localStorage){
 		var _default = {
 			currentLicense: {
 				key: null,
@@ -38,16 +38,18 @@
 			}
 		};
 
-		if(typeof $localStorage.currentUser === "undefined"){
-			$localStorage.currentUser = _default.currentUser;
-		}
+		angular.element(() => {
+			if(typeof $localStorage.currentUser === "undefined"){
+				$localStorage.currentUser = _default.currentUser;
+			}
 
-		if(typeof $localStorage.currentLicense === "undefined"){
-			$localStorage.currentLicense = _default.currentLicense;
-		}
+			if(typeof $localStorage.currentLicense === "undefined"){
+				$localStorage.currentLicense = _default.currentLicense;
+			}
 
-		if(typeof $localStorage.viewTicketsParams  === "undefined"){
-			$localStorage.viewTicketsParams = _default.filterParams;
-		}
+			if(typeof $localStorage.viewTicketsParams  === "undefined"){
+				$localStorage.viewTicketsParams = _default.filterParams;
+			}
+		});
 	}
 })();

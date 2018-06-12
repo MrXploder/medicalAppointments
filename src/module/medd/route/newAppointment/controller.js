@@ -5,9 +5,9 @@
 	.module('angularApp')
 	.controller('newAppointmentController', newAppointmentController);
 
-	newAppointmentController.$inject = ["Doctors", "Patients", "Appointments", "Printer", "$scope", "$filter", "Modal", "$timeout", "$location"];
+	newAppointmentController.$inject = ["Doctors", "Patients", "Appointments", "Printer", "$scope", "$filter", "$timeout", "$location"];
 
-	function newAppointmentController(Doctors, Patients, Appointments, Printer, $scope, $filter, Modal, $timeout, $location){
+	function newAppointmentController(Doctors, Patients, Appointments, Printer, $scope, $filter, $timeout, $location){
 		var nac = this;
 
 		nac.form = {};
