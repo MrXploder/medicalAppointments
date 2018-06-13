@@ -1,28 +1,29 @@
-<ng-form name="ocForm">
+<ng-form name="caForm">
+  <pre>{{cac.form | json}}</pre>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-user"></i>
       <label ng-class="cac.form.patient_fullname != null && 'active'">Escribir Nombre del Paciente</label>
-      <input-autocomplete bind="cac.form.patient_fullname" data="cac.patients"></input-autocomplete>
+      <input-autocomplete bind="cac.form.patient_fullname" data="cac.patients" class-id="cac.form.patient_id"></input-autocomplete>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l6 file-field">
       <button class="btn col l3" ng-click="cac.showSchedule()"><i class="fas fa-calendar-alt"></i></button>
       <div class="file-path-wrapper">
-        <label style="left: 100px;">Elige una fecha</label>
-        <input input-date type="text" id="patientDatePicker" ng-model="nac.form.date" first-day="1" format="dd/mm/yyyy" disable="[false, 6, 7]" close-on-select="false" required>
+        <label style="left: 100px;">Fecha Seleccionada</label>
+        <input type="text" id="patientDatePicker" ng-model="cac.form.date" required readonly>
       </div>
     </div>
     <div input-field class="col offset-l1 l5">
-      <label>Elige una hora</label>
-      <input input-clock type="text" twelvehour="false" ng-model="nac.form.time" required>
+      <label>Hora Seleccionada</label>
+      <input type="text" ng-model="cac.form.time" required readonly>
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col l12">
-      <a class="btn btn-block waves-effect waves-light green" ng-class="!ocForm.$valid && 'disabled'" ng-click="cac.storeAppointment()">Agendar</a>
+      <a class="btn btn-block waves-effect waves-light green" ng-class="!caForm.$valid && 'disabled'" ng-click="cac.storeAppointment()">Agendar</a>
     </div>
   </div>
 </ng-form>

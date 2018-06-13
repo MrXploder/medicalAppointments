@@ -2,13 +2,12 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    gitinfo: {
-    },
+    gitinfo: {},
     ngconstant: {
       options: {
         space: ' ',
         wrap: true,
-        deps: ['templates-main', 'ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'platanus.rut', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'ui.calendar', 'indexedDB'],
+        deps: ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'platanus.rut', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'indexedDB'],
         dest: "src/module/medd/10index.js",
         name: 'angularApp'
       },

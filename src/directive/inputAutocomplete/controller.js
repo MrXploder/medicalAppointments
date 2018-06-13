@@ -10,7 +10,7 @@
 		var vm = this;
 
 		vm.autocompleteRandomId = 'myId' + Math.random().toString(36).substr(2, 9);
-
+		
 		$scope.$watch('vm.data', function(){
 			if(typeof vm.data === "undefined") return;
 			else{

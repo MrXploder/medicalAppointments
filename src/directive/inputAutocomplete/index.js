@@ -16,8 +16,9 @@
 			bindToController: {
 				bind: "=",
 				data: "=",
+				classId: "=",
 			},
-			template: '<input type="text" ng-model="vm.bind" id="{{vm.autocompleteRandomId}}" class="autocomplete">'
+			template: '<input type="text" ng-model="vm.bind" id="{{vm.autocompleteRandomId}}" ng-class="{invalid: vm.classId <= 0, valid: vm.classId > 0}" class="autocomplete" required>',
 		}
 	}
 })();

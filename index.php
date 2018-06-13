@@ -27,7 +27,6 @@
     echo '<script src="../dist/'.constant('envSHA').'.min.obs.js"></script>', PHP_EOL;
   }
   ?>
-  <!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
 </head>
 <body>
   <header>
@@ -77,6 +76,7 @@
       <li><div class="divider"></div></li>
       <li><a href="#!/manageMedics" class="white-text"><i class="fas fa-user-md fa-2x white-text"></i>Administrar Medicos</a></li>
       <li><a href="#!/managePatients" class="white-text"><i class="fas fa-user fa-2x white-text"></i>Administrar Pacientes</a></li>
+      <li><a href="#!/manageOperators" class="white-text"><i class="fas fa-user-tie fa-2x white-text"></i>Administrar Operadores</a></li>
       <li><div class="divider"></div></li>
       <li><a href="#!/exit" class="white-text"><i class="fas fa-sign-out-alt fa-2x white-text"></i>LogOut</a></li>
     </ul>
@@ -94,12 +94,12 @@
   <footer class="footer grey darken-4" style="padding-top: 10px; padding-bottom: 10px;">
     <div class="container">
       <div class="footer-copyright left">
-        <a class="grey-text text-lighten-4" href="mailto: l.arancibiaf@gmail.com">© <?php echo constant("envAuthor") ?> AngularJS Dev</a><br>
+        <a class="grey-text text-lighten-4" href="mailto: l.arancibiaf@gmail.com">© <?php echo constant("envAuthor") ?></a><br>
         <a class="grey-text text-lighten-4" href="/phpliteadmin.php">PHPLiteAdmin</a>
       </div>
       <div class="footer-copyright right">
-        <a class="grey-text text-lighten-4" href="#!/">Compilación: <?php echo constant("envShortSHA") ?></a><br>
-        <a class="grey-text text-lighten-4" href="#!/">Modo: <?php echo constant("envBranch") ?></a>
+        <a class="grey-text text-lighten-4" href="#!/">BuildNo: <?php echo constant("envShortSHA") ?></a><br>
+        <a class="grey-text text-lighten-4" href="#!/">PoweredBy: AngularJS 1.6.X</a>
       </div>
     </div>
   </footer>
