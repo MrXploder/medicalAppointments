@@ -5,9 +5,9 @@
 	.module('angularApp')
 	.controller('newAppointmentController', newAppointmentController);
 
-	newAppointmentController.$inject = ["Doctors", "Patients", "Appointments", "Printer", "$scope", "$filter", "$timeout", "$location"];
+	newAppointmentController.$inject = ["Doctors", "Patients", "Appointments", "Printer", "ngDialog", "$scope", "$filter", "$rootScope", "$location", "$localStorage"];
 
-	function newAppointmentController(Doctors, Patients, Appointments, Printer, $scope, $filter, $timeout, $location){
+	function newAppointmentController(Doctors, Patients, Appointments, Printer, ngDialog, $scope, $filter, $rootScope, $location, $localStorage){
 		var nac = this;
 
 		nac.form = {};
@@ -25,7 +25,7 @@
 				nac.patients.forEach(function(patient){
 					autocompleteData[patient.full_name] = null;
 				});
-				$('#patient-autocomplete').autocomplete({
+				$('#patient-autocomplete').autocomplete({ 
 					data: autocompleteData,
 					limit: 20,
 					minLength: 1,
@@ -34,18 +34,28 @@
 		});
 
 		function showSchedule(){
-
+			ngDialog
+			.open({
+				templateUrl: "src/module/medd/modal/eventCalendar/template.html",
+				controller: "eventCalendarController",
+				controllerAs: "ecc",
+				width: "60%",
+			})
+			.closePromise
+			.then(function(response){
+				nac.form.date = response.value.date;
+				nac.form.time = response.value.time;
+			});
 		}
 
 		function createAppointment(){
+			nac.form.operator_id = $localStorage.currentUser.id;
 			Appointments
 			.create(nac.form)
 			.$promise
 			.then(function success(response){
 				Materialize.toast("Agendado", 5000, "green");
-				$timeout(function(){
-					$location.path("/manageCensus");
-				},0);
+				$rootScope.$evalAsync(()=> $location.path("/patientControlList"));
 			})
 			.catch(function error(response){
 				Materialize.toast(response.statusText, 5000, "red");

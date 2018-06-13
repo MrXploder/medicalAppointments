@@ -17,10 +17,27 @@
 										<th>#</th>
 										<th>Nombre Paciente</th>
 										<th>Proximo Control</th>
-										<th>Detalles</th>
 										<th>Estado</th>
 									</tr>
 								</thead>
+								<tbody>
+									<tr ng-repeat="appointment in filteredAppointments = (pclc.appointments | filter: {status: 'pending'} | orderBy: 'date')">
+										<td>{{appointment.id}}</td>
+										<td>{{appointment.patient_name}}</td>
+										<td>{{appointment.date + ' ' + appointment.time}}</td>
+										<td>
+											<div class="fixed-action-btn horizontal" style="position: relative; right: 10%; top: 0px">
+												<a class="btn-floating btn-flat waves-effect waves-light">
+													<i class="fas" ng-class="appointment.status == 'pending' ? 'fa-minus orange-text' : appointment.status == 'done' ? 'fa-check green-text' : 'fa-times red-text'"></i>
+												</a>
+												<ul style="right: -13px; top: 102%">
+													<li><a id="menu" class="btn-floating btn-flat waves-effect waves-light green" ng-click="pclc.changeAppointmentStatus('done', appointment)"><i class="fas fa-check white-text"></i></a></li>
+													<li><a class="btn-floating btn-flat waves-effect waves-light red" ng-click="pclc.changeAppointmentStatus('absent', appointment)"><i class="fas fa-times white-text"></i></a></li>
+												</ul>
+											</div>
+										</td>
+									</tr>
+								</tbody>
 							</table>
 						</div>
 					</div>

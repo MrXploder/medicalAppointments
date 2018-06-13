@@ -9,6 +9,7 @@
 		var pclc = this;
 
 		pclc.addControlAppointment = addControlAppointment;
+		pclc.appointments = Appointments.query();
 
 
 		function addControlAppointment(){

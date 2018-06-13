@@ -3,8 +3,6 @@
 		<div class="col l12">
 			<div class="card grey lighten-4">
 				<div class="card-content">
-					<span class="card-title">Agendar Nuevo Turno</span>
-					<br>
 					<ng-form name="naForm">
 						<div class="row">
 							<div input-field class="col l12">
@@ -16,13 +14,13 @@
 							<div input-field class="col l6 file-field">
 								<button class="btn col l3" ng-click="nac.showSchedule()"><i class="fas fa-calendar-alt"></i></button>
 								<div class="file-path-wrapper">
-									<label style="left: 90px;">Elige una fecha</label>
-									<input input-date type="text" id="patientDatePicker" ng-model="nac.form.date" first-day="1" format="dd/mm/yyyy" disable="[false, 6, 7]" required>
+									<label style="left: 90px;">Fecha</label>
+									<input type="text" ng-model="nac.form.date" required readonly>
 								</div>
 							</div>
 							<div input-field class="col offset-l1 l5">
-								<label>Elige una hora</label>
-								<input input-clock type="text" twelvehour="false" ng-model="nac.form.time" required>
+								<label>Hora</label>
+								<input type="text" ng-model="nac.form.time" required readonly>
 							</div>
 						</div>
 						<div class="row">
@@ -43,7 +41,7 @@
 							<a class="btn waves-effect waves-light red" ng-click="nac.form = {}">Reset <i class="fas fa-eraser"></i></a>
 						</div>
 						<div class="col l4">
-							<a class="btn waves-effect waves-light green" ng-click="nac.createAppointment()">Enviar <i class="fas fa-location-arrow"></i></a>
+							<a class="btn waves-effect waves-light green" ng-class="!naForm.$valid && 'disabled'" ng-click="nac.createAppointment()">Enviar <i class="fas fa-location-arrow"></i></a>
 						</div>
 						<div class="col l4">
 							<a class="btn waves-effect waves-light grey" ng-click="nac.printTest()">Vista Previa <i class="fas fa-print"></i></a>

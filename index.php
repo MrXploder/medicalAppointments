@@ -1,4 +1,8 @@
 <?php require $_SERVER['DOCUMENT_ROOT'].'/server/enviroment.php'; ?>
+<?php
+  /*backup sqlite db at startup*/
+  if(constant("envBranch") != "development") copy((string)$_SERVER['DOCUMENT_ROOT']."/medicalapointments.db", (string)$_SERVER['DOCUMENT_ROOT']."/databasebackup/bk".date("d-m-Y H-i-s").".db");
+?>
 <!DOCTYPE html>
 <html ng-app="angularApp" ng-controller="mainController as mc" ng-strict-di>
 <head>
@@ -74,7 +78,7 @@
       <li ng-class="$location.url() == '/dailyStatistics' && 'grey'"><a href="#!/dailyStatistics" ng-class="$location.url() == '/dailyStatistics' ? 'black-text':'white-text'"><i class="fas fa-calendar-alt fa-2x" ng-class="$location.url() == '/dailyStatistics' ? 'black-text':'white-text'"></i>Estadisticas Diarias</a></li>
       <li ng-class="$location.url() == '/monthlyReport' && 'grey'"><a href="#!/monthlyReport" ng-class="$location.url() == '/monthlyReport' ? 'black-text':'white-text'"><i class="fas fa-bug fa-2x" ng-class="$location.url() == '/monthlyReport' ? 'black-text':'white-text'"></i>Reporte Mensual</a></li>
       <li><div class="divider"></div></li>
-      <li ng-class="$location.url() == '/manageMedics' && 'grey'"><a href="#!/manageMedics" ng-class="$location.url() == '/manageDoctors' ? 'black-text':'white-text'"><i class="fas fa-user-md fa-2x" ng-class="$location.url() == '/manageDoctors' ? 'black-text':'white-text'"></i>Administrar Medicos</a></li>
+      <li ng-class="$location.url() == '/manageDoctors' && 'grey'"><a href="#!/manageDoctors" ng-class="$location.url() == '/manageDoctors' ? 'black-text':'white-text'"><i class="fas fa-user-md fa-2x" ng-class="$location.url() == '/manageDoctors' ? 'black-text':'white-text'"></i>Administrar Medicos</a></li>
       <li ng-class="$location.url() == '/managePatients' && 'grey'"><a href="#!/managePatients" ng-class="$location.url() == '/managePatients' ? 'black-text':'white-text'"><i class="fas fa-user fa-2x" ng-class="$location.url() == '/managePatients' ? 'black-text':'white-text'"></i>Administrar Pacientes</a></li>
       <li ng-class="$location.url() == '/manageOperators' && 'grey'"><a href="#!/manageOperators" ng-class="$location.url() == '/manageOperators' ? 'black-text':'white-text'"><i class="fas fa-user-tie fa-2x" ng-class="$location.url() == '/manageOperators' ? 'black-text':'white-text'"></i>Administrar Operadores</a></li>
       <li><div class="divider"></div></li>

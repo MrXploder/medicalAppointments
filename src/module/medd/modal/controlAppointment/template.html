@@ -20,6 +20,16 @@
       <input type="text" ng-model="cac.form.time" required readonly>
     </div>
   </div>
+  <div class="row">
+    <div input-field class="col l12">
+      <label ng-class="cac.form.reason != null && 'active'">Motivo</label>
+      <select ng-model="cac.form.reason" material-select required>
+        <option>Control de Herida</option>
+        <option>Curaciones</option>
+        <option>Control de Rutina</option>
+      </select>
+    </div>
+  </div>
   <br>
   <div class="row">
     <div class="col l12">

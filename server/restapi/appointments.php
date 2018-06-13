@@ -23,15 +23,26 @@ if(isset($_SERVER["HTTP_X_HTTP_METHOD_OVERRIDE"])){
 	$_SERVER["REQUEST_METHOD"] = $_SERVER["HTTP_X_HTTP_METHOD_OVERRIDE"];
 }
 
+
 //METHODS///////////////////////////////////////////////////////
 try{
 	if($_SERVER['REQUEST_METHOD'] === 'GET'){
 		$id = sanitizeInput($_GET["id"]);
 		if(empty($id)){
-			$payLoad = $db->query("SELECT `appointments`.*, `patients`.`full_name` AS patient_name, `doctors`.`full_name` AS doctor_name FROM `appointments` INNER JOIN `patients` ON `appointments`.`patient_id` = `patients`.`id` INNER JOIN `doctors` ON `appointments`.`doctor_id` = `doctors`.`id`")->fetchAll(PDO::FETCH_ASSOC);
-		}
-		else if(!empty($id)){
-			$payLoad = $db->query("SELECT `appointments`.*, `patients`.`full_name` AS patient_name, `doctors`.`full_name` AS doctor_name FROM `appointments` INNER JOIN `patients` ON `appointments`.`patient_id` = `patients`.`id` INNER JOIN `doctors` ON `appointments`.`doctor_id` = `doctors`.`id` WHERE `appointment`.`id` = $id")->fetchAll(PDO::FETCH_ASSOC)[0];	
+			$payLoad = $db->query(
+				"SELECT 
+				`appointments`.*, 
+				`patients`.`full_name` AS patient_name,
+				`doctors`.`full_name` AS doctor_name,
+				`operators`.`name` AS operator_name
+				FROM `appointments` 
+				INNER JOIN `patients` 
+				ON `appointments`.`patient_id` = `patients`.`id` 
+				INNER JOIN `doctors` 
+				ON `appointments`.`doctor_id` = `doctors`.`id` 
+				INNER JOIN `operators` 
+				ON `appointments`.`operator_id` = `operators`.`id`"
+			)->fetchAll(PDO::FETCH_ASSOC);
 		}
 		else{
 			throw new Exception(400);
@@ -61,9 +72,12 @@ try{
 				$patient_id = $request["patient_id"];
 			}
 
+			if(empty($request["doctor_id"])) $request["doctor_id"] = 0;
+			if(empty($request["status"])) $request["status"] = "pending";
 			$insertQuery = $db->insert("appointments", array(
 				"patient_id" 				=> $patient_id,
 				"doctor_id" 				=> $request["doctor_id"],
+				"operator_id"				=> $request["operator_id"],
 				"comes_from" 				=> $request["comes_from"],
 				"date" 							=> $request["date"],
 				"time" 							=> $request["time"],
@@ -73,12 +87,12 @@ try{
 				"injury_type" 			=> $request["injury_type"],
 				"process_code"		 	=> $request["process_code"],
 				"diagnosis_code" 		=> $request["diagnosis_code"],
+				"diagnosis_text" 		=> $request["diagnosis_text"],
 				"membership" 				=> $request["membership"],
 				"observations" 			=> $request["observations"],
-				"diagnosis_text" 		=> $request["diagnosis_text"],
 			));
 			if($insertQuery->rowCount() > 0){
-				http_response_code(202); /* Created */
+				http_response_code(201); /* Created */
 				exit();
 			}
 			else{
