@@ -15,11 +15,12 @@
 	.module('angularApp')
 	.controller('mainController', mainController);
 
-	mainController.$inject = ["$scope", "$localStorage", "$window", "$rootScope"];
+	mainController.$inject = ["$scope", "$location", "$localStorage", "$window", "$rootScope"];
 
-	function mainController($scope, $localStorage, $window, $rootScope){
+	function mainController($scope, $location, $localStorage, $window, $rootScope){
 		var mc = this;
-		$scope.$storage = $localStorage;
+		$scope.$storage  = $localStorage;
+		$scope.$location = $location;
 
 		mc.form = { name: null, pass: null };
 		mc.logIn = logIn;

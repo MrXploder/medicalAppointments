@@ -71,9 +71,9 @@
 													<i class="fas" ng-class="appointment.status == 'pending' ? 'fa-minus orange-text' : appointment.status == 'done' ? 'fa-check green-text' : 'fa-times red-text'"></i>
 												</a>
 												<ul style="right: -190px; top: 15%">
-													<li><a id="menu" class="btn-floating btn-flat waves-effect waves-light green" tooltipped data-delay="50" data-position="bottom" data-tooltip="Presente" ng-click="dsc.changeAppointmentStatus('done', appointment)"><i class="fas fa-check white-text"></i></a></li>
-													<li><a class="btn-floating btn-flat waves-effect waves-light orange" tooltipped data-delay="50" data-position="bottom" data-tooltip="Pendiente" ng-click="dsc.changeAppointmentStatus('pending', appointment)"><i class="fas fa-minus white-text"></i></a></li>
-													<li><a class="btn-floating btn-flat waves-effect waves-light red" tooltipped data-delay="50" data-position="bottom" data-tooltip="Ausente" ng-click="dsc.changeAppointmentStatus('absent', appointment)"><i class="fas fa-times white-text"></i></a></li>
+													<li><a id="menu" class="btn-floating btn-flat waves-effect waves-light green" ng-click="dsc.changeAppointmentStatus('done', appointment)"><i class="fas fa-check white-text"></i></a></li>
+													<li><a class="btn-floating btn-flat waves-effect waves-light orange" ng-click="dsc.changeAppointmentStatus('pending', appointment)"><i class="fas fa-minus white-text"></i></a></li>
+													<li><a class="btn-floating btn-flat waves-effect waves-light red" ng-click="dsc.changeAppointmentStatus('absent', appointment)"><i class="fas fa-times white-text"></i></a></li>
 												</ul>
 											</div>
 										</td>

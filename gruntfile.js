@@ -8,7 +8,7 @@ module.exports = function(grunt) {
         space: ' ',
         wrap: true,
         deps: ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'platanus.rut', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'indexedDB'],
-        dest: "src/module/medd/10index.js",
+        dest: "src/module/10index.js",
         name: 'angularApp'
       },
       dist: {
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
       },
       main: {
         src: ['src/**/*.html'],
-        dest: 'src/vendor/90templates.js'
+        dest: 'src/vendor/49angular-templates.js'
       },
     },
     concat: {
@@ -44,7 +44,7 @@ module.exports = function(grunt) {
         separator: '\n',
       },
       js: {
-        src: ['src/vendor/*.js', 'src/module/medd/*.js', 'src/directive/**/*.js', 'src/factory/**/*.js', 'src/filter/**/*.js',  'src/module/medd/modal/**/*.js', 'src/module/medd/route/**/*.js'],
+        src: ['src/vendor/*.js', 'src/module/*.js', 'src/directive/**/*.js', 'src/factory/**/*.js', 'src/filter/**/*.js',  'src/module/dialog/**/*.js', 'src/module/route/**/*.js'],
         dest: 'dist/<%= gitinfo.local.branch.current.SHA %>.js',
       },
       css:{
