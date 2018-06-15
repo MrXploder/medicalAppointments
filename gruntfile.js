@@ -7,7 +7,7 @@ module.exports = function(grunt) {
       options: {
         space: ' ',
         wrap: true,
-        deps: ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'platanus.rut', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'indexedDB'],
+        deps: ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'cp.ngConfirm', 'platanus.rut', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'indexedDB', 'templates-main'],
         dest: "src/module/10index.js",
         name: 'angularApp'
       },
@@ -33,11 +33,16 @@ module.exports = function(grunt) {
     html2js: {
       options: {
         base: "",
+        module: 'templates-main',
       },
       main: {
         src: ['src/**/*.html'],
         dest: 'src/vendor/49angular-templates.js'
       },
+      dev: {
+        src: ['server/dummy.html'],
+        dest: 'src/vendor/49angular-templates.js'
+      }
     },
     concat: {
       options: {
@@ -105,6 +110,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-html2js');
 
-  grunt.registerTask('default', ['gitinfo', 'ngconstant', 'php_constants', 'html2js', 'concat', 'uglify', 'cssmin', 'obfuscator', 'clean']);
-  grunt.registerTask('dev', ['gitinfo', 'ngconstant', 'php_constants']);
+  grunt.registerTask('default', ['gitinfo', 'ngconstant', 'php_constants', 'html2js:main', 'concat', 'uglify', 'cssmin', 'obfuscator', 'clean']);
+  grunt.registerTask('dev', ['gitinfo', 'html2js:dev', 'ngconstant', 'php_constants']);
 };

@@ -3,9 +3,9 @@
 	.module('angularApp')
 	.controller('loginController', loginController);
 
-	loginController.$inject = ["userAuthentication", "$location", "$timeout", "$scope", "$localStorage"];
+	loginController.$inject = ["userAuthentication", "$location", "$rootScope", "$scope", "$localStorage"];
 
-	function loginController(userAuthentication, $location, $timeout, $scope, $localStorage){
+	function loginController(userAuthentication, $location, $rootScope, $scope, $localStorage){
 		var lg = this;
 
 		$("#login-side-nav").css({left: 0});
@@ -27,7 +27,7 @@
 					});
 					$("#login-side-nav").hide("slow");
 					Materialize.toast('Bienvenido '+ response.user.name, 5000, 'green');
-					$location.path("/home");
+					$rootScope.$evalAsync(_ => $location.path("/home"));
 				});
 			});
 		});

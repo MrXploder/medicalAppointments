@@ -48,7 +48,7 @@
 		function addOcationalAppointment(){
 			ngDialog
 			.open({
-				templateUrl: "src/module/medd/modal/ocationalAppointment/template.html",
+				templateUrl: "src/module/modal/ocationalAppointment/template.html",
 				controller: "ocationalAppointmentController",
 				controllerAs: "oac",
 				width: "60%",

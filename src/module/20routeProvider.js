@@ -11,12 +11,12 @@
 	function routeProvider($routeProvider){
 		$routeProvider
 		.when("/firstTime", {
-			templateUrl: "src/module/medd/route/firstTime/template.html",
+			templateUrl: "src/module/route/firstTime/template.html",
 			controller: "firstTimeController",
 			controllerAs: "ftc",
 		})
 		.when("/home", {
-			templateUrl: "src/module/medd/route/home/template.html",
+			templateUrl: "src/module/route/home/template.html",
 			controller: "homeController",
 			controllerAs: "hmc",
 			resolve: { preCondition:  common},
@@ -33,19 +33,19 @@
 		.when("/newAppointment", {
 			controller: "newAppointmentController",
 			controllerAs: "nac",
-			templateUrl: "src/module/medd/route/newAppointment/template.html",
+			templateUrl: "src/module/route/newAppointment/template.html",
 			resolve: { preCondition: authorized },
 		})
 		.when("/dailyStatistics", {
 			controller: "dailyStatisticsController",
 			controllerAs: "dsc",
-			templateUrl: "src/module/medd/route/dailyStatistics/template.html",
+			templateUrl: "src/module/route/dailyStatistics/template.html",
 			resolve: { preCondition: authorized },
 		})
 		.when("/patientControlList", {
 			controller: "patientControlListController",
 			controllerAs: "pclc",
-			templateUrl: "src/module/medd/route/patientControlList/template.html",
+			templateUrl: "src/module/route/patientControlList/template.html",
 			resolve: { preCondition: authorized },
 		})
 		.otherwise({

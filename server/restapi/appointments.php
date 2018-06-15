@@ -32,9 +32,9 @@ try{
 			$payLoad = $db->query(
 				"SELECT 
 				`appointments`.*, 
-				`patients`.`full_name` AS patient_name,
-				`doctors`.`full_name` AS doctor_name,
-				`operators`.`name` AS operator_name
+				`patients`.`full_name` AS patient_fullname,
+				`doctors`.`full_name` AS doctor_fullname,
+				`operators`.`name` AS operator_fullname
 				FROM `appointments` 
 				INNER JOIN `patients` 
 				ON `appointments`.`patient_id` = `patients`.`id` 
@@ -74,6 +74,7 @@ try{
 
 			if(empty($request["doctor_id"])) $request["doctor_id"] = 0;
 			if(empty($request["status"])) $request["status"] = "pending";
+
 			$insertQuery = $db->insert("appointments", array(
 				"patient_id" 				=> $patient_id,
 				"doctor_id" 				=> $request["doctor_id"],
@@ -103,21 +104,16 @@ try{
 			throw new Exception(400);
 		}
 	}
+	
 	else if($_SERVER["REQUEST_METHOD"] === "PUT"){
 		$putdata = file_get_contents("php://input");
 		if(!empty($putdata)){
 			$request = json_decode($putdata, true);
-			$updateQuery = $db->update("appointments", [
-				"comes_from" 				=> $request["comes_from"],
-				"date"			 				=> $request["date"],
-				"doctor_id"  				=> $request["doctor_id"],
-				"notes"      				=> $request["notes"],
-				"patient_id" 				=> $request["patient_id"],
-				"procedure_perform" => $request["procedure_perform"],
-				"reason"						=> $request["reason"],
-				"status"						=> $request["status"],
-				"time"							=> $request["time"],
-			],[
+			/*remove previus "join" extra columns*/
+			unset($request["patient_fullname"]);
+			unset($request["doctor_fullname"]);
+			unset($request["operator_fullname"]);
+			$updateQuery = $db->update("appointments", $request, [
 				"appointments.id" => $request["id"]
 			]);
 

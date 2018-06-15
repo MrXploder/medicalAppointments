@@ -19,7 +19,7 @@
 		function showSchedule(){
 			ngDialog
 			.open({
-				templateUrl: "src/module/medd/modal/eventCalendar/template.html",
+				templateUrl: "src/module/modal/eventCalendar/template.html",
 				controller: "eventCalendarController",
 				controllerAs: "ecc",
 				width: "60%",

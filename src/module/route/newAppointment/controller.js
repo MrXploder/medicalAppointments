@@ -36,7 +36,7 @@
 		function showSchedule(){
 			ngDialog
 			.open({
-				templateUrl: "src/module/medd/modal/eventCalendar/template.html",
+				templateUrl: "src/module/modal/eventCalendar/template.html",
 				controller: "eventCalendarController",
 				controllerAs: "ecc",
 				width: "60%",
@@ -63,7 +63,7 @@
 		};
 
 		function printTest(){
-			Printer.print('src/module/medd/print/firstReport/template.html', {
+			Printer.print('src/module/print/firstReport/template.html', {
 				patient: {
 					name: 'Ram Kumar', 
 					dateOfBirth: '1978-08-23', 

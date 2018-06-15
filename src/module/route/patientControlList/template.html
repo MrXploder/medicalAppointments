@@ -23,7 +23,7 @@
 								<tbody>
 									<tr ng-repeat="appointment in filteredAppointments = (pclc.appointments | filter: {status: 'pending'} | orderBy: 'date')">
 										<td>{{appointment.id}}</td>
-										<td>{{appointment.patient_name}}</td>
+										<td>{{appointment.patient_fullname}}</td>
 										<td>{{appointment.date + ' ' + appointment.time}}</td>
 										<td>
 											<div class="fixed-action-btn horizontal" style="position: relative; right: 10%; top: 0px">

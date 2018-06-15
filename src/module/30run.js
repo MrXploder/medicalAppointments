@@ -27,14 +27,6 @@
 				avatar: null,
 			},
 			filterParams: {
-				filterByApplicant: '', 
-				filterByClient: '-1',
-				filterCompletedOnes: false,
-				pagesToShow: 5,
-				itemsPerPage: 5,
-				searchTerm: '',
-				sortBy: 'id',
-				sortReverse: false,
 			}
 		};
 
@@ -45,10 +37,6 @@
 
 			if(typeof $localStorage.currentLicense === "undefined"){
 				$localStorage.currentLicense = _default.currentLicense;
-			}
-
-			if(typeof $localStorage.viewTicketsParams  === "undefined"){
-				$localStorage.viewTicketsParams = _default.filterParams;
 			}
 		});
 	}

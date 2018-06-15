@@ -24,7 +24,7 @@
 					else item.color = "#ffc107";
 					
 					transformedEvents.push({
-						title: item.patient_name,
+						title: item.patient_fullname,
 						start: moment(`${item.date} ${item.time}`, "DD/MM/YYYY HH:mm"),
 						end: moment(`${item.date} ${item.time}`, "DD/MM/YYYY HH:mm").add(5, 'm'),
 						color: item.color,

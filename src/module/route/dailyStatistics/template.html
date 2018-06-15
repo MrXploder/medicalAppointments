@@ -62,8 +62,8 @@
 									<tr ng-repeat="appointment in dsc.filteredAppointments = (dsc.appointments | dateRange: dsc.filters.sinceDate : dsc.filters.tillDate | filter: dsc.filters.searchTerm | filter: ((dsc.filters.byPatient >= 0) || undefined) && {patient_id: dsc.filters.byPatient} | filter: ((dsc.filters.byDoctor >= 0)||undefined)&&{doctor_id: dsc.filters.byDoctor})">
 										<td>{{appointment.id}}</td>
 										<td>{{appointment.date + ' ' + appointment.time}}</td>
-										<td>{{appointment.patient_name}}</td>
-										<td>{{appointment.doctor_name}}</td>
+										<td>{{appointment.patient_fullname}}</td>
+										<td>{{appointment.doctor_fullname}}</td>
 										<td><a class="btn-floating btn-flat waves-effect waves-light" ng-click="dsc.deleteAppointment(appointment)"><i class="fas fa-trash red-text"></i></a></td>
 										<td>
 											<div class="fixed-action-btn horizontal" style="position: relative; right: 10%; top: 0px">

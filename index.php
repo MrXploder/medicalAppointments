@@ -10,7 +10,7 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <?php
   if(constant("envBranch") == "development"){
-    $globsJS = ["{/src/vendor/*.js}", "{/src/module/medd/*.js}", "{/src/directive/**/*.js}", "{/src/filter/**/*.js}", "{/src/factory/**/*.js}", "{/src/module/medd/route/**/*.js}", "{/src/module/medd/modal/**/*.js}"];
+    $globsJS = ["{/src/vendor/*.js}", "{/src/module/*.js}", "{/src/directive/**/*.js}", "{/src/filter/**/*.js}", "{/src/factory/**/*.js}", "{/src/module/route/**/*.js}", "{/src/module/modal/**/*.js}"];
 
     $files = glob("{/css/*.css}",GLOB_BRACE);
     for($i = 0; $i < count($files); $i++){
@@ -90,7 +90,7 @@
   <main>
     <div class="row">
       <div class="col l12 s12">
-        <ng-include src="'/src/module/medd/include/loader/template.html'" ng-show="mc.isRouteLoading"></ng-include>
+        <ng-include src="'/src/module/include/loader/template.html'" ng-show="mc.isRouteLoading"></ng-include>
         <ng-view ng-show="!mc.isRouteLoading"></ng-view>
       </div>
     </div>
