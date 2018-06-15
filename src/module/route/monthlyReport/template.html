@@ -3,6 +3,34 @@
 		<div class="col l12">
 			<div class="card grey lighten-4">
 				<div class="card-content">
+					<table class="bordered highlight centered-table">
+						<thead class="grey darken-3 white-text">
+							<tr>
+								<th>Codigo</th>
+								<th>Total</th>
+								<th>Beneficiario</th>
+								<th>A.Cerrada</th>
+								<th>A.Abierta</th>
+								<th>Urgencia</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<td></td>
+								<td ng-repeat="element in mrc.reportMeta">{{element}}</td>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr ng-repeat="item in mrc.reportData">
+								<td><a class="btn btn-flat">{{item.code}}</a></td>
+								<td>{{item.total}}</td>
+								<td>{{item.beneficiario}}</td>
+								<td>{{item.a-cerrada}}</td>
+								<td>{{item.a-abierta}}</td>
+								<td>{{item.urgencia}}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

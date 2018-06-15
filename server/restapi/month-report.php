@@ -26,33 +26,45 @@ if(isset($_SERVER["HTTP_X_HTTP_METHOD_OVERRIDE"])){
 //METHODS///////////////////////////////////////////////////////
 try{
 	if($_SERVER['REQUEST_METHOD'] === 'GET'){
-		$requestDate = DateTimeImmutable::createFromFormat('m/Y', sanitizeInput($_GET["date"]));
-		$startDate   = $requestDate->modify("First day of this month")->format("d/m/Y");
-		$endDate     = $requestDate->modify("Last day of this month")->format("d/m/Y");
-		$codes 			 = array(
-			"21-01-001" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-01-002" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-01-003" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-001" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-002" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-003" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-004" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-005" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-006" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-007" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-008" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-009" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-010" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-011" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-012" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-013" => array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"106002" 		=> array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+		$requestDate  = DateTimeImmutable::createFromFormat('m/Y', sanitizeInput($_GET["date"]));
+		$startDate    = $requestDate->modify("First day of this month");
+		$endDate      = $requestDate->modify("Last day of this month");
+		$payLoad  	  = array(
+			"21-01-001" => array("code" => "21-01-001", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-01-002" => array("code" => "21-01-002", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-01-003" => array("code" => "21-01-003", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-001" => array("code" => "21-05-001", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-002" => array("code" => "21-05-002", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-003" => array("code" => "21-05-003", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-004" => array("code" => "21-05-004", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-005" => array("code" => "21-05-005", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-006" => array("code" => "21-05-006", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-007" => array("code" => "21-05-007", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-008" => array("code" => "21-05-008", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-009" => array("code" => "21-05-009", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-010" => array("code" => "21-05-010", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-011" => array("code" => "21-05-011", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-012" => array("code" => "21-05-012", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"21-05-013" => array("code" => "21-05-013", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
+			"106002" 		=> array("code" => "106002",    "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
 		);
+		$master = array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0);
 		$data = $db->select("appointments", "*", ["status" => "done"]);
-		print_r($data);
+
 		foreach($data as $item){
-			echo $item["diagnosis_code"];
+			$itemDate = DateTime::createFromFormat("d/m/Y", $item["date"]);
+			if($itemDate >= $startDate && $itemDate <= $endDate){
+				$payLoad[$item["process_code"]]["total"]++;
+				$master["total"]++;
+			}
 		}
+		$toSend = array();
+		foreach($payLoad as $key => $value){
+			array_push($toSend, $value);
+		}
+		http_response_code(200); /* OK */ 
+		echo json_encode($_GET["target"] === "data" ? $toSend : $master, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
+		exit();
 	}
 }
 catch(PDOException $e){

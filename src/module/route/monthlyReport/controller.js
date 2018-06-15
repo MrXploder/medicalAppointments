@@ -10,10 +10,12 @@
 	function monthlyReportController($scope, monthReport){
 		let mrc = this;
 
-		mrc.getData = getData;
+		mrc.getData 		 = getData;
+		mrc.reportData   = monthReport.query({target: "data", date: moment().format("MM/YYYY")});
+		mrc.reportMeta   = monthReport.get({target: "meta", date: moment().format("MM/YYYY")});
+		mrc.selectedDate = null;
 
 		function getData(){
-
 		}
 	}
 })();
