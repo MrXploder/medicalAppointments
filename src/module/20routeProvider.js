@@ -19,7 +19,7 @@
 			templateUrl: "src/module/route/home/template.html",
 			controller: "homeController",
 			controllerAs: "hmc",
-			resolve: { preCondition:  common},
+			resolve: { preCondition: common},
 		})
 		.when("/login", {
 			controller: "loginController",
@@ -48,6 +48,12 @@
 			templateUrl: "src/module/route/patientControlList/template.html",
 			resolve: { preCondition: authorized },
 		})
+		.when("/monthlyReport", {
+			controller: "monthlyReportController",
+			controllerAs: "mrc",
+			templateUrl: "src/module/route/monthlyReport/template.html",
+			resolve: { preCondition: authorized },
+		})
 		.otherwise({
 			redirectTo: "/home",
 		});
@@ -58,15 +64,13 @@
 		userAuthentication
 		.isLoggedIn({token: $localStorage.currentUser.token})
 		.$promise
-		.then(() => {
+		.then(_ => {
 			if($localStorage.currentLicense.status !== "pristine"){
-				$rootScope.$evalAsync(() => { $location.path("/firstTime");	});
+				$rootScope.$evalAsync(_ => $location.path("/firstTime"));
 			}
 		})
-		.catch(() => {
-			$rootScope.$evalAsync(() => { 
-				$location.path("/login"); 
-			});
+		.catch(_ => {
+			$rootScope.$evalAsync(_ => $location.path("/login"));
 		}); 
 	};
 
@@ -77,11 +81,11 @@
 		.$promise
 		.then(response => {
 			if($localStorage.currentLicense.status !== "pristine"){
-				$rootScope.$evalAsync(() => { $location.path("/firstTime");	});
+				$rootScope.$evalAsync(_ => $location.path("/firstTime"));
 			}
 		})
 		.catch(response => {
-			$rootScope.$evalAsync(() => { $location.path("/login"); });
+			$rootScope.$evalAsync(_ => $location.path("/login"));
 		}); 
 	};
 })();

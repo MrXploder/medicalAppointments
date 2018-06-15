@@ -1,5 +1,6 @@
 (function(){
 	'use strict';
+	
 	angular
 		.module('angularApp')
 		.factory('Doctors', doctors);

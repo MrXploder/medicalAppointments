@@ -6,7 +6,7 @@
   preventTemplateCache.$inject = ['$injector'];
 
   function preventTemplateCache($injector){
-    var ENV = $injector.get('ENV');
+    let ENV = $injector.get('ENV');
     return {
       'request': function(config) {
         if (config.url.indexOf('template') !== -1) {

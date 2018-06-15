@@ -14,6 +14,8 @@
 		fac.submit = submit;
 
 		function submit(){
+			delete fac.form.ngDialogId;
+			fac.form.status = "done";
 			$scope
 			.ngDialogData
 			.$update() 

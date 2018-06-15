@@ -119,7 +119,7 @@ try{
 
 			if($updateQuery->rowCount() > 0){
 				$id = $request["id"];
-				$payLoad = $db->query("SELECT `appointments`.*, `patients`.`full_name` AS patient_name, `doctors`.`full_name` AS doctor_name FROM `appointments` INNER JOIN `patients` ON `appointments`.`patient_id` = `patients`.`id` INNER JOIN `doctors` ON `appointments`.`doctor_id` = `doctors`.`id` WHERE `appointments`.`id` = $id")->fetchAll(PDO::FETCH_ASSOC)[0];	
+				$payLoad = $db->query("SELECT `appointments`.*, `patients`.`full_name` AS patient_fullname, `doctors`.`full_name` AS doctor_fullname FROM `appointments` INNER JOIN `patients` ON `appointments`.`patient_id` = `patients`.`id` INNER JOIN `doctors` ON `appointments`.`doctor_id` = `doctors`.`id` WHERE `appointments`.`id` = $id")->fetchAll(PDO::FETCH_ASSOC)[0];	
 				http_response_code(202); /* Accepted */
 				echo json_encode($payLoad, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 				exit();

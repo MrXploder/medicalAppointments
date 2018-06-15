@@ -15,44 +15,40 @@
 			.query()
 			.$promise
 			.then(function(response){
-				let transformedEvents = [],
+				let eventList 				 = [],
 						listOfAppointments = angular.copy(response);
 
 				for(let item of listOfAppointments){
-					if(item.status === "done") item.color = "#4caf50";
-					else if(item.status === "absent") item.color = "#f44336";
-					else item.color = "#ffc107";
-					
-					transformedEvents.push({
-						title: item.patient_fullname,
-						start: moment(`${item.date} ${item.time}`, "DD/MM/YYYY HH:mm"),
-						end: moment(`${item.date} ${item.time}`, "DD/MM/YYYY HH:mm").add(5, 'm'),
-						color: item.color,
+					eventList.push({
+						title : item.patient_fullname,
+						start : moment(`${item.date} ${item.time}`, "DD/MM/YYYY HH:mm"),
+						end   : moment(`${item.date} ${item.time}`, "DD/MM/YYYY HH:mm").add(5, 'm'),
+						color : item.status === "done" ? '#4caf50' : item.status === "absent" ? '#f44336' : '#ffc107',
 					});
 				}
 				$('#calendar').fullCalendar({
-					events: transformedEvents,
-					weekends: false,
-					nowIndicator: true,
-					slotDuration: "00:05:00",
-					minTime: "08:00:00",
-					maxTime: "18:35:00",
-					defaultView: 'agendaWeek',
-					header: {
-						left: 'prev,next today',
-						center: 'title',
-						right: 'agendaWeek,agendaDay'
+					events       : eventList,
+					weekends     : false,
+					nowIndicator : true,
+					height 			 : "auto",
+					slotDuration : "00:05:00",
+					minTime      : "08:00:00",
+					maxTime      : "18:35:00",
+					defaultView  : 'agendaWeek',
+					header       : {
+						left   : 'prev,next today',
+						center : 'title',
+						right  : 'agendaWeek,agendaDay'
 					},
-					dayClick: function(date, jsEvent, view) {
+					dayClick     : function(date, jsEvent, view) {
 						/*date is a moment object because fullcalendar.io is based on moment()*/
 						$scope.closeThisDialog({
-							date: date.format("DD/MM/YYYY"), 
-							time: date.format("HH:mm")
+							date : date.format("DD/MM/YYYY"), 
+							time : date.format("HH:mm")
 						});
 					},
 				});
 			});
-			
 		});
 	}
 })();

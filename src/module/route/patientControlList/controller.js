@@ -13,7 +13,6 @@
 		pclc.changeAppointmentStatus = changeAppointmentStatus;
 
 		function addControlAppointment(){
-			console.log("trying");
 			ngDialog
 			.open({
 				templateUrl: "src/module/modal/controlAppointment/template.html",
@@ -69,7 +68,6 @@
 				})
 				.closePromise
 				.then(function(response){
-					console.log(response);
 				})
 			}
 		}

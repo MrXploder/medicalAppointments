@@ -50,7 +50,7 @@
 
 		function createAppointment(){
 			nac.form.operator_id = $localStorage.currentUser.id;
-			Appointments
+			Appointments 
 			.create(nac.form)
 			.$promise
 			.then(function success(response){

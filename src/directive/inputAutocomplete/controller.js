@@ -7,12 +7,15 @@
 	inputAutocompleteController.$inject = ["$scope"];
 
 	function inputAutocompleteController($scope){
-		var vm = this;
+		let vm = this;
 
 		vm.autocompleteRandomId = 'myId' + Math.random().toString(36).substr(2, 9);
 		
 		$scope.$watch('vm.data', function(){
-			if(typeof vm.data === "undefined") return;
+			if(vm.data === undefined){
+				$scope.$digest();
+				return;
+			}
 			else{
 				let autocompleteData = {};
 				vm.data.forEach(function(item){
@@ -20,7 +23,7 @@
 				});
 				$('#'+vm.autocompleteRandomId).autocomplete({
 					data: autocompleteData,
-					limit: 20,
+					limit: 5,
 					minLength: 1,
 				});
 			}
