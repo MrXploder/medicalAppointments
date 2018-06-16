@@ -10,12 +10,20 @@
 	function monthlyReportController($scope, monthReport){
 		let mrc = this;
 
-		mrc.getData 		 = getData;
-		mrc.reportData   = monthReport.query({target: "data", date: moment().format("MM/YYYY")});
-		mrc.reportMeta   = monthReport.get({target: "meta", date: moment().format("MM/YYYY")});
-		mrc.selectedDate = null;
+		mrc.reportData  = monthReport.query({target: "data", date: moment().format("MM/YYYY")});
+		mrc.selectMonth = moment().format("MM").toString();
+		mrc.selectYear  = moment().format("YYYY").toString();
 
-		function getData(){
-		}
+		$scope.$watchGroup(['mrc.selectMonth', 'mrc.selectYear'], function(){
+			if(!mrc.selectMonth || !mrc.selectYear) return;
+			else{
+				monthReport
+				.query({
+					date: `${mrc.selectMonth}/${mrc.selectYear}`
+				})
+				.$promise
+				.then(response => mrc.reportData = response);
+			}
+		}, true);
 	}
 })();

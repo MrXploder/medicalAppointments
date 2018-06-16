@@ -55,7 +55,38 @@ try{
 			$itemDate = DateTime::createFromFormat("d/m/Y", $item["date"]);
 			if($itemDate >= $startDate && $itemDate <= $endDate){
 				$payLoad[$item["process_code"]]["total"]++;
-				$master["total"]++;
+
+				switch($item["membership"]){
+					case "Fonasa A":
+					case "Fonasa B":
+					case "Fonasa C":
+					case "Fonasa D": {
+						$payLoad[$item["process_code"]]["beneficiario"]++;
+						break;
+					}
+				}
+
+				switch($item["comes_from"]){
+					case "Traumatologia":
+					case "Ginecologia"  :
+					case "Pensionado"   :
+					case "Pediatria"    : 
+					case "Medicina"     : 
+					case "Cirujia"      : 
+					case "UPC"          :
+						$payLoad[$item["process_code"]]["a-cerrada"]++;
+						break;
+					case "CAE Adulto"       :
+          case "CAE Pediatrico"   :
+        	case "Pabellón de Yeso" :
+        	case "Control"          :
+        	case "Otro"							:
+        		$payLoad[$item["process_code"]]["a-abierta"]++;
+        		break;
+        	case "Unidad de Emergencia Hospitalaria" :
+        		$payLoad[$item["process_code"]]["urgencia"]++;
+        		break;
+				}
 			}
 		}
 		$toSend = array();
@@ -63,7 +94,7 @@ try{
 			array_push($toSend, $value);
 		}
 		http_response_code(200); /* OK */ 
-		echo json_encode($_GET["target"] === "data" ? $toSend : $master, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
+		echo json_encode($toSend, JSON_UNESCAPED_UNICODE);
 		exit();
 	}
 }
