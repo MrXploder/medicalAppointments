@@ -24,7 +24,7 @@
 			}, false);
 		};
 
-		var print = function (templateUrl, data) {
+		var print = function (templateUrl, data, afterPrint) {
 			$rootScope.isBeingPrinted = true;
 			$http.get(templateUrl).then(function(templateData) {
 				var template = templateData.data;
@@ -38,8 +38,11 @@
 					} 
 					else {
 						/* Replace printHtml with openNewWindow for debugging*/
-						openNewWindow(element.html()).then(function () {
+						printHtml(element.html()).then(function () {
 							$rootScope.isBeingPrinted = false;
+							if (afterPrint) {
+								afterPrint();
+							}
 							renderAndPrintPromise.resolve();
 						});
 						printScope.$destroy();

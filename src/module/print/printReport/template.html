@@ -1,0 +1,34 @@
+<style type="text/css" media="print">
+@page {
+    size: auto;   /* auto is the initial value */
+    margin: 0;  /* this affects the margin in the printer settings */
+}
+</style>
+<div>
+	<p>{{vm.meta.currentDate}}</p>
+	<p>Datos obtenidos el mes de: {{vm.meta.reportDate}}</p>
+</div>
+<div>
+	<table style="border-collapse:collapse;" border="1">
+		<thead>
+			<tr>
+				<th>Codigo</th>
+				<th>Total</th>
+				<th>Beneficiario</th>
+				<th>A.Cerrada</th>
+				<th>A.Abierta</th>
+				<th>Urgencia</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in vm.data">
+				<td><a class="btn btn-flat">{{item.code}}</a></td>
+				<td>{{item.total}}</td>
+				<td>{{item.beneficiario}}</td>
+				<td>{{item.a-cerrada}}</td>
+				<td>{{item.a-abierta}}</td>
+				<td>{{item.urgencia}}</td>
+			</tr>
+		</tbody>
+	</table>	
+</div>

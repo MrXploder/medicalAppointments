@@ -38,6 +38,12 @@
 							</select>
 						</div>
 					</div>
+					<div class="row"> 
+						<div input-field class="col l12">
+							<a class="btn btn-block waves-effect waves-light grey darken-3" ng-click="mrc.print()"><i class="fas fa-print"></i> IMPRIMIR</a>
+							<br>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col l12">
 							<table class="bordered highlight centered-table">
@@ -51,12 +57,6 @@
 										<th>Urgencia</th>
 									</tr>
 								</thead>
-								<tfoot>
-									<tr>
-										<td></td>
-										<td ng-repeat="element in mrc.reportMeta">{{element}}</td>
-									</tr>
-								</tfoot>
 								<tbody>
 									<tr ng-repeat="item in mrc.reportData">
 										<td><a class="btn btn-flat">{{item.code}}</a></td>

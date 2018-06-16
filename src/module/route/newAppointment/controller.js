@@ -10,17 +10,16 @@
 	function newAppointmentController(Doctors, Patients, Appointments, Printer, ngDialog, $scope, $filter, $rootScope, $location, $localStorage){
 		var nac = this;
 
-		nac.form = {};
-		nac.patients = Patients.query();
-		nac.doctors = Doctors.query();
-		nac.showSchedule = showSchedule;
+		nac.form              = {};
+		nac.doctors           = Doctors.query();
+		nac.patients          = Patients.query();
+		nac.showSchedule      = showSchedule;
 		nac.createAppointment = createAppointment;
-		nac.printTest = printTest;
 
 		angular.element(function(){
 			nac.patients
 			.$promise
-			.then(function success(response){
+			.then(response => {
 				let autocompleteData = {};
 				nac.patients.forEach(function(patient){
 					autocompleteData[patient.full_name] = null;
@@ -42,7 +41,7 @@
 				width: "60%",
 			})
 			.closePromise
-			.then(function(response){
+			.then(response => {
 				nac.form.date = response.value.date;
 				nac.form.time = response.value.time;
 			});
@@ -53,24 +52,14 @@
 			Appointments 
 			.create(nac.form)
 			.$promise
-			.then(function success(response){
+			.then(response => {
 				Materialize.toast("Agendado", 5000, "green");
-				$rootScope.$evalAsync(()=> $location.path("/patientControlList"));
+				$rootScope.$evalAsync(_ => $location.path("/patientControlList"));
 			})
-			.catch(function error(response){
+			.catch(response => {
 				Materialize.toast(response.statusText, 5000, "red");
 			});
 		};
-
-		function printTest(){
-			Printer.print('src/module/print/firstReport/template.html', {
-				patient: {
-					name: 'Ram Kumar', 
-					dateOfBirth: '1978-08-23', 
-					gender: 'M'
-				}
-			});
-		}
 
 		$scope.$watch('nac.form.patient_fullname', function(){
 			if(nac.form.patient_fullname === undefined) return;
