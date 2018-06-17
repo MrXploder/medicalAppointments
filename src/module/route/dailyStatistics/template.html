@@ -33,7 +33,7 @@
 							<label ng-class="{'active': dsc.filters.byPatient != null}">Filtrar por Paciente:</label>
 							<select ng-model="dsc.filters.byPatient" material-select watch>
 								<option value="-1">Todos</option>
-								<option ng-repeat="patient in dsc.patients" value="{{patient.id}}">{{patient.full_name}}</option>
+								<option ng-repeat="patient in dsc.patients" value="{{::patient.id}}">{{::patient.full_name}}</option>
 							</select>
 						</div>
 						<div input-field class="col offset-l2 l5">
@@ -41,7 +41,7 @@
 							<label ng-class="{'active': dsc.filters.byDoctor != null}">Filtrar por Medico:</label>
 							<select ng-model="dsc.filters.byDoctor" material-select watch>
 								<option value="-1">Todos</option>
-								<option ng-repeat="doctor in dsc.doctors" value="{{doctor.id}}">{{doctor.full_name}}</option>
+								<option ng-repeat="doctor in dsc.doctors" value="{{::doctor.id}}">{{::doctor.full_name}}</option>
 							</select>
 						</div>
 					</div>

@@ -10,18 +10,22 @@
 				$(hiddenFrame).remove();
 				deferred.resolve();
 			};
-			var htmlContent = "<!doctype html>" + "<html>" + '<body onload="printAndRemove();">' + html + '</body>' + "</html>";
+			var htmlContent = `
+				<!doctype html>
+				<html>
+					<head>
+						<meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+						<link href='/css/10materialize.css'>
+					</head>
+					<body onload="printAndRemove();">
+						${html}
+					</body>
+				</html>
+			`;
 			var doc = hiddenFrame.contentWindow.document.open("text/html", "replace");
 			doc.write(htmlContent);
 			doc.close();
 			return deferred.promise;
-		};
-
-		var openNewWindow = function (html) {
-			var newWindow = window.open("printTest.html");
-			newWindow.addEventListener('load', function () {
-				$(newWindow.document.body).html(html);
-			}, false);
 		};
 
 		var print = function (templateUrl, data, afterPrint) {

@@ -37,14 +37,11 @@
 				</div>
 				<div class="card-action">
 					<div class="row">
-						<div class="col l4">
-							<a class="btn waves-effect waves-light red" ng-click="nac.form = {}">Reset <i class="fas fa-eraser"></i></a>
+						<div class="col l5">
+							<a class="btn btn-block waves-effect waves-light red" ng-click="nac.form = {}">Reset <i class="fas fa-eraser"></i></a>
 						</div>
-						<div class="col l4">
-							<a class="btn waves-effect waves-light green" ng-class="!naForm.$valid && 'disabled'" ng-click="nac.createAppointment()">Enviar <i class="fas fa-location-arrow"></i></a>
-						</div>
-						<div class="col l4">
-							<a class="btn waves-effect waves-light grey" ng-click="nac.printTest()">Vista Previa <i class="fas fa-print"></i></a>
+						<div class="col offset-l2 l5">
+							<a class="btn btn-block waves-effect waves-light green" ng-class="!naForm.$valid && ''" ng-click="nac.createAppointment()">Enviar <i class="fas fa-location-arrow"></i></a>
 						</div>
 					</div>
 				</div>
