@@ -3,7 +3,7 @@
 
 angular.module('angularApp', ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'cp.ngConfirm', 'platanus.rut', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'indexedDB', 'templates-main'])
 
-.constant('ENV', {currentUser:'MrXploder',shortSHA:'a4e9d88',SHA:'a4e9d8890a67dcf2294b1c188dc6515ba2046a35',name:'development',lastCommitMessage:'"update\r\n"',lastCommitTime:'"2018-06-17 16:52:09 -0400"',lastCommitAuthor:'"MrXploder"',lastCommitNumber:'25'})
+.constant('ENV', {currentUser:'MrXploder',name:'development',shortSHA:'67a3893',SHA:'67a38932269f47caeb77c9cb5abc124b5c76a295',lastCommitTime:'"2018-06-18 15:33:36 -0400"',lastCommitAuthor:'"MrXploder"',lastCommitMessage:'"update\r\n"',lastCommitNumber:'26'})
 
 ;
 })(angular);

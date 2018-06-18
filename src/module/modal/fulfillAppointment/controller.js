@@ -20,7 +20,7 @@
 			.ngDialogData
 			.$update() 
 			.then(function(response){
-				$scope.closeThisDialog();
+				$scope.confirm(); /*resolve close*/
 				Materialize.toast("Exito", 5000, "green");
 			})
 			.catch(function(response){

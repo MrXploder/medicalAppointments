@@ -19,7 +19,7 @@
 			$scope.ngDialogData
 			.$update()
 			.then(response => {
-				$scope.closeThisDialog();
+				$scope.confirm();
 			});
 		}
 	}

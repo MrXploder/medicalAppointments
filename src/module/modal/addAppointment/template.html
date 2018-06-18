@@ -1,0 +1,30 @@
+<ng-form name="aaForm">
+	<pre>{{aac.form | json}}</pre>
+	<div class="row">
+		<div input-field class="col l6 file-field">
+			<button class="btn col l3" ng-click="aac.showSchedule()"><i class="fas fa-calendar-alt"></i></button>
+			<div class="file-path-wrapper">
+				<label style="left: 90px;">Fecha</label>
+				<input type="text" ng-model="aac.form.date" required readonly>
+			</div>
+		</div>
+		<div input-field class="col offset-l1 l5">
+			<label>Hora</label>
+			<input type="text" ng-model="aac.form.time" required readonly>
+		</div>
+	</div>
+	  <div class="row">
+    <div input-field class="col l12">
+      <i class="prefix fas fa-user-tie"></i>
+      <label ng-class="aac.form.operator_id != null && 'active'">Con: </label>
+      <select material-select ng-model="aac.form.operator_id">
+        <option ng-repeat="operator in aac.operators" value="{{operator.id}}">{{operator.full_name}}</option>
+      </select>
+    </div>
+  </div>
+	<div class="row">
+		<div class="col l12">
+			<a class="btn btn-block waves-effect waves-light green" ng-class="!aaForm.$valid && ''" ng-click="aac.addAppointment()">Agendar <i class="fas fa-location-arrow"></i></a>
+		</div>
+	</div>
+</ng-form>

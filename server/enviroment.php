@@ -1,10 +1,10 @@
 <?php
 /*DO NOT MODIFY THIS FILE BECAUSE IS POPULATED AUTOMATICALLY WITH GRUNT */
 
-define('envSHA', 'a4e9d8890a67dcf2294b1c188dc6515ba2046a35');
-define('envShortSHA', 'a4e9d88');
+define('envSHA', '67a38932269f47caeb77c9cb5abc124b5c76a295');
+define('envShortSHA', '67a3893');
 define('envAuthor', '"MrXploder"');
-define('envLastCommitTime', '"2018-06-17 16:52:09 -0400"');
+define('envLastCommitTime', '"2018-06-18 15:33:36 -0400"');
 define('envBranch', 'development');
 
 define('hashPrefix', 'elvisIsNotDead');
