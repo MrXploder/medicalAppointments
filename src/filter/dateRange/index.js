@@ -1,23 +1,21 @@
 (function(){
-  angular
-  .module('angularApp')
-  .filter('dateRange', dateRange);
+	angular
+	.module('angularApp')
+	.filter('dateRange', dateRange);
 
-  function dateRange(){
-    return function(items, fromDate, toDate){
-      let filtered = [],
-          from_date = moment(fromDate, "DD-MM-YYYY"),
-          to_date = moment(toDate, "DD-MM-YYYY"),
-          now_date = null;
-
-      if(!fromDate) fromDate = moment().format("DD-MM-YYYY");
-      if(!toDate) toDate = fromDate;
-
-      angular.forEach(items, function(item){
-        now_date = moment(item.date, "DD-MM-YYYY");
-        if(from_date <= now_date && now_date <= to_date) filtered.push(item);
-      });
-      return filtered;
-    }
-  }
+	function dateRange(){
+		return function(items, fromDate, toDate){
+			let filtered 	= [];
+			let from_date = fromDate ? moment(fromDate, "DD/MM/YYYY") : moment();
+			let to_date   = toDate   ? moment(toDate, "DD/MM/YYYY")   : from_date;
+			
+			angular.forEach(items, function(item){
+				item_date = moment(item.date, "DD/MM/YYYY");
+				if(from_date <= item_date && item_date <= to_date){
+					filtered.push(item);
+				}
+			});
+			return filtered;
+		}
+	}
 })();

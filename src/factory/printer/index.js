@@ -14,15 +14,16 @@
 				<!doctype html>
 				<html>
 					<head>
-						<meta http-equiv='Content-type' content='text/html; charset=utf-8'>
-						<link href='/css/10materialize.css'>
+						<meta http-equiv='content-type' content='text/html; charset=utf-8'>
+						<meta http-equiv='cache-control" content="no-cache">
+    				<meta http-equiv="expires" content="0">
 					</head>
 					<body onload="printAndRemove();">
 						${html}
 					</body>
 				</html>
 			`;
-			var doc = hiddenFrame.contentWindow.document.open("text/html", "replace");
+			var doc = hiddenFrame.contentWindow.document.open("", "_blank");
 			doc.write(htmlContent);
 			doc.close();
 			return deferred.promise;

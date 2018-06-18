@@ -4,20 +4,15 @@
 			<div class="card grey lighten-4">
 				<div class="card-content">
 					<div class="row">
-						<div class="col l12">
-							<a class="btn btn-block waves-effect waves-light grey darken-3" ng-click="dsc.addOcationalAppointment()">Agendar Cita Ocacional</a>
-						</div>
-					</div>
-					<div class="row">
 						<div input-field class="col l5">
 							<i class="prefix fas fa-arrow-right"></i>
 							<label>Fecha de Inicio</label>
-							<input input-date type="text" ng-model="dsc.filters.sinceDate" first-day="1" format="dd-mm-yyyy" disable="[false, 6, 7]">
+							<input input-date type="text" ng-model="dsc.filters.sinceDate" first-day="1" format="dd/mm/yyyy" disable="[false, 6, 7]">
 						</div>
 						<div input-field class="col offset-l2 l5">
 							<i class="postfix fas fa-arrow-left"></i>
 							<label>Fecha de Termino</label>
-							<input input-date type="text" ng-model="dsc.filters.tillDate" first-day="1" format="dd-mm-yyyy" disable="[false, 6, 7]">
+							<input input-date type="text" ng-model="dsc.filters.tillDate" first-day="1" format="dd/mm/yyyy" disable="[false, 6, 7]">
 						</div>
 					</div>
 					<div class="row">
@@ -30,7 +25,7 @@
 					<div class="row">
 						<div input-field class="col l5">
 							<i class="prefix fas fa-user"></i>
-							<label ng-class="{'active': dsc.filters.byPatient != null}">Filtrar por Paciente:</label>
+							<label ng-class="{'active': dsc.filters.byPatient != null}">Filtrar por Usuario:</label>
 							<select ng-model="dsc.filters.byPatient" material-select watch>
 								<option value="-1">Todos</option>
 								<option ng-repeat="patient in dsc.patients" value="{{::patient.id}}">{{::patient.full_name}}</option>
@@ -47,12 +42,17 @@
 					</div>
 					<div class="row">
 						<div class="col l12">
+							<a class="btn btn-block waves-effect waves-light grey darken-3" ng-click="dsc.addOcationalAppointment()">Agendar Cita Ocacional</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col l12">
 							<table class="bordered highlight centered-table">
 								<thead class="grey darken-3 white-text">
 									<tr>
 										<th>#</th>
 										<th>Fecha</th>
-										<th>Paciente</th>
+										<th>Usuario</th>
 										<th>Medico</th>
 										<th>Eliminar</th>
 										<th>Estado</th>

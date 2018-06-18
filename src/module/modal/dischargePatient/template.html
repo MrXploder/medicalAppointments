@@ -1,0 +1,18 @@
+<ng-form name="dpForm">
+  <div class="row">
+    <div input-field class="col l12">
+      <i class="prefix fab fa-studiovinari"></i>
+      <label ng-class="dpc.form.end_text != null && 'active'">Motivo</label>
+      <select ng-model="dpc.form.end_text" material-select required>
+        <option>Alta Administrativa</option>
+        <option>Alta Clínica</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col l12">
+      <a class="btn btn-block waves-effect waves-light green" ng-class="!dpForm.$valid && 'disabled'" ng-click="dpc.endAppointment()">Dar de Alta</a>
+    </div>
+  </div>
+</ng-form>

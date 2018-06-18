@@ -7,12 +7,12 @@
 						<div input-field class="col l12">
 							<i class="prefix fas fa-search"></i>
 							<label>Buscar... </label>
-							<input type="search" ng-class="mdc.searchTerm">
+							<input type="search" ng-class="moc.searchTerm">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col l12">
-							<a class="btn btn-block waves-effect waves-light grey darken-3">Agregar un nuevo Medico</a>
+							<a class="btn btn-block waves-effect waves-light grey darken-3">Agregar un nuevo Operador</a>
 						</div>
 					</div>
 					<div class="row">
@@ -22,13 +22,15 @@
 									<tr>
 										<th>#</th>
 										<th>Nombre</th>
+										<th>Nick</th>
 										<th>Info</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr dir-paginate="doctor in mdc.doctors | filter: mdc.searchTerm | orderBy:mdc.sortBy:mdc.sortReverse | itemsPerPage: mdc.itemsPerPage track by $index" pagination-id="manageDoctorsId" ng-show="$index > 0">
-										<td>{{doctor.id}}</td>
-										<td>{{doctor.full_name}}</td>
+									<tr dir-paginate="operator in moc.operators | filter: moc.searchTerm | orderBy:moc.sortBy:moc.sortReverse | itemsPerPage: moc.itemsPerPage track by $index" pagination-id="manageOperatorsId" ng-show="$index > 0">
+										<td>{{operator.id == 1 ? 'Administrador' : 'Usuario'}}</td>
+										<td>{{operator.full_name}}</td>
+										<td>{{operator.nick_name}}</td>
 										<td><a class="btn waves-effect waves-light"><i class="fas fa-info"></i></td>
 									</tr>
 								</tbody>
@@ -36,7 +38,7 @@
 						</div>
 						&nbsp;
 						<div class="row">
-							<dir-pagination-controls boundary-links="true" template-url="src/directive/dirPaginationControls/template.html" pagination-id="manageDoctorsId"></dir-pagination-controls>
+							<dir-pagination-controls boundary-links="true" template-url="src/directive/dirPaginationControls/template.html" pagination-id="manageOperatorsId"></dir-pagination-controls>
 						</div>
 					</div>
 				</div>

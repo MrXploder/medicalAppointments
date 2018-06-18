@@ -54,6 +54,24 @@
 			templateUrl: "src/module/route/monthlyReport/template.html",
 			resolve: { preCondition: authorized },
 		})
+		.when("/manageDoctors",{
+			controller: "manageDoctorsController",
+			controllerAs: "mdc",
+			templateUrl: "src/module/route/manageDoctors/template.html",
+			resolve: { preCondition: authorized },
+		})
+		.when("/managePatients",{
+			controller: "managePatientsController",
+			controllerAs: "mpc",
+			templateUrl: "src/module/route/managePatients/template.html",
+			resolve: { preCondition: authorized },
+		})
+		.when("/manageOperators",{
+			controller: "manageOperatorsController",
+			controllerAs: "moc",
+			templateUrl: "src/module/route/manageOperators/template.html",
+			resolve: { preCondition: authorized },
+		})
 		.otherwise({
 			redirectTo: "/home",
 		});

@@ -27,35 +27,24 @@ if(isset($_SERVER["HTTP_X_HTTP_METHOD_OVERRIDE"])){
 //METHODS///////////////////////////////////////////////////////
 try{
 	if($_SERVER['REQUEST_METHOD'] === 'GET'){
-		$id = sanitizeInput($_GET["id"]);
-		if(empty($id)){
-			$payLoad = $db->query(
-				"SELECT 
-				`appointments`.*, 
-				`patients`.`full_name` AS patient_fullname,
-				`doctors`.`full_name` AS doctor_fullname,
-				`operators`.`name` AS operator_fullname
-				FROM `appointments` 
-				INNER JOIN `patients` 
-				ON `appointments`.`patient_id` = `patients`.`id` 
-				INNER JOIN `doctors` 
-				ON `appointments`.`doctor_id` = `doctors`.`id` 
-				INNER JOIN `operators` 
-				ON `appointments`.`operator_id` = `operators`.`id`"
-			)->fetchAll(PDO::FETCH_ASSOC);
-		}
-		else{
-			throw new Exception(400);
-		}
+		$payLoad = $db->query(
+			"SELECT 
+			`appointments`.*, 
+			`patients`.`full_name` AS patient_fullname,
+			`doctors`.`full_name` AS doctor_fullname,
+			`operators`.`full_name` AS operator_fullname
+			FROM `appointments` 
+			INNER JOIN `patients` 
+			ON `appointments`.`patient_id` = `patients`.`id` 
+			INNER JOIN `doctors` 
+			ON `appointments`.`doctor_id` = `doctors`.`id` 
+			INNER JOIN `operators` 
+			ON `appointments`.`operator_id` = `operators`.`id`"
+		)->fetchAll(PDO::FETCH_ASSOC);
 
-		if(!empty($payLoad)){
-			http_response_code(200); /* OK */ 
-			echo json_encode($payLoad, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
-			exit();
-		}
-		else{
-			throw new Exception(400);
-		}
+		http_response_code(200); /* OK */ 
+		echo json_encode($payLoad, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
+		exit();
 	}
 	else if($_SERVER["REQUEST_METHOD"] === 'POST'){
 		$postdata = file_get_contents("php://input");
@@ -91,6 +80,7 @@ try{
 				"diagnosis_text" 		=> $request["diagnosis_text"],
 				"membership" 				=> $request["membership"],
 				"observations" 			=> $request["observations"],
+				"reason"						=> $request["reason"],
 			));
 			if($insertQuery->rowCount() > 0){
 				http_response_code(201); /* Created */
@@ -104,7 +94,7 @@ try{
 			throw new Exception(400);
 		}
 	}
-	
+
 	else if($_SERVER["REQUEST_METHOD"] === "PUT"){
 		$putdata = file_get_contents("php://input");
 		if(!empty($putdata)){

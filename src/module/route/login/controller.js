@@ -26,7 +26,7 @@
 						$('.button-collapse').sideNav({menuWidth: 300, edge: 'left', closeOnClick: true, draggable: true,});
 					});
 					$("#login-side-nav").hide("slow");
-					Materialize.toast('Bienvenido '+ response.user.name, 5000, 'green');
+					Materialize.toast('Bienvenido '+ response.user.full_name, 5000, 'green');
 					$rootScope.$evalAsync(_ => $location.path("/home"));
 				});
 			});

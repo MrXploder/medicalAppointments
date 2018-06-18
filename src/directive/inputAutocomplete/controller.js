@@ -13,7 +13,6 @@
 		
 		$scope.$watch('vm.data', function(){
 			if(vm.data === undefined){
-				$scope.$digest();
 				return;
 			}
 			else{

@@ -1,46 +1,5 @@
 <ng-form name="faForm">
-  <div class="row">
-    <div input-field class="col l12">
-      <i class="prefix fas fa-user"></i>
-      <label ng-class="fac.form.patient_fullname != null && 'active'">Nombre del Paciente</label>
-      <input type="text" ng-value="fac.form.patient_fullname" readonly disabled>
-    </div>
-  </div>
-  <div class="row">
-    <div input-field class="col l12">
-      <i class="prefix fas fa-id-card"></i>
-      <label>RUT</label>
-      <input type="text" ng-value="fac.form.patient_rut | rut" readonly disabled>
-    </div>
-  </div>
-  <div class="row">
-    <div input-field class="col l12">
-      <i class="prefix fas fa-file-alt"></i>
-      <label>Diagnóstico</label>
-      <textarea type="text" ng-model="fac.form.diagnosis_text" placeholder="Escribe aqui..." class="materialize-textarea" required></textarea>
-    </div>
-  </div>
-  <div class="row">
-    <div input-field class="col l12">
-      <i class="prefix fas fa-compass"></i>
-      <label ng-class="fac.form.comes_from != null && 'active'">Procedencia</label>
-      <select ng-model="fac.form.comes_from" material-select required>
-        <option>CAE Adulto</option>
-        <option>CAE Pediatrico</option>
-        <option>Traumatologia</option>
-        <option>Pensionado</option>
-        <option>Ginecologia</option>
-        <option>Medicina</option>
-        <option>Cirujia</option>
-        <option>Pediatria</option>
-        <option>UPC</option>
-        <option>Unidad de Emergencia Hospitalaria</option>
-        <option>Pabellon de Yeso</option>
-        <option>Control</option>
-        <option>Otro</option>
-      </select>
-    </div>
-  </div>
+  <pre>{{fac.form | json}}</pre>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-align-left"></i>
@@ -50,66 +9,16 @@
   </div>
   <div class="row">
     <div input-field class="col l12">
-      <i class="prefix fas fa-list-ul"></i>
-      <label ng-class="fac.form.process_code != null && 'active'">Procedimiento Segun Estadistica Mensual</label>
-      <select ng-model="fac.form.process_code" material-select required>
-        <option value="21-01-001">21-01-001 - Infiltración local medicamentos (bursas, tendones, yuxta articular)</option>
-        <option value="21-01-002">21-01-002 - Procedimiento para exploraciones radiologicas (incluye maniobra e inyeccion del medio de contraste)</option>
-        <option value="21-01-003">21-01-003 - Movilización articular bajo antestecia general</option>
-        <option value="21-05-001">21-05-001 - Calzon corto de yeso</option>
-        <option value="21-05-002">21-05-002 - Corbata de schantz</option>
-        <option value="21-05-003">21-05-003 - Minerva de yeso</option>
-        <option value="21-05-004">21-05-004 - Rodillera, bota larga o corta de yeso</option>
-        <option value="21-05-005">21-05-005 - Velpeau</option>
-        <option value="21-05-006">21-05-006 - Yeso antebraquial c/s ferula digital</option>
-        <option value="21-05-007">21-05-007 - Yeso braquicarpiano</option>
-        <option value="21-05-008">21-05-008 - Yeso pelvipedio bilateral</option>
-        <option value="21-05-009">21-05-009 - Yeso pelvipedio unilateral</option>
-        <option value="21-05-010">21-05-010 - Yeso toracobraqueal</option>
-        <option value="21-05-011">21-05-011 - Corsets de milwaukee o similares (incluye la toma de molde)</option>
-        <option value="21-05-012">21-05-012 - Corsets de risser o similares</option>
-        <option value="21-05-013">21-05-013 - Corsets de yeso simple (tipo watson jones)</option>
-        <option value="106002">106002    - Curaciones simples ambulatorias</option>
-      </select>
+      <i class="prefix fas fa-eye"></i>
+      <label ng-class="fac.form.observations != null && 'active'">Observaciones</label>
+      <textarea class="materialize-textarea" ng-model="fac.form.observations"></textarea>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
-      <i class="prefix fas fa-list-ul"></i>
-      <label ng-class="fac.form.diagnosis_code != null && 'active'">Procedimiento Segun Diagnostico Mensual</label>
-      <select ng-model="fac.form.diagnosis_code" material-select required>
-        <option value="21-07-001">21-07-001 - Luxaciones de articulaciones medianas (hombro, codo, rodilla, tobillo, muñeca, torso y esternovascular)</option>
-        <option value="21-07-003">21-07-003 - Luxaciones de articulaciones menores (resto)</option>
-        <option value="21-07-005">21-07-005 - Fracturas medianas (diáfisis humeral, radial, cubital, diáfisis femoral, tibial, peroneal, clavicular, platillos tibiales)</option>
-        <option value="21-07-006">21-07-006 - Fracturas menores (resto)</option>
-      </select>
-    </div>
-  </div>
-  <div class="row">
-    <div input-field class="col l12">
-      <i class="prefix fas fa-band-aid"></i>
-      <label ng-class="fac.form.injury_type != null && 'active'">Tipo de Lesión</label>
-      <select ng-model="fac.form.injury_type" material-select>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
-    </div>
-  </div>
-  <div class="row"> 
-    <div input-field class="col l12">
-      <i class="prefix fas fa-money-check"></i>
-      <label ng-class="fac.form.membership != null && 'active'">Afiliación</label>
-      <select ng-model="fac.form.membership" material-select required>
-        <option>Capredena</option>
-        <option>Fonasa A</option>
-        <option>Fonasa B</option>
-        <option>Fonasa C</option>
-        <option>Fonasa D</option>
-        <option>Isapre</option>
-        <option>Otro</option>
-      </select>
+      <i class="prefix fas fa-sticky-note"></i>
+      <label ng-class="fac.form.notes != null && 'active'">Notas</label>
+      <input type="text" ng-model="fac.form.notes">
     </div>
   </div>
   <br>

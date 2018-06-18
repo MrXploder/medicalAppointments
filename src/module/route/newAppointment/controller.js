@@ -56,7 +56,7 @@
 						meta: {},
 					}
 				}, function(){
-					/*Appointments 
+					Appointments 
 					.create(nac.form)
 					.$promise
 					.then(response => {
@@ -66,9 +66,8 @@
 					.catch(response => {
 						Materialize.toast(response.statusText, 5000, "red");
 					});
-					*/
 				});
-			}
+			};
 
 			$scope.$watch('nac.form.patient_fullname', function(){
 				if(nac.form.patient_fullname === undefined) return;

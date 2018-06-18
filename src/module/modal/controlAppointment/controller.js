@@ -5,14 +5,15 @@
 	.module("angularApp")
 	.controller("controlAppointmentController", controlAppointmentController);
 
-	controlAppointmentController.$inject = ["$scope", "Patients", "Doctors", "Appointments", "ngDialog", "$filter", "$localStorage"];
+	controlAppointmentController.$inject = ["$scope", "Operators", "Patients", "Doctors", "Appointments", "ngDialog", "$filter", "$localStorage"];
 
-	function controlAppointmentController($scope, Patients, Doctors, Appointments, ngDialog, $filter, $localStorage){
+	function controlAppointmentController($scope, Operators, Patients, Doctors, Appointments, ngDialog, $filter, $localStorage){
 		let cac = this;
 		
 		cac.form        			= {};
 		cac.patients  	 			= Patients.query();
 		cac.doctors      			= Doctors.query();
+		cac.operators					= Operators.query();
 		cac.showSchedule 			= showSchedule;
 		cac.createAppointment = createAppointment;
 
@@ -32,8 +33,6 @@
 		}
 
 		function createAppointment(){
-			cac.form.operator_id = $localStorage.currentUser.id;
-			console.log(cac.form);
 			Appointments
 			.create(cac.form)
 			.$promise

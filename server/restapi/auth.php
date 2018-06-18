@@ -29,12 +29,12 @@ try{
 		$postdata = file_get_contents("php://input");
 		if(!empty($postdata)){
 			$request = json_decode($postdata, true);
-			$userInfo = $db->select("operators", "*", ["operators.name" => $request["name"]])[0];
-			if($userInfo != null && $userInfo["name"] === $request["name"] && $userInfo["pass"] === $request["pass"]){
+			$userInfo = $db->select("operators", "*", ["operators.nick_name" => $request["nick_name"]])[0];
+			if($userInfo != null && $userInfo["nick_name"] === $request["nick_name"] && $userInfo["pass"] === $request["pass"]){
 				$sinceDate = new DateTime("now");
 				$tillDate = new DateTime("now");
 				$tillDate->add(new DateInterval('P30D'));
-				$hash = hash("sha256", ($secretPrefix.",".$userInfo["name"].",".$userInfo["pass"].",".$sinceDate->format("d/m/Y").",".$tillDate->format("d/m/Y")));
+				$hash = hash("sha256", ($secretPrefix.",".$userInfo["nick_name"].",".$userInfo["pass"].",".$sinceDate->format("d/m/Y").",".$tillDate->format("d/m/Y")));
 				$db->insert("sessions", array(
 					"operator_id" => $userInfo["id"],
 					"since"				=> $sinceDate->format("d/m/Y"),
@@ -42,9 +42,10 @@ try{
 					"hash"				=> $hash
 				));
 				$payLoad["user"] = array(
-					"id"	   => $userInfo["id"], 
-					"name"   => $userInfo["name"],
-					"token"  => $hash,
+					"id"	   			=> $userInfo["id"], 
+					"nick_name"   => $userInfo["nick_name"],
+					"full_name"		=> $userInfo["full_name"],
+					"token" 	 		=> $hash,
 				);
 				http_response_code(200);
 				echo json_encode($payLoad, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);

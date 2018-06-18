@@ -5,8 +5,8 @@
 }
 </style>
 <div>
-	<p>{{vm.meta.currentDate}}</p>
-	<p>Datos obtenidos el mes de: {{vm.meta.reportDate}}</p>
+	<p>{{::vm.meta.currentDate}}</p>
+	<p>Datos obtenidos el mes de: {{::vm.meta.reportDate}}</p>
 </div>
 <div>
 	<table style="border-collapse:collapse;" border="1">
@@ -21,7 +21,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="item in vm.data">
+			<tr ng-repeat="item in ::vm.data">
 				<td><a class="btn btn-flat">{{item.code}}</a></td>
 				<td>{{item.total}}</td>
 				<td>{{item.beneficiario}}</td>

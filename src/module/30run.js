@@ -12,9 +12,9 @@
 	.module('angularApp')
 	.run(support);
 
-	support.$inject = ["$rootScope", "$localStorage"];
+	support.$inject = ["$rootScope", "$localStorage", "$ngConfirmDefaults"];
 
-	function support($rootScope, $localStorage){
+	function support($rootScope, $localStorage, $ngConfirmDefaults){
 		var _default = {
 			currentLicense: {
 				key: null,
@@ -30,6 +30,9 @@
 			}
 		};
 
+		$ngConfirmDefaults.useBootstrap = false;
+		$ngConfirmDefaults.boxWidth     = '30%';
+		
 		angular.element(() => {
 			if(typeof $localStorage.currentUser === "undefined"){
 				$localStorage.currentUser = _default.currentUser;

@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html ng-app="angularApp" ng-controller="mainController as mc" ng-strict-di>
 <head>
-  <title>Citas Medicas</title>
+  <title>MeddApp</title>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
   <?php
   if(constant("envBranch") == "development"){
@@ -46,7 +46,7 @@
           <div input-field class="container row">
             <i class="fas fa-user-tie prefix"></i>
             <label class="active">Nombre de Usuario</label>
-            <input type="text" id="loginUserName" ng-model="mc.form.name" placeholder=" " required>
+            <input type="text" id="loginUserName" ng-model="mc.form.nick_name" placeholder=" " required>
           </div>
         </li>
         <li>
@@ -74,12 +74,12 @@
         </div>
       </li>
       <li ng-class="$location.url() == '/newAppointment' && 'grey'"><a href="#!/newAppointment" ng-class="$location.url() == '/newAppointment' ? 'black-text':'white-text'"><i class="fas fa-notes-medical fa-2x" ng-class="$location.url() == '/newAppointment' ? 'black-text':'white-text'"></i>Nuevo Turno</a></li>
-      <li ng-class="$location.url() == '/patientControlList' && 'grey'"><a href="#!/patientControlList" ng-class="$location.url() == '/patientControlList' ? 'black-text':'white-text'"><i class="fas fa-clipboard-list fa-2x" ng-class="$location.url() == '/patientControlList' ? 'black-text':'white-text'"></i>Pacientes en Control</a></li>
+      <li ng-class="$location.url() == '/patientControlList' && 'grey'"><a href="#!/patientControlList" ng-class="$location.url() == '/patientControlList' ? 'black-text':'white-text'"><i class="fas fa-clipboard-list fa-2x" ng-class="$location.url() == '/patientControlList' ? 'black-text':'white-text'"></i>Usuarios en Control</a></li>
       <li ng-class="$location.url() == '/dailyStatistics' && 'grey'"><a href="#!/dailyStatistics" ng-class="$location.url() == '/dailyStatistics' ? 'black-text':'white-text'"><i class="fas fa-calendar-alt fa-2x" ng-class="$location.url() == '/dailyStatistics' ? 'black-text':'white-text'"></i>Estadisticas Diarias</a></li>
       <li ng-class="$location.url() == '/monthlyReport' && 'grey'"><a href="#!/monthlyReport" ng-class="$location.url() == '/monthlyReport' ? 'black-text':'white-text'"><i class="fas fa-bug fa-2x" ng-class="$location.url() == '/monthlyReport' ? 'black-text':'white-text'"></i>Reporte Mensual</a></li>
       <li><div class="divider"></div></li>
       <li ng-class="$location.url() == '/manageDoctors' && 'grey'"><a href="#!/manageDoctors" ng-class="$location.url() == '/manageDoctors' ? 'black-text':'white-text'"><i class="fas fa-user-md fa-2x" ng-class="$location.url() == '/manageDoctors' ? 'black-text':'white-text'"></i>Administrar Medicos</a></li>
-      <li ng-class="$location.url() == '/managePatients' && 'grey'"><a href="#!/managePatients" ng-class="$location.url() == '/managePatients' ? 'black-text':'white-text'"><i class="fas fa-user fa-2x" ng-class="$location.url() == '/managePatients' ? 'black-text':'white-text'"></i>Administrar Pacientes</a></li>
+      <li ng-class="$location.url() == '/managePatients' && 'grey'"><a href="#!/managePatients" ng-class="$location.url() == '/managePatients' ? 'black-text':'white-text'"><i class="fas fa-user fa-2x" ng-class="$location.url() == '/managePatients' ? 'black-text':'white-text'"></i>Administrar Usuarios</a></li>
       <li ng-class="$location.url() == '/manageOperators' && 'grey'"><a href="#!/manageOperators" ng-class="$location.url() == '/manageOperators' ? 'black-text':'white-text'"><i class="fas fa-user-tie fa-2x" ng-class="$location.url() == '/manageOperators' ? 'black-text':'white-text'"></i>Administrar Operadores</a></li>
       <li><div class="divider"></div></li>
       <li><a href="#!/exit" class="white-text"><i class="fas fa-sign-out-alt fa-2x white-text"></i>LogOut</a></li>

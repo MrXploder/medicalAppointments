@@ -10,11 +10,11 @@
 	function fulfillAppointmentController($scope, Doctors, Patients){
 		let fac = this;
 
+		delete $scope.ngDialogData.ngDialogId;
 		fac.form = $scope.ngDialogData;
 		fac.submit = submit;
 
 		function submit(){
-			delete fac.form.ngDialogId;
 			fac.form.status = "done";
 			$scope
 			.ngDialogData

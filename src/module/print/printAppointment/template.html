@@ -1,14 +1,38 @@
+<style type="text/css">
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table.bordered > thead > tr,
+table.bordered > tbody > tr {
+  border-bottom: 1px solid #d0d0d0;
+}
+
+
+thead {
+  border-bottom: 1px solid #d0d0d0;
+}
+
+td, th {
+  padding: 15px 5px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+</style>
 <div class="container">
 	<div class="col l12">
-		<table class="bordered highlight centered-table printered-table">
+		<table class="bordered highlight">
 			<thead class="grey darken-3 white-text">
 				<tr>
 					<th colspan="8">Uso exclusivo de control interno de Servicio</th>
 				</tr>
 			</thead>
-			<tbody style="background-image: url('../img/traumatologylogo.png'); background-repeat: no-repeat; background-position: center; -webkit-background-size: contain; background-size: contain;">
+			<tbody style="background-image: url('../img/traumatologylogo.png');  background-position: center; background-size: contain;">
 				<tr>
-					<th colspan="3">Nombre del Paciente</th>
+					<th colspan="3">Nombre del Usuario</th>
 					<td colspan="5">{{::vm.data.patient_fullname}}</td>
 				</tr>
 				<tr>

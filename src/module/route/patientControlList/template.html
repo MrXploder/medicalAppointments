@@ -1,42 +1,55 @@
-<div class="container">
 	<div class="row">
 		<div class="col l12">
 			<div class="card grey lighten-4">
 				<div class="card-content">
 					<div class="row">
 						<div input-field class="col l12">
-							<a class="btn btn-block waves-effect waves-light grey darken-3 white-text" ng-click="pclc.addControlAppointment()">Agregar Paciente a Control</a>
+							<a class="btn btn-block waves-effect waves-light grey darken-3 white-text" ng-click="pclc.addControlAppointment()">Agregar Usuario a Control</a>
 						</div>
 					</div>
 					<br>
 					<div class="row">
 						<div class="col l12">
-							<table class="bordered highlight centered-table">
-								<thead class="grey darken-3 white-text">
-									<tr>
+							<table class="bordered highlight centered-table" style="table-layout: fixed;">
+								<tbody>
+									<tr ng-repeat-start="appointment in pclc.chunckedAppointents">
+										<th colspan="6" class="grey darken-3 white-text">{{appointment[0].patient_fullname}}</th>
+									</tr>
+									<tr class="grey darken-3 white-text">
+										<td><strong>Procedencia:</strong><br>{{appointment[0].comes_from}}</td>
+										<td><strong>Motivo:</strong><br>{{appointment[0].reason}}</td>
+										<td><strong>C. Diagnostico:</strong><br>{{appointment[0].diagnosis_code}}</td>
+										<td><strong>C. Proceso:</strong><br>{{appointment[0].process_code}}</td>
+										<td><strong>Diagnostico:</strong><br>{{appointment[0].diagnosis_text}}</td>
+										<td><strong>Afiliación:</strong><br>{{appointment[0].membership}}</td>
+									</tr>
+									<tr class="grey darken-3 white-text">
 										<th>#</th>
-										<th>Nombre Paciente</th>
-										<th>Proximo Control</th>
+										<th>Turno próximo</th>
+										<th>Procedimiento<br>Realizado</th>
+										<th>Observaciones</th>
+										<th>Notas</th>
 										<th>Estado</th>
 									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat="appointment in filteredAppointments = (pclc.appointments | filter: {status: 'pending'} | orderBy: 'date')">
-										<td>{{appointment.id}}</td>
-										<td>{{appointment.patient_fullname}}</td>
-										<td>{{appointment.date + ' ' + appointment.time}}</td>
+									<tr ng-repeat-end ng-repeat-start="item in appointment">
+										<td>{{item.id}}</td>
+										<td>{{item.date}} a las {{item.time}}</td>
+										<td>{{item.procedure_perform}}</td>
+										<td>{{item.observations}}</td>
+										<td>{{item.notes}}</td>
 										<td>
 											<div class="fixed-action-btn horizontal" style="position: relative; right: 10%; top: 0px">
 												<a class="btn-floating btn-flat waves-effect waves-light">
-													<i class="fas" ng-class="appointment.status == 'pending' ? 'fa-minus orange-text' : appointment.status == 'done' ? 'fa-check green-text' : 'fa-times red-text'"></i>
+													<i class="fas" ng-class="item.status == 'pending' ? 'fa-minus orange-text' : item.status == 'done' ? 'fa-check green-text' : 'fa-times red-text'"></i>
 												</a>
-												<ul style="right: -13px; top: 102%">
-													<li><a id="menu" class="btn-floating btn-flat waves-effect waves-light green" ng-click="pclc.changeAppointmentStatus('done', appointment)"><i class="fas fa-check white-text"></i></a></li>
-													<li><a class="btn-floating btn-flat waves-effect waves-light red" ng-click="pclc.changeAppointmentStatus('absent', appointment)"><i class="fas fa-times white-text"></i></a></li>
+												<ul style="right: 0px; top: 102%">
+													<li><a id="menu" class="btn-floating btn-flat waves-effect waves-light green" ng-click="pclc.changeAppointmentStatus('done', item)"><i class="fas fa-check white-text"></i></a></li>
+													<li><a class="btn-floating btn-flat waves-effect waves-light red" ng-click="pclc.changeAppointmentStatus('absent', item)"><i class="fas fa-times white-text"></i></a></li>
 												</ul>
 											</div>
 										</td>
 									</tr>
+									<tr ng-repeat-end><td colspan="6"><br><br><br><br></td></tr>
 								</tbody>
 							</table>
 						</div>
@@ -47,4 +60,3 @@
 			</div>
 		</div>
 	</div>
-</div>
