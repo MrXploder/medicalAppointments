@@ -103,9 +103,19 @@ try{
 			unset($request["patient_fullname"]);
 			unset($request["doctor_fullname"]);
 			unset($request["operator_fullname"]);
+
 			$updateQuery = $db->update("appointments", $request, [
 				"appointments.id" => $request["id"]
 			]);
+
+			if($request["end_status"] === "end"){
+				$db->update("appointments", ["end_status" => "end", "end_text" => $request["end_text"]], [
+					"AND" => [
+						"appointments.patient_id" => $request["patient_id"],
+						"appointments.end_status" => "pending",
+					]
+				]);
+			}
 
 			if($updateQuery->rowCount() > 0){
 				$id = $request["id"];

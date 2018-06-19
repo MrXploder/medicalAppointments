@@ -42,16 +42,13 @@
 			});
 		}
 
-		function openAppointmentDetails(appointment){
-		}
-
 		function addOcationalAppointment(){
 			ngDialog
 			.open({
 				templateUrl: "src/module/modal/ocationalAppointment/template.html",
 				controller: "ocationalAppointmentController",
 				controllerAs: "oac",
-				width: "60%",
+				showClose: true,
 			})
 			.closePromise
 			.then(function(response){

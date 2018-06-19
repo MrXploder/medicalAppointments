@@ -3,9 +3,9 @@
 	.module("angularApp")
 	.controller("patientControlListController", patientControlListController);
 
-	patientControlListController.$inject = ["$scope", "ngDialog", "$ngConfirm", "Appointments", "$filter"];
+	patientControlListController.$inject = ["$scope", "ngDialog", "$ngConfirm", "Appointments", "$filter", "Printer"];
 
-	function patientControlListController($scope, ngDialog, $ngConfirm, Appointments, $filter){
+	function patientControlListController($scope, ngDialog, $ngConfirm, Appointments, $filter, Printer){
 		var pclc = this;
 
 		pclc.appointments 					 = Appointments.query();
@@ -25,7 +25,6 @@
 				templateUrl: "src/module/modal/controlAppointment/template.html",
 				controller: "controlAppointmentController",
 				controllerAs: "cac",
-				width: "60%",
 			})
 			.closePromise
 			.then(function(response){
@@ -44,8 +43,6 @@
 			
 			if(statusText === "absent"){
 				$ngConfirm({
-					useBootstrap: false,
-					boxWidth: '30%',
 					title: "Precaución",
 					content: "Esta accion no se puede deshacer",
 					autoClose: "cancel|5000",
@@ -57,6 +54,56 @@
 								appointment.status = statusText;
 								appointment
 								.$update()
+								.then(response => {
+									$ngConfirm({
+										title: "Elige",
+										content: "",
+										buttons: {
+											confirm: {
+												text: "Dar de Alta",
+												btnClass: "btn waves-effect waves-light red",
+												action: function(){
+													ngDialog.openConfirm({
+														templateUrl: "src/module/modal/dischargePatient/template.html",
+														controller: "dischargePatientController",
+														controllerAs: "dpc",
+														data: appointment,
+													})
+													.then(response => {
+														Appointments
+														.query()
+														.$promise
+														.then(response => {
+															pclc.appointments = response;
+															recalculateChunk(response);
+														});
+													});
+												}
+											},
+											cancel:{
+												text: "Agendar nuevo Turno",
+												btnClass: "btn waves-effect waves-light green",
+												action: function() {
+													ngDialog.openConfirm({
+														templateUrl: "src/module/modal/addAppointment/template.html",
+														controller: "addAppointmentController",
+														controllerAs: "aac",
+														data: appointment,
+													})
+													.then(response => {
+														Appointments
+														.query()
+														.$promise
+														.then(response => {
+															pclc.appointments = response;
+															recalculateChunk(response);
+														});
+													});
+												},
+											}
+										}
+									});
+								})
 								.catch(function success(response){
 									Materialize.toast(response.statusText, 5000, "red");
 									appointment.status = oldStatus;
@@ -103,8 +150,15 @@
 											.query()
 											.$promise
 											.then(response => {
-												pclc.appointments = response;
-												recalculateChunk(response);
+												Printer.print('src/module/print/printSummary/template.html',{
+													vm: {
+														data: {data: "data"},
+														meta: {},
+													}
+												}, response => {
+													pclc.appointments = response;
+													recalculateChunk(response);
+												});
 											});
 										});
 									}
@@ -143,6 +197,7 @@
 
 		function recalculateChunk(data){
 			let notEndedOnly = $filter('filter')(angular.copy(data), {end_status: "pending"});
+			let testArray = [];
 			pclc.chunckedAppointents = _.groupBy(notEndedOnly, 'patient_id');
 		}
 	}
