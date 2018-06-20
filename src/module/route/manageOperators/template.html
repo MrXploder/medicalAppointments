@@ -24,6 +24,7 @@
 										<th>Nombre</th>
 										<th>Nick</th>
 										<th>Info</th>
+										<th>Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -32,6 +33,7 @@
 										<td>{{operator.full_name}}</td>
 										<td>{{operator.nick_name}}</td>
 										<td><a class="btn waves-effect waves-light" ng-click="moc.showDetails(operator)"><i class="fas fa-info"></i></td>
+										<td><a class="btn waves-effect waves-light red" ng-class="operator.id == 1 && 'disabled'" ng-click="moc.deleteOperator(operator)"><i class="fas fa-trash"></i></td>
 									</tr>
 								</tbody>
 							</table>

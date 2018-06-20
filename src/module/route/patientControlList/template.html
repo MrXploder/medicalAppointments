@@ -13,17 +13,15 @@
 							<table class="bordered highlight centered-table">
 								<tbody>
 									<tr ng-repeat-start="appointment in pclc.chunckedAppointents">
-										<th colspan="6" class="grey darken-3 white-text">{{appointment[0].patient_fullname}}</th>
+										<th colspan="6" class="black white-text">{{appointment[0].patient_fullname}}</th>
 									</tr>
 									<tr class="grey darken-3 white-text">
 										<td><strong>Procedencia:</strong><br>{{appointment[0].comes_from}}</td>
 										<td><strong>Motivo:</strong><br>{{appointment[0].reason}}</td>
-										<td><strong>C. Diagnostico:</strong><br>{{appointment[0].diagnosis_code}}</td>
-										<td><strong>C. Proceso:</strong><br>{{appointment[0].process_code}}</td>
 										<td style="word-break: break-all;"><strong>Diagnostico:</strong><br>{{appointment[0].diagnosis_text}}</td>
 										<td><strong>Afiliación:</strong><br>{{appointment[0].membership}}</td>
 									</tr>
-									<tr class="grey darken-3 white-text">
+									<tr class="blue-grey white-text">
 										<th>#</th>
 										<th>Turno próximo</th>
 										<th>Procedimiento<br>Realizado</th>

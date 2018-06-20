@@ -1,0 +1,31 @@
+<ng-form name="onForm">
+	<div class="row">
+		<div input-field class="col l12">
+			<label class="active">Nombre Completo</label>
+			<input type="text" ng-model="onc.form.full_name" required>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<label class="active">Nick</label>
+			<input type="text" ng-model="onc.form.nick_name" required>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<label class="active">RUN</label>
+			<input type="text" ng-rut ng-model="onc.form.rut" required>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<label class="active">Contraseña</label>
+			<input type="text" ng-model="onc.form.pass" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col l12">
+			<a class="btn btn-block waves-effect waves-light green" ng-class="!onForm.$valid && 'disabled'" ng-click="onc.saveAndExit()">Crear</a>
+		</div>
+	</div>
+</ng-form>

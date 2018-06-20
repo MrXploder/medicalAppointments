@@ -73,7 +73,7 @@
           <br>
         </div>
       </li>
-      <!-- <li ng-class="$location.url() == '/newAppointment' && 'grey'"><a href="#!/newAppointment" ng-class="$location.url() == '/newAppointment' ? 'black-text':'white-text'"><i class="fas fa-notes-medical fa-2x" ng-class="$location.url() == '/newAppointment' ? 'black-text':'white-text'"></i>Nuevo Turno</a></li> -->
+      <li ng-class="$location.url() == '/newAppointment' && 'grey'"><a href="#!/newAppointment" ng-class="$location.url() == '/newAppointment' ? 'black-text':'white-text'"><i class="fas fa-notes-medical fa-2x" ng-class="$location.url() == '/newAppointment' ? 'black-text':'white-text'"></i>Nuevo Turno</a></li>
       <li ng-class="$location.url() == '/patientControlList' && 'grey'"><a href="#!/patientControlList" ng-class="$location.url() == '/patientControlList' ? 'black-text':'white-text'"><i class="fas fa-clipboard-list fa-2x" ng-class="$location.url() == '/patientControlList' ? 'black-text':'white-text'"></i>Usuarios en Control</a></li>
       <li ng-class="$location.url() == '/dailyStatistics' && 'grey'"><a href="#!/dailyStatistics" ng-class="$location.url() == '/dailyStatistics' ? 'black-text':'white-text'"><i class="fas fa-calendar-alt fa-2x" ng-class="$location.url() == '/dailyStatistics' ? 'black-text':'white-text'"></i>Estadística Diaria</a></li>
       <li ng-class="$location.url() == '/monthlyReport' && 'grey'"><a href="#!/monthlyReport" ng-class="$location.url() == '/monthlyReport' ? 'black-text':'white-text'"><i class="fas fa-bug fa-2x" ng-class="$location.url() == '/monthlyReport' ? 'black-text':'white-text'"></i>Estadística Mensual</a></li>

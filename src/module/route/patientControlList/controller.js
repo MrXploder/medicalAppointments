@@ -97,7 +97,9 @@
 														Printer.print("src/module/print/printAppointment/template.html", 
 															{vm: {
 																data: appointment,
-																meta: {},
+																meta: {
+																	currentDate: moment().format("DD/MM/YYYY").toString(),
+																},
 															}
 														}, function(){
 															Appointments

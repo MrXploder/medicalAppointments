@@ -5,14 +5,15 @@
 	.module('angularApp')
 	.controller('newAppointmentController', newAppointmentController);
 
-	newAppointmentController.$inject = ["Doctors", "Patients", "Appointments", "Printer", "ngDialog", "$scope", "$filter", "$rootScope", "$location", "$localStorage"];
+	newAppointmentController.$inject = ["Doctors", "Patients", "Appointments", "Operators", "Printer", "ngDialog", "$scope", "$filter", "$rootScope", "$location", "$localStorage"];
 
-	function newAppointmentController(Doctors, Patients, Appointments, Printer, ngDialog, $scope, $filter, $rootScope, $location, $localStorage){
+	function newAppointmentController(Doctors, Patients, Appointments, Operators, Printer, ngDialog, $scope, $filter, $rootScope, $location, $localStorage){
 		var nac = this;
 
 		nac.form              = {};
 		nac.doctors           = Doctors.query();
 		nac.patients          = Patients.query();
+		nac.operators 				= Operators.query();
 		nac.showSchedule      = showSchedule;
 		nac.createAppointment = createAppointment;
 
@@ -48,39 +49,46 @@
 		}
 
 		function createAppointment(){
-			nac.form.operator_id = $localStorage.currentUser.id;
-			Printer.print("src/module/print/printAppointment/template.html", 
-				{
-					vm: {
-						data: nac.form,
-						meta: {},
+			console.log(nac.form);
+			Printer.print("src/module/print/printAppointment/template.html", {
+				vm: {
+					data: nac.form,
+					meta: {
+						currentDate: moment().format("DD/MM/YYYY").toString(),
 					}
-				}, function(){
-					Appointments 
-					.create(nac.form)
-					.$promise
-					.then(response => {
-						Materialize.toast("Agendado", 5000, "green");
-						$rootScope.$evalAsync(_ => $location.path("/patientControlList"));
-					})
-					.catch(response => {
-						Materialize.toast(response.statusText, 5000, "red");
-					});
+				}
+			}, function(){
+				Appointments 
+				.create(nac.form)
+				.$promise
+				.then(response => {
+					Materialize.toast("Agendado", 5000, "green");
+					$rootScope.$evalAsync(_ => $location.path("/patientControlList"));
+				})
+				.catch(response => {
+					Materialize.toast(response.statusText, 5000, "red");
 				});
-			};
+			});
+		};
 
-			$scope.$watch('nac.form.patient_fullname', function(){
-				if(nac.form.patient_fullname === undefined) return;
+		$scope.$watch('nac.form.patient_fullname', function(){
+			if(nac.form.patient_fullname === undefined) return;
 
-				var filteredPatient = $filter('filter')(angular.copy(nac.patients), {full_name: nac.form.patient_fullname}, true)[0];
+			var filteredPatient = $filter('filter')(angular.copy(nac.patients), {full_name: nac.form.patient_fullname}, true)[0];
 
-				if(typeof filteredPatient === "undefined"){ 
-					nac.form.patient_id = 0;
-				}
-				else { 
-					nac.form.patient_id = filteredPatient.id;
-				}
-			}, true);
+			if(typeof filteredPatient === "undefined"){ 
+				nac.form.patient_id = 0;
+			}
+			else { 
+				nac.form.patient_id = filteredPatient.id;
+			}
+		}, true);
 
-		}
-	})();
+		$scope.$watch('nac.form.operator_id', () => {
+			if(nac.form.operator_id === undefined) return;
+			let filteredOperator = $filter('filter')(angular.copy(nac.operators), {id: nac.form.operator_id}, true)[0];
+			nac.form.operator_fullname = filteredOperator.full_name;	
+		}, true);
+
+	}
+})();

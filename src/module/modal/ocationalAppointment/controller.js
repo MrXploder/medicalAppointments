@@ -34,7 +34,8 @@
 				oac.form.patient_id = 0;
 			}
 			else { 
-				oac.form.patient_id = filteredPatient.id;
+				oac.form.patient_id  = filteredPatient.id;
+				oac.form.patient_rut = filteredPatient.rut;
 			}
 		}, true);
 	}

@@ -25,11 +25,21 @@
 						</div>
 						<div class="row">
 							<div input-field class="col l12">
+								<i class="prefix fas fa-user-tie"></i>
+								<label ng-class="nac.form.operator_id != null && 'active'">Con: </label>
+								<select material-select ng-model="nac.form.operator_id">
+									<option ng-repeat="operator in nac.operators" value="{{operator.id}}">{{operator.full_name}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div input-field class="col l12">
 								<label ng-class="nac.form.reason != null && 'active'">Motivo</label>
 								<select ng-model="nac.form.reason" material-select required>
 									<option>Control de Herida</option>
 									<option>Curaciones</option>
 									<option>Control de Rutina</option>
+									<option>Infiltración</option>
 								</select>
 							</div>
 						</div>

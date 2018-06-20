@@ -14,6 +14,7 @@
 		odc.saveAndExit = saveAndExit;
 
 		function saveAndExit(){
+			delete odc.form.ngDialogId;
 			$scope.confirm();
 		}
 	}
