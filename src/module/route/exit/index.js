@@ -9,9 +9,9 @@
 		userAuthentication
 		.logOut({token: $localStorage.currentUser.token})
 		.$promise
-		.then((response) => {
+		.then(function(response){
 			$localStorage.currentUser = {id: null, name: null, token: null};
-			$rootScope.$evalAsync(() => { $location.path("/login"); });
+			$rootScope.$evalAsync(function(){ $location.path("/login"); });
 		});
 	}
 })();

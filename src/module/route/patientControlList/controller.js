@@ -16,13 +16,13 @@
 		Appointments
 		.query()
 		.$promise
-		.then(response => {
+		.then(function(response){
 			pclc.appointments = response;
 			recalculateChunk(response);
 			Patients
 			.query()
 			.$promise
-			.then(response => {
+			.then(function(response){
 				pclc.patients = response;
 				recalculateChunk(pclc.appointments);
 			})
@@ -41,7 +41,7 @@
 				Appointments
 				.query()
 				.$promise
-				.then(response => {
+				.then(function(response){
 					pclc.appointments = response;
 					recalculateChunk(response);
 				});
@@ -64,7 +64,7 @@
 								appointment.status = statusText;
 								appointment
 								.$update()
-								.then(response => {
+								.then(function(response){
 									$ngConfirm({
 										title: "Elige",
 										content: "",
@@ -114,7 +114,7 @@
 															Appointments
 															.query()
 															.$promise
-															.then(response => {
+															.then(function(response){
 																pclc.appointments = response;
 																recalculateChunk(response);
 															});

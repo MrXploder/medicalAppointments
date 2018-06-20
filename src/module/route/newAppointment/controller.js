@@ -20,7 +20,7 @@
 		angular.element(function(){
 			nac.patients
 			.$promise
-			.then(response => {
+			.then(function(response){
 				let autocompleteData = {};
 				nac.patients.forEach(function(patient){
 					autocompleteData[patient.full_name] = null;
@@ -42,7 +42,7 @@
 				width: "60%",
 			})
 			.closePromise
-			.then(response => {
+			.then(function(response){
 				nac.form.date = response.value.date;
 				nac.form.time = response.value.time;
 			});
@@ -61,11 +61,11 @@
 				Appointments 
 				.create(nac.form)
 				.$promise
-				.then(response => {
+				.then(function(response){
 					Materialize.toast("Agendado", 5000, "green");
-					$rootScope.$evalAsync(_ => $location.path("/patientControlList"));
+					$rootScope.$evalAsync(function(){ $location.path("/patientControlList"); });
 				})
-				.catch(response => {
+				.catch(function(response){
 					Materialize.toast(response.statusText, 5000, "red");
 				});
 			});
@@ -92,7 +92,7 @@
 			}
 		}, true);
 
-		$scope.$watch('nac.form.operator_id', () => {
+		$scope.$watch('nac.form.operator_id', function(){
 			if(nac.form.operator_id === undefined) return;
 			let filteredOperator = $filter('filter')(angular.copy(nac.operators), {id: nac.form.operator_id}, true)[0];
 			nac.form.operator_fullname = filteredOperator.full_name;	

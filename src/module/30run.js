@@ -33,7 +33,7 @@
 		$ngConfirmDefaults.useBootstrap = false;
 		$ngConfirmDefaults.boxWidth     = '30%';
 		
-		angular.element(() => {
+		angular.element(function(){
 			if(typeof $localStorage.currentUser === "undefined"){
 				$localStorage.currentUser = _default.currentUser;
 			}

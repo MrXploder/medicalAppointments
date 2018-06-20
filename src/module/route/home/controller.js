@@ -14,7 +14,7 @@
 		.catch(function error(response){
 			if(response.status === 402){ /*execute only on specific cases (402 error code) */
 				$localStorage.currentLicense = { key: null, status: "dirty" };
-				$rootScope.$evalAsync(()=> { $location.path("/firstTime"); });
+				$rootScope.$evalAsync(function(){ $location.path("/firstTime"); });
 			}
 		});
 	}

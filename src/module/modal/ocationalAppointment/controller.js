@@ -18,7 +18,7 @@
 		angular.element(function(){
 			oac.patients
 			.$promise
-			.then(response => {
+			.then(function(response){
 				let autocompleteData = {};
 				oac.patients.forEach(function(patient){
 					autocompleteData[patient.full_name] = null;

@@ -15,10 +15,10 @@
 		$("footer").css({paddingLeft: 0});
 
 		/* this event comes from the main controller called "mainController" that handles the sidenavs */
-		$scope.$on('attemptToLogIn', (event, logInData) => {
+		$scope.$on('attemptToLogIn', function(event, logInData){
 			userAuthentication.logIn(logInData)
 			.$promise
-			.then(response => {
+			.then(function(response){
 				$localStorage.currentUser = response.user;
 				$("footer").animate({"paddingLeft": 300}, "fast");
 				$.when($("#login-side-nav").animate({"left":"0%"}, "slow")).done(function(){
@@ -27,7 +27,7 @@
 					});
 					$("#login-side-nav").hide("slow");
 					Materialize.toast('Bienvenido '+ response.user.full_name, 5000, 'green');
-					$rootScope.$evalAsync(_ => $location.path("/home"));
+					$rootScope.$evalAsync(function(){ $location.path("/home"); });
 				});
 			});
 		});

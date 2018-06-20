@@ -18,7 +18,7 @@
 			dpc.form.end_status = "end";
 			$scope.ngDialogData
 			.$update()
-			.then(response => {
+			.then(function(response){
 				$scope.confirm();
 			});
 		}

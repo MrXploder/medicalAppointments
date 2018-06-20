@@ -23,20 +23,20 @@
 				controller: "operatorDetailsController",
 				controllerAs: "odc",
 				data: operator,
-			}).then(response => {
+			}).then(function(response){
 				console.log(operator);
 				operator
 				.$update()
-				.then(response => {
+				.then(function(response){
 					Materialize.toast("Exito", 5000, "green");
 					Operators
 					.query()
 					.$promise
-					.then(response => {
+					.then(function(response){
 						moc.operators = response;
 					});
 				})
-				.catch(response => {
+				.catch(function(response){
 					Materialize.toast(response.statusText, 5000, "red");
 				});
 			});
@@ -47,20 +47,20 @@
 				templateUrl: "src/module/modal/operatorNew/template.html",
 				controller: "operatorNewController",
 				controllerAs: "onc",
-			}).then(response => {
+			}).then(function(response){
 				Operators
 				.create(response)
 				.$promise
-				.then(response => {
+				.then(function(response){
 					Materialize.toast("Creado", 5000, "green");
 					Operators
 					.query()
 					.$promise
-					.then(response => {
+					.then(function(response){
 						moc.operators = response;
 					})
 				})
-				.catch(response => {
+				.catch(function(response){
 					Materialize.toast(response.statusText, 5000, "red");
 				})
 			});
@@ -70,16 +70,16 @@
 			Operators
 			.delete({id: operator.id})
 			.$promise
-			.then(response => {
+			.then(function(response){
 				Materialize.toast("Borrado", 5000, "green");
 				Operators
 				.query()
 				.$promise
-				.then(response => {
+				.then(function(response){
 					moc.operators = response;
 				});
 			})
-			.catch(response => {
+			.catch(function(response){
 				Materialize.toast(response.statusText, 5000, "red");
 			});
 		}

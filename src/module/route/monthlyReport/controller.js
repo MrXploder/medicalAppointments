@@ -35,7 +35,7 @@
 					date: `${mrc.selectMonth}/${mrc.selectYear}`
 				})
 				.$promise
-				.then(response => mrc.reportData = response);
+				.then(function(response){ mrc.reportData = response; });
 			}
 		}, true);
 	}

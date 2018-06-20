@@ -24,7 +24,7 @@
 			Appointments
 			.create(aac.form)
 			.$promise
-			.then(response => {
+			.then(function(response){
 				$scope.confirm(aac.form);
 			})
 		}
@@ -43,7 +43,7 @@
 			});
 		}
 
-		$scope.$watch('aac.form.operator_id', () => {
+		$scope.$watch('aac.form.operator_id', function(){
 			if(aac.form.operator_id === undefined) return;
 			let filteredOperator = $filter('filter')(angular.copy(aac.operators), {id: aac.form.operator_id}, true)[0];
 			aac.form.operator_fullname    = filteredOperator.full_name;

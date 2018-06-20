@@ -82,13 +82,13 @@
 		userAuthentication
 		.isLoggedIn({token: $localStorage.currentUser.token})
 		.$promise
-		.then(_ => {
+		.then(function(){
 			if($localStorage.currentLicense.status !== "pristine"){
-				$rootScope.$evalAsync(_ => $location.path("/firstTime"));
+				$rootScope.$evalAsync(function(){ $location.path("/firstTime"); });
 			}
 		})
-		.catch(_ => {
-			$rootScope.$evalAsync(_ => $location.path("/login"));
+		.catch(function(){
+			$rootScope.$evalAsync(function(){ $location.path("/login"); });
 		}); 
 	};
 
@@ -97,13 +97,13 @@
 		userAuthentication
 		.isLoggedIn({token: $localStorage.currentUser.token})
 		.$promise
-		.then(response => {
+		.then(function(response){
 			if($localStorage.currentLicense.status !== "pristine"){
-				$rootScope.$evalAsync(_ => $location.path("/firstTime"));
+				$rootScope.$evalAsync(function(){ $location.path("/firstTime"); });
 			}
 		})
-		.catch(response => {
-			$rootScope.$evalAsync(_ => $location.path("/login"));
+		.catch(function(response){
+			$rootScope.$evalAsync(function(){ $location.path("/login"); });
 		}); 
 	};
 })();
