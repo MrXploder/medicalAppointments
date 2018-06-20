@@ -25,6 +25,7 @@
 				templateUrl: "src/module/modal/controlAppointment/template.html",
 				controller: "controlAppointmentController",
 				controllerAs: "cac",
+				showClose: true,
 			})
 			.closePromise
 			.then(function(response){
@@ -63,11 +64,13 @@
 												text: "Dar de Alta",
 												btnClass: "btn waves-effect waves-light red",
 												action: function(){
+													console.log("exit");
 													ngDialog.openConfirm({
 														templateUrl: "src/module/modal/dischargePatient/template.html",
 														controller: "dischargePatientController",
 														controllerAs: "dpc",
 														data: appointment,
+														showClose: true,
 													})
 													.then(response => {
 														Appointments
@@ -90,13 +93,20 @@
 														controllerAs: "aac",
 														data: appointment,
 													})
-													.then(response => {
-														Appointments
-														.query()
-														.$promise
-														.then(response => {
-															pclc.appointments = response;
-															recalculateChunk(response);
+													.then(function(response){
+														Printer.print("src/module/print/printAppointment/template.html", 
+															{vm: {
+																data: appointment,
+																meta: {},
+															}
+														}, function(){
+															Appointments
+															.query()
+															.$promise
+															.then(response => {
+																pclc.appointments = response;
+																recalculateChunk(response);
+															});
 														});
 													});
 												},
@@ -125,6 +135,7 @@
 					controller: "fulfillAppointmentController",
 					controllerAs: "fac",
 					data: appointment,
+					showClose: true,
 				})
 				.then(function(response){
 					appointment.status = statusText;
@@ -150,9 +161,15 @@
 											.query()
 											.$promise
 											.then(response => {
+												console.log(_.pickBy(pclc.chunckedAppointents, function(value, key){
+													return key === appointment.patient_id.toString();
+												}));
 												Printer.print('src/module/print/printSummary/template.html',{
 													vm: {
-														data: {data: "data"},
+														/*extract from chunckedAppointments only the patient data*/
+														data: _.pickBy(pclc.chunckedAppointents, function(value, key){
+															return key === appointment.patient_id.toString();
+														}),
 														meta: {},
 													}
 												}, response => {
@@ -174,12 +191,19 @@
 											data: appointment,
 										})
 										.then(response => {
-											Appointments
-											.query()
-											.$promise
-											.then(response => {
-												pclc.appointments = response;
-												recalculateChunk(response);
+											Printer.print("src/module/print/printAppointment/template.html", 
+												{vm: {
+													data: response,
+													meta: {},
+												}
+											}, function(){
+												Appointments
+												.query()
+												.$promise
+												.then(response => {
+													pclc.appointments = response;
+													recalculateChunk(response);
+												});
 											});
 										});
 									},

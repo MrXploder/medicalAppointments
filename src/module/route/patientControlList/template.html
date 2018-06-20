@@ -10,7 +10,7 @@
 					<br>
 					<div class="row">
 						<div class="col l12">
-							<table class="bordered highlight centered-table" style="table-layout: fixed;">
+							<table class="bordered highlight centered-table">
 								<tbody>
 									<tr ng-repeat-start="appointment in pclc.chunckedAppointents">
 										<th colspan="6" class="grey darken-3 white-text">{{appointment[0].patient_fullname}}</th>
@@ -20,7 +20,7 @@
 										<td><strong>Motivo:</strong><br>{{appointment[0].reason}}</td>
 										<td><strong>C. Diagnostico:</strong><br>{{appointment[0].diagnosis_code}}</td>
 										<td><strong>C. Proceso:</strong><br>{{appointment[0].process_code}}</td>
-										<td><strong>Diagnostico:</strong><br>{{appointment[0].diagnosis_text}}</td>
+										<td style="word-break: break-all;"><strong>Diagnostico:</strong><br>{{appointment[0].diagnosis_text}}</td>
 										<td><strong>Afiliación:</strong><br>{{appointment[0].membership}}</td>
 									</tr>
 									<tr class="grey darken-3 white-text">
@@ -34,9 +34,9 @@
 									<tr ng-repeat-end ng-repeat-start="item in appointment">
 										<td>{{item.id}}</td>
 										<td>{{item.date}} a las {{item.time}}</td>
-										<td>{{item.procedure_perform}}</td>
-										<td>{{item.observations}}</td>
-										<td>{{item.notes}}</td>
+										<td style="word-break: break-all;">{{item.procedure_perform}}</td>
+										<td style="word-break: break-all;">{{item.observations}}</td>
+										<td style="word-break: break-all;">{{item.notes}}</td>
 										<td>
 											<div class="fixed-action-btn horizontal" style="position: relative; right: 10%; top: 0px">
 												<a class="btn-floating btn-flat waves-effect waves-light">

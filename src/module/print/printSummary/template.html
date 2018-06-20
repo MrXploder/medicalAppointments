@@ -1,7 +1,7 @@
 <style type="text/css" media="print">
 @page {
-    size: auto;   /* auto is the initial value */
-    margin: 0;  /* this affects the margin in the printer settings */
+  size: auto;   /* auto is the initial value */
+  margin: 0;  /* this affects the margin in the printer settings */
 }
 table {
 	border-collapse: collapse;
@@ -25,9 +25,73 @@ td, th {
   vertical-align: middle;
   border-radius: 2px;
 }
+.grey {
+  background-color: #9e9e9e !important;
+}
+.grey.darken-3 {
+  background-color: #424242 !important;
+}
+
+.white-text {
+  color: #FFFFFF !important;
+}
 </style>
 <div class="container">
 	<div class="col l12">
-		{{vm}}
-	</div>
+		<table class="bordered centered-table" style="table-layout: fixed;" border="1">
+      <tbody>
+        <tr ng-repeat-start="appointment in vm.data">
+          <th colspan="6" class="grey darken-3 white-text">RESUMEN DE CONTROL</th>
+        </tr>
+        <tr>
+          <th colspan="6" class="grey darken-3 white-text">{{appointment[0].patient_fullname}}</th>
+        </tr>
+        <tr>
+          <th colspan="2" class="grey darken-3 white-text">Procedencia:</th>
+          <td colspan="4">{{appointment[0].comes_from}}</td>
+        </tr>
+        <tr>
+          <th colspan="2" class="grey darken-3 white-text">Motivo:</th>
+          <td colspan="4">{{appointment[0].reason}}</td>
+        </tr>
+        <tr>
+          <th colspan="2" class="grey darken-3 white-text">C. Diagnostico:</th>
+          <td colspan="4">{{appointment[0].diagnosis_code}}</td>
+        </tr>
+        <tr>
+          <th colspan="2" class="grey darken-3 white-text">C. Proceso:</th>
+          <td colspan="4">{{appointment[0].process_code}}</td>
+        </tr>
+        <tr>
+          <th colspan="2" class="grey darken-3 white-text">Diagnostico:</th>
+          <td style="word-break: break-all;" colspan="4">{{appointment[0].diagnosis_text}}</td>
+        </tr>
+        <tr>
+          <th colspan="2" class="grey darken-3 white-text">Afiliación:</th>
+          <td colspan="4">{{appointment[0].membership}}</td>
+        </tr>
+        <tr>
+          <th colspan="2" class="grey darken-3 white-text">Motivo de Alta:</th>
+          <td colspan="4">{{appointment[0].end_text}}</td>
+        </tr>
+        <tr class="grey darken-3 white-text">
+          <th>#</th>
+          <th>Turno próximo</th>
+          <th>Procedimiento<br>Realizado</th>
+          <th>Observaciones</th>
+          <th>Notas</th>
+          <th>Estado</th>
+        </tr>
+        <tr ng-repeat-end ng-repeat-start="item in appointment">
+          <td>{{item.id}}</td>
+          <td>{{item.date}} a las {{item.time}}</td>
+          <td>{{item.procedure_perform}}</td>
+          <td style="word-break: break-all;">{{item.observations}}</td>
+          <td style="word-break: break-all;">{{item.notes}}</td>
+          <td style="word-break: break-all;">{{item.status}}</td>
+        </tr>
+        <tr ng-repeat-end><td colspan="6"><br><br><br><br></td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>

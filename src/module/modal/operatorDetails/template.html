@@ -1,0 +1,39 @@
+<ng-form name="odForm">
+	<div class="row">
+		<div input-field class="col l12">
+			<label class="active">Id</label>
+			<input type="text" ng-value="odc.form.id" readonly>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<label class="active">Nombre Completo</label>
+			<input type="text" ng-model="odc.form.full_name" required>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<label class="active">Nick</label>
+			<input type="text" ng-model="odc.form.nick_name" required>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<label class="active">RUN</label>
+			<input type="text" ng-rut ng-model="odc.form.rut" required>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<label class="active">Contraseña</label>
+			<input type="text" ng-model="odc.form.pass" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col l12">
+			<a class="btn btn-block waves-effect waves-light green" ng-class="!odForm.$valid && 'disabled'" ng-click="odc.saveAndExit()">Guardar</a>
+		</div>
+	</div>
+	<pre>{{odForm}}</pre>
+	<pre>{{odc.form.rut}}</pre>
+</ng-form>

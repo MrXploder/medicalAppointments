@@ -7,12 +7,12 @@
 						<div input-field class="col l12">
 							<i class="prefix fas fa-search"></i>
 							<label>Buscar... </label>
-							<input type="search" ng-class="moc.searchTerm">
+							<input type="search" ng-model="moc.searchTerm">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col l12">
-							<a class="btn btn-block waves-effect waves-light grey darken-3">Agregar un nuevo Operador</a>
+							<a class="btn btn-block waves-effect waves-light grey darken-3" ng-click="moc.addOperator()">Agregar un nuevo Operador</a>
 						</div>
 					</div>
 					<div class="row">
@@ -27,11 +27,11 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr dir-paginate="operator in moc.operators | filter: moc.searchTerm | orderBy:moc.sortBy:moc.sortReverse | itemsPerPage: moc.itemsPerPage track by $index" pagination-id="manageOperatorsId" ng-show="$index > 0">
+									<tr dir-paginate="operator in moc.operators | filter: moc.searchTerm | orderBy:moc.sortBy:moc.sortReverse | itemsPerPage: moc.itemsPerPage track by $index" pagination-id="manageOperatorsId">
 										<td>{{operator.id == 1 ? 'Administrador' : 'Usuario'}}</td>
 										<td>{{operator.full_name}}</td>
 										<td>{{operator.nick_name}}</td>
-										<td><a class="btn waves-effect waves-light"><i class="fas fa-info"></i></td>
+										<td><a class="btn waves-effect waves-light" ng-click="moc.showDetails(operator)"><i class="fas fa-info"></i></td>
 									</tr>
 								</tbody>
 							</table>
