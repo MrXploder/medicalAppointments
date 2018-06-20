@@ -21,15 +21,26 @@
 
 		function changeAppointmentStatus(statusText, appointment){
 			let oldStatus = angular.copy(appointment.status);
-
 			appointment.status = statusText;
-
-			appointment
-			.$update()
-			.catch(function success(response){
-				Materialize.toast(response.statusText, 5000, "red");
-				appointment.status = oldStatus;
-			});
+			if(statusText === "done"){
+				ngDialog.openConfirm({
+					templateUrl: "src/module/modal/refillAppointment/template.html",
+					controller: "refillAppointmentController",
+					controllerAs: "rac",
+					data: appointment,
+				})
+				.then(function(response){
+					Materialize.toast("Exito", 5000, "green");
+					dsc.appointments = Appointments.query();
+				});
+			}
+			else{
+				appointment
+				.$update()
+				then(function(response){
+					Materialize.toast("Exito", 5000, "green");
+				})
+			}
 		}
 
 		function deleteAppointment(appointment){

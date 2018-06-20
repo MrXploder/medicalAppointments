@@ -31,7 +31,7 @@ try{
 
 		if(!empty($payLoad)){
 			http_response_code(200); /* OK */ 
-			echo json_encode($payLoad, JSON_UNESCAPED_UNICODE);
+			echo json_encode($payLoad, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
 			exit();
 		}
 		else{

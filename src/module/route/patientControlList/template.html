@@ -4,7 +4,15 @@
 				<div class="card-content">
 					<div class="row">
 						<div input-field class="col l12">
-							<a class="btn btn-block waves-effect waves-light grey darken-3 white-text" ng-click="pclc.addControlAppointment()">Agregar Usuario a Control</a>
+							<a class="btn btn-block waves-effect waves-light" ng-click="pclc.addControlAppointment()">Agregar Usuario a Control</a>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div input-field class="col l12">
+							<i class="prefix fas fa-search"></i>
+							<label>Buscar por Nombre de Paciente (Dejar en blanco para mostrar Todos)</label>
+							<input type="text" ng-model="pclc.searchTerm">
 						</div>
 					</div>
 					<br>
@@ -12,14 +20,14 @@
 						<div class="col l12">
 							<table class="bordered highlight centered-table">
 								<tbody>
-									<tr ng-repeat-start="appointment in pclc.chunckedAppointents">
-										<th colspan="6" class="black white-text">{{appointment[0].patient_fullname}}</th>
+									<tr ng-repeat-start="appointment in pclc.betterAppointments |filter: {patient_fullname: pclc.searchTerm}">
+										<th colspan="6" class="black white-text">Nombre: {{appointment.patient_fullname}} - Telefono: {{appointment.patient_data[0].phone_number || 'Sin Registro'}} - Celular: {{appointment.patient_data[0].mobile_number || 'Sin Registro'}} - RUN: {{appointment.patient_data[0].rut | rut}} - Alergico: {{appointment.patient_data[0].allergies || 'Sin Registro'}}</th>
 									</tr>
 									<tr class="grey darken-3 white-text">
-										<td><strong>Procedencia:</strong><br>{{appointment[0].comes_from}}</td>
-										<td><strong>Motivo:</strong><br>{{appointment[0].reason}}</td>
-										<td style="word-break: break-all;"><strong>Diagnostico:</strong><br>{{appointment[0].diagnosis_text}}</td>
-										<td><strong>Afiliación:</strong><br>{{appointment[0].membership}}</td>
+										<td><strong>Procedencia:</strong><br>{{appointment.comes_from}}</td>
+										<td><strong>Motivo:</strong><br>{{appointment.reason}}</td>
+										<td colspan="3" style="word-break: break-all;"><strong>Diagnostico:</strong><br>{{appointment.diagnosis_text}}</td>
+										<td><strong>Afiliación:</strong><br>{{appointment.membership}}</td>
 									</tr>
 									<tr class="blue-grey white-text">
 										<th>#</th>
@@ -29,7 +37,7 @@
 										<th>Notas</th>
 										<th>Estado</th>
 									</tr>
-									<tr ng-repeat-end ng-repeat-start="item in appointment">
+									<tr ng-repeat-end ng-repeat-start="item in appointment.data">
 										<td>{{item.id}}</td>
 										<td>{{item.date}} a las {{item.time}}</td>
 										<td style="word-break: break-all;">{{item.procedure_perform}}</td>

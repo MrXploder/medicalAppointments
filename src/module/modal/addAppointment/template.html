@@ -13,18 +13,30 @@
 			<input type="text" ng-model="aac.form.time" required readonly>
 		</div>
 	</div>
-	  <div class="row">
-    <div input-field class="col l12">
-      <i class="prefix fas fa-user-tie"></i>
-      <label ng-class="aac.form.operator_id != null && 'active'">Con: </label>
-      <select material-select ng-model="aac.form.operator_id">
-        <option ng-repeat="operator in aac.operators" value="{{operator.id}}">{{operator.full_name}}</option>
-      </select>
-    </div>
-  </div>
+	<div class="row">
+		<div input-field class="col l12">
+			<i class="prefix fas fa-user-tie"></i>
+			<label ng-class="aac.form.operator_id != null && 'active'">Con: </label>
+			<select material-select ng-model="aac.form.operator_id">
+				<option ng-repeat="operator in aac.operators" value="{{operator.id}}">{{operator.full_name}}</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<i class="prefix fas fa-allergies"></i>
+			<label ng-class="aac.form.reason != null && 'active'">Motivo</label>
+			<select ng-model="aac.form.reason" material-select required>
+				<option>Control de Herida</option>
+				<option>Curaciones</option>
+				<option>Control de Rutina</option>
+				<option>Infiltración</option>
+			</select>
+		</div>
+	</div>
 	<div class="row">
 		<div class="col l12">
-			<a class="btn btn-block waves-effect waves-light green" ng-class="!aaForm.$valid && ''" ng-click="aac.addAppointment()">Agendar <i class="fas fa-location-arrow"></i></a>
+			<a class="btn btn-block waves-effect waves-light green" ng-class="!aaForm.$valid && 'disabled'" ng-click="aac.addAppointment()">Agendar <i class="fas fa-location-arrow"></i></a>
 		</div>
 	</div>
 </ng-form>

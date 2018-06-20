@@ -5,9 +5,9 @@
 	.module('angularApp')
 	.controller('addAppointmentController', addAppointmentController);
 
-	addAppointmentController.$inject = ["$scope", "ngDialog", "Operators", "Appointments"];
+	addAppointmentController.$inject = ["$scope", "ngDialog", "Operators", "Appointments", "$filter"];
 
-	function addAppointmentController($scope, ngDialog, Operators, Appointments){
+	function addAppointmentController($scope, ngDialog, Operators, Appointments, $filter){
 		let aac = this;
 		
 		aac.operators 		 = Operators.query();
@@ -43,5 +43,10 @@
 			});
 		}
 
+		$scope.$watch('aac.form.operator_id', () => {
+			if(aac.form.operator_id === undefined) return;
+			let filteredOperator = $filter('filter')(angular.copy(aac.operators), {id: aac.form.operator_id}, true)[0];
+			aac.form.operator_fullname    = filteredOperator.full_name;
+		}, true);
 	} 
 })();

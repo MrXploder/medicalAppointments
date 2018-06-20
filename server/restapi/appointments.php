@@ -52,8 +52,11 @@ try{
 			$request = json_decode($postdata, true);
 			if($request["patient_id"] === 0){
 				$db->insert("patients", array(
-					"full_name" => $request["patient_fullname"],
-					"rut"				=> $request["patient_rut"],
+					"full_name"     => $request["patient_fullname"],
+					"rut"						=> $request["patient_rut"],
+					"mobile_number" => $request["patient_mobilenumber"],
+					"phone_number"  => $request["patient_phonenumber"],
+					"allergies"     => $request["patient_allergies"],
 				));
 				$patient_id = $db->id();
 			}

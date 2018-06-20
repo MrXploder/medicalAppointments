@@ -1,12 +1,12 @@
-<ng-form name="ocForm">
+<ng-form name="raForm">
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-user"></i>
-      <label ng-class="oac.form.patient_fullname != null && 'active'">Escribir Nombre del Usuario</label>
-      <input type="text" ng-model="oac.form.patient_fullname" ng-class="{'invalid': oac.form.patient_id <= 0, 'valid': oac.form.patient_id > 0}" id="patient-autocomplete" class="autocomplete" required>
+      <label ng-class="rac.form.patient_fullname != null && 'active'">Nombre del Usuario</label>
+      <input type="text" ng-model="rac.form.patient_fullname" ng-class="{'invalid': rac.form.patient_id <= 0, 'valid': rac.form.patient_id > 0}" id="patient-autocomplete" class="autocomplete" required readonly>
     </div>
   </div>
-  <div class="row" ng-show="oac.form.patient_id <= 0">
+  <div class="row" ng-show="rac.form.patient_id <= 0">
     <div class="col l12">
       <label class="red-text">**El Usuario no Existe por lo que deberas rellenar todos sus datos personales antes de continuar**</label>
     </div>
@@ -15,54 +15,51 @@
     <div input-field class="col l12">
       <i class="prefix fas fa-id-card"></i>
       <label>RUN</label>
-      <input type="text" ng-rut ng-model="oac.form.patient_rut" required>
+      <input type="text" ng-rut ng-model="rac.form.patient_rut" required readonly>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-phone"></i>
       <label>Numero Fijo</label>
-      <input type="text" ng-model="oac.form.patient_phonenumber" required>
+      <input type="text" ng-model="rac.form.patient_phonenumber" required readonly>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-mobile-alt"></i>
       <label>Numero Celular</label>
-      <input type="text" ng-model="oac.form.patient_mobilenumber" required>
+      <input type="text" ng-model="rac.form.patient_mobilenumber" required readonly>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-diagnoses"></i>
-      <label ng-class="oac.form.patient_allergies != null && 'active'">Alergico</label>
-      <select material-select ng-model="oac.form.patient_allergies" required>
-        <option>Si</option>
-        <option>No</option>
-      </select>
+      <label ng-class="rac.form.patient_allergies != null && 'active'">Alergico</label>
+      <input type="text" ng-model="rac.form.patient_allergies" required readonly>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-file-alt"></i>
       <label>Diagnóstico</label>
-      <textarea type="text" ng-model="oac.form.diagnosis_text"  class="materialize-textarea" required></textarea>
+      <textarea type="text" ng-model="rac.form.diagnosis_text"  class="materialize-textarea" required></textarea>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-user-tie"></i>
-      <label ng-class="oac.form.operator_id != null && 'active'">Con: </label>
-      <select material-select ng-model="oac.form.operator_id">
-        <option ng-repeat="operator in oac.operators" value="{{operator.id}}">{{operator.full_name}}</option>
+      <label ng-class="rac.form.operator_id != null && 'active'">Con: </label>
+      <select material-select ng-model="rac.form.operator_id">
+        <option ng-repeat="operator in rac.operators" value="{{operator.id}}">{{operator.full_name}}</option>
       </select>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-user-md"></i>
-      <label ng-class="oac.form.doctor_id != null && 'active'">Asignar Doctor</label>
-      <select material-select ng-model="oac.form.doctor_id" watch ng-options="doctor.id as doctor.full_name for doctor in oac.doctors" required></select>
+      <label ng-class="rac.form.doctor_id != null && 'active'">Asignar Doctor</label>
+      <select material-select ng-model="rac.form.doctor_id" watch ng-options="doctor.id as doctor.full_name for doctor in rac.doctors" required></select>
     </div>
   </div>
   <div class="row">
@@ -70,19 +67,19 @@
       <button class="btn col l3 disabled"><i class="fas fa-calendar-alt"></i></button>
       <div class="file-path-wrapper">
         <label style="left: 90px;">Fecha</label>
-        <input type="text" ng-model="oac.form.date" required readonly>
+        <input type="text" ng-model="rac.form.date" required readonly>
       </div>
     </div>
     <div input-field class="col offset-l1 l5">
       <label>Hora</label>
-      <input type="text" ng-model="oac.form.time" required readonly>
+      <input type="text" ng-model="rac.form.time" required readonly>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-compass"></i>
-      <label ng-class="oac.form.comes_from != null && 'active'">Procedencia</label>
-      <select ng-model="oac.form.comes_from" material-select required>
+      <label ng-class="rac.form.comes_from != null && 'active'">Procedencia</label>
+      <select ng-model="rac.form.comes_from" material-select required>
         <option>CAE Adulto</option>
         <option>CAE Pediatrico</option>
         <option>Traumatologia</option>
@@ -103,14 +100,14 @@
     <div input-field class="col l12">
       <i class="prefix fas fa-align-left"></i>
       <label>Procedimiento Realizado</label>
-      <textarea type="text" ng-model="oac.form.procedure_perform" class="materialize-textarea" required></textarea>
+      <textarea type="text" ng-model="rac.form.procedure_perform" class="materialize-textarea" required></textarea>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-list-ul"></i>
-      <label ng-class="oac.form.process_code != null && 'active'">Procedimiento Segun Estadistica Mensual</label>
-      <select ng-model="oac.form.process_code" material-select required>
+      <label ng-class="rac.form.process_code != null && 'active'">Procedimiento Segun Estadistica Mensual</label>
+      <select ng-model="rac.form.process_code" material-select required>
         <option value="21-01-001">21-01-001 - Infiltración local medicamentos (bursas, tendones, yuxta articular)</option>
         <option value="21-01-002">21-01-002 - Procedimiento para exploraciones radiologicas (incluye maniobra e inyeccion del medio de contraste)</option>
         <option value="21-01-003">21-01-003 - Movilización articular bajo antestecia general</option>
@@ -134,8 +131,8 @@
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-list-ul"></i>
-      <label ng-class="oac.form.diagnosis_code != null && 'active'">Procedimiento Segun Diagnostico Mensual</label>
-      <select ng-model="oac.form.diagnosis_code" material-select required>
+      <label ng-class="rac.form.diagnosis_code != null && 'active'">Procedimiento Segun Diagnostico Mensual</label>
+      <select ng-model="rac.form.diagnosis_code" material-select required>
         <option value="21-07-001">21-07-001 - Luxaciones de articulaciones medianas (hombro, codo, rodilla, tobillo, muñeca, torso y esternovascular)</option>
         <option value="21-07-003">21-07-003 - Luxaciones de articulaciones menores (resto)</option>
         <option value="21-07-005">21-07-005 - Fracturas medianas (diáfisis humeral, radial, cubital, diáfisis femoral, tibial, peroneal, clavicular, platillos tibiales)</option>
@@ -146,8 +143,8 @@
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-band-aid"></i>
-      <label ng-class="oac.form.injury_type != null && 'active'">Tipo de Lesión</label>
-      <select ng-model="oac.form.injury_type" material-select required>
+      <label ng-class="rac.form.injury_type != null && 'active'">Tipo de Lesión</label>
+      <select ng-model="rac.form.injury_type" material-select required>
         <option>Curación Simple o Plana</option>
         <option>1</option>
         <option>2</option>
@@ -159,8 +156,8 @@
   <div class="row"> 
     <div input-field class="col l12">
       <i class="prefix fas fa-money-check"></i>
-      <label ng-class="oac.form.membership != null && 'active'">Afiliación</label>
-      <select ng-model="oac.form.membership" material-select required>
+      <label ng-class="rac.form.membership != null && 'active'">Afiliación</label>
+      <select ng-model="rac.form.membership" material-select required>
         <option>Capredena</option>
         <option>Fonasa A</option>
         <option>Fonasa B</option>
@@ -174,7 +171,7 @@
   <br>
   <div class="row">
     <div class="col l12">
-      <a class="btn btn-block waves-effect waves-light green" ng-class="!ocForm.$valid && 'disabled'" ng-click="oac.storeAppointment()">Agendar</a>
+      <a class="btn btn-block waves-effect waves-light green" ng-class="!raForm.$valid && 'disabled'" ng-click="rac.update()">Agendar</a>
     </div>
   </div>
 </ng-form>

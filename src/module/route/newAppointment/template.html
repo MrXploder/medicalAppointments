@@ -6,8 +6,45 @@
 					<ng-form name="naForm">
 						<div class="row">
 							<div input-field class="col l12">
-								<label>Escribir Nombre del Usuario</label>
+								<i class="prefix fas fa-user"></i>
+								<label data-error="error">Escribir Nombre del Usuario</label>
 								<input type="text" ng-model="nac.form.patient_fullname" ng-class="{'invalid': nac.form.patient_id <= 0, 'valid': nac.form.patient_id > 0}" id="patient-autocomplete" class="autocomplete" required>
+							</div>
+						</div>
+						<div class="row" ng-show="nac.form.patient_id <= 0">
+							<div class="col l12">
+								<label class="red-text">**El Usuario no Existe por lo que deberas rellenar todos sus datos personales antes de continuar**</label>
+							</div>
+						</div>
+						<div class="row">
+							<div input-field class="col l12">
+								<i class="prefix fas fa-id-card"></i>
+								<label>RUN</label>
+								<input type="text" ng-rut ng-model="nac.form.patient_rut" required>
+							</div>
+						</div>
+						<div class="row">
+							<div input-field class="col l12">
+								<i class="prefix fas fa-phone"></i>
+								<label>Numero Fijo</label>
+								<input type="text" ng-model="nac.form.patient_phonenumber" required>
+							</div>
+						</div>
+						<div class="row">
+							<div input-field class="col l12">
+								<i class="prefix fas fa-mobile-alt"></i>
+								<label>Numero Celular</label>
+								<input type="text" ng-model="nac.form.patient_mobilenumber" required>
+							</div>
+						</div>
+						<div class="row">
+							<div input-field class="col l12">
+								<i class="prefix fas fa-diagnoses"></i>
+								<label ng-class="nac.form.patient_allergies != null && 'active'">Alergico</label>
+								<select material-select ng-model="nac.form.patient_allergies" required>
+									<option>Si</option>
+									<option>No</option>
+								</select>
 							</div>
 						</div>
 						<div class="row">
@@ -34,6 +71,7 @@
 						</div>
 						<div class="row">
 							<div input-field class="col l12">
+								<i class="prefix fas fa-allergies"></i>
 								<label ng-class="nac.form.reason != null && 'active'">Motivo</label>
 								<select ng-model="nac.form.reason" material-select required>
 									<option>Control de Herida</option>
@@ -51,7 +89,7 @@
 							<a class="btn btn-block waves-effect waves-light red" ng-click="nac.form = {}">Reset <i class="fas fa-eraser"></i></a>
 						</div>
 						<div class="col offset-l2 l5">
-							<a class="btn btn-block waves-effect waves-light green" ng-class="!naForm.$valid && ''" ng-click="nac.createAppointment()">Enviar <i class="fas fa-location-arrow"></i></a>
+							<a class="btn btn-block waves-effect waves-light green" ng-class="!naForm.$valid && 'disabled'" ng-click="nac.createAppointment()">Enviar <i class="fas fa-location-arrow"></i></a>
 						</div>
 					</div>
 				</div>

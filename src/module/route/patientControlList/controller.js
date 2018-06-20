@@ -3,20 +3,29 @@
 	.module("angularApp")
 	.controller("patientControlListController", patientControlListController);
 
-	patientControlListController.$inject = ["$scope", "ngDialog", "$ngConfirm", "Appointments", "$filter", "Printer"];
+	patientControlListController.$inject = ["$scope", "ngDialog", "$ngConfirm", "Appointments", "Patients", "$filter", "Printer"];
 
-	function patientControlListController($scope, ngDialog, $ngConfirm, Appointments, $filter, Printer){
+	function patientControlListController($scope, ngDialog, $ngConfirm, Appointments, Patients, $filter, Printer){
 		var pclc = this;
 
-		pclc.appointments 					 = Appointments.query();
 		pclc.addControlAppointment 	 = addControlAppointment;
 		pclc.changeAppointmentStatus = changeAppointmentStatus;
 		pclc.chunckedAppointents		 = [];
+		pclc.searchTerm							 = "";
 
-		pclc.appointments
+		Appointments
+		.query()
 		.$promise
 		.then(response => {
+			pclc.appointments = response;
 			recalculateChunk(response);
+			Patients
+			.query()
+			.$promise
+			.then(response => {
+				pclc.patients = response;
+				recalculateChunk(pclc.appointments);
+			})
 		});		
 
 		function addControlAppointment(){
@@ -72,11 +81,11 @@
 														data: appointment,
 														showClose: true,
 													})
-													.then(response => {
+													.then(function(response){
 														Appointments
 														.query()
 														.$promise
-														.then(response => {
+														.then(function(response){
 															pclc.appointments = response;
 															recalculateChunk(response);
 														});
@@ -143,7 +152,7 @@
 					appointment.status = statusText;
 					appointment
 					.$update()
-					.then(response => {
+					.then(function(response){
 						$ngConfirm({
 							title: "Elige",
 							content: "",
@@ -158,14 +167,11 @@
 											controllerAs: "dpc",
 											data: appointment,
 										})
-										.then(response => {
+										.then(function(response){
 											Appointments
 											.query()
 											.$promise
-											.then(response => {
-												console.log(_.pickBy(pclc.chunckedAppointents, function(value, key){
-													return key === appointment.patient_id.toString();
-												}));
+											.then(function(response){
 												Printer.print('src/module/print/printSummary/template.html',{
 													vm: {
 														/*extract from chunckedAppointments only the patient data*/
@@ -174,7 +180,7 @@
 														}),
 														meta: {},
 													}
-												}, response => {
+												}, function(response){
 													pclc.appointments = response;
 													recalculateChunk(response);
 												});
@@ -192,17 +198,19 @@
 											controllerAs: "aac",
 											data: appointment,
 										})
-										.then(response => {
+										.then(function(response){
 											Printer.print("src/module/print/printAppointment/template.html", 
 												{vm: {
 													data: response,
-													meta: {},
+													meta: {
+														currentDate: moment().format("DD/MM/YYYY").toString(),
+													},
 												}
 											}, function(){
 												Appointments
 												.query()
 												.$promise
-												.then(response => {
+												.then(function(response){
 													pclc.appointments = response;
 													recalculateChunk(response);
 												});
@@ -213,7 +221,7 @@
 							}
 						});
 					})
-					.catch(function success(response){
+					.catch(function(response){
 						Materialize.toast(response.statusText, 5000, "red");
 						appointment.status = oldStatus;
 					});
@@ -223,8 +231,21 @@
 
 		function recalculateChunk(data){
 			let notEndedOnly = $filter('filter')(angular.copy(data), {end_status: "pending"});
-			let testArray = [];
 			pclc.chunckedAppointents = _.groupBy(notEndedOnly, 'patient_id');
+			pclc.betterAppointments = [];
+			angular.forEach(pclc.chunckedAppointents, function(item){	
+				pclc.betterAppointments.push({
+					patient_id: item[0].patient_id,
+					patient_fullname: item[0].patient_fullname,
+					comes_from: item[0].comes_from,
+					reason: item[0].reason,
+					diagnosis_text: item[0].diagnosis_text,
+					membership: item[0].membership,
+					patient_data: $filter('filter')(pclc.patients, {id: item[0].patient_id}, true),
+					data: item
+				});
+			});
+			console.log(pclc.betterAppointments);
 		}
 	}
 })();

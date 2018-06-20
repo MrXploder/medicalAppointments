@@ -77,10 +77,18 @@
 			var filteredPatient = $filter('filter')(angular.copy(nac.patients), {full_name: nac.form.patient_fullname}, true)[0];
 
 			if(typeof filteredPatient === "undefined"){ 
-				nac.form.patient_id = 0;
+				nac.form.patient_id 					= 0;
+				nac.form.patient_rut          = null;
+				nac.form.patient_mobilenumber = null; 
+				nac.form.patient_phonenumber  = null;
+				nac.form.patient_allergies    = null;
 			}
 			else { 
-				nac.form.patient_id = filteredPatient.id;
+				nac.form.patient_id 			    = filteredPatient.id;
+				nac.form.patient_rut          = filteredPatient.rut;
+				nac.form.patient_mobilenumber = filteredPatient.mobile_number; 
+				nac.form.patient_phonenumber  = filteredPatient.phone_number;
+				nac.form.patient_allergies    = filteredPatient.allergies;
 			}
 		}, true);
 
