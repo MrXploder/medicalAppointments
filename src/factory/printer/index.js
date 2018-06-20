@@ -1,4 +1,6 @@
 (function(){
+	'use strict';
+	
 	angular
 	.module('angularApp')
 	.factory('Printer', ['$rootScope', '$compile', '$http', '$timeout', '$q', function ($rootScope, $compile, $http, $timeout, $q) {
@@ -11,15 +13,15 @@
 				deferred.resolve();
 			};
 			var htmlContent = `
-				<!doctype html>
-				<html>
-					<head>
-						<meta http-equiv='content-type' content='text/html; charset=utf-8'>
-					</head>
-					<body onload="printAndRemove();">
-						${html}
-					</body>
-				</html>
+			<!doctype html>
+			<html>
+			<head>
+			<meta http-equiv='content-type' content='text/html; charset=utf-8'>
+			</head>
+			<body onload="printAndRemove();">
+			${html}
+			</body>
+			</html>
 			`;
 			var doc = hiddenFrame.contentWindow.document.open("", "_blank");
 			doc.write(htmlContent);

@@ -8,6 +8,8 @@
 *	
 */
 (function(){
+	'use strict';
+	 
 	angular
 	.module('angularApp')
 	.run(support);

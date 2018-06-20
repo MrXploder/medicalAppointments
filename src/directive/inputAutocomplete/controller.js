@@ -1,5 +1,7 @@
 /*Input autocomplete only works for "full_name" property of the given object */
 (function(){
+	'use strict';
+	 
 	angular
 	.module('angularApp')
 	.controller('inputAutocompleteController', inputAutocompleteController);

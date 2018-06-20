@@ -1,7 +1,9 @@
 (function(){
+  'use strict';
+  
   angular
-    .module('angularApp')
-    .factory('preventTemplateCache', preventTemplateCache);
+  .module('angularApp')
+  .factory('preventTemplateCache', preventTemplateCache);
 
   preventTemplateCache.$inject = ['$injector'];
 
