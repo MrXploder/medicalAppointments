@@ -1,6 +1,6 @@
 {
-  "name": "ClientSupport",
-  "short_name": "appSupport",
+  "name": "medicalAppointments",
+  "short_name": "meddApp",
   "orientation": "portrait",
   "theme-color": "#222222",
   "start_url": "/",

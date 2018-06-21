@@ -8,6 +8,7 @@
 <head>
   <title>MeddApp</title>
   <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <link rel="manifest" href="../manifest.json">
   <?php
   if(constant("envBranch") == "development"){
     $globsJS = ["{/src/vendor/*.js}", "{/src/module/*.js}", "{/src/directive/**/*.js}", "{/src/filter/**/*.js}", "{/src/factory/**/*.js}", "{/src/module/route/**/*.js}", "{/src/module/modal/**/*.js}"];
