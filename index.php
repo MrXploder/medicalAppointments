@@ -27,7 +27,7 @@
       unset($i);
     }
   }
-  else if(constant("envBranch") == "master"){
+  else if(constant("envBranch") != "development"){
     echo '<link rel="stylesheet" href="../dist/'.constant('envSHA').'.min.css">', PHP_EOL;
     echo '<script src="../dist/'.constant('envSHA').'.min.obs.js"></script>', PHP_EOL;
   }
