@@ -1,68 +1,71 @@
-	<div class="row">
-		<div class="col l12">
-			<div class="card grey lighten-4">
-				<div class="card-content">
-					<div class="row">
-						<div input-field class="col l12">
-							<a class="btn btn-block waves-effect waves-light" ng-click="pclc.addControlAppointment()">Agregar Usuario a Control</a>
-						</div>
+<div class="fixed-action-btn">
+	<a class="btn-floating btn-large waves-effect waves-light cyan white-text" ng-class="pclc.isAdding && 'disabled'" ng-click="pclc.addControlAppointment()"><i class="fas" ng-class="pclc.isAdding ? 'fa-cog fa-spin black-text' : 'fa-plus'"></i></a>
+</div>
+<div class="row">
+	<div class="col l12">
+		<div class="card grey lighten-4">
+			<div class="card-content">
+				<!-- <div class="row">
+					<div input-field class="col l12">
+						<a class="btn btn-block waves-effect waves-light" ng-click="pclc.addControlAppointment()">Agregar Usuario a Control</a>
 					</div>
-					<br>
-					<div class="row">
-						<div input-field class="col l12">
-							<i class="prefix fas fa-search"></i>
-							<label>Buscar por Nombre de Paciente (Dejar en blanco para mostrar Todos)</label>
-							<input type="text" ng-model="pclc.searchTerm">
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col l12">
-							<table class="bordered highlight centered-table">
-								<tbody>
-									<tr ng-repeat-start="appointment in pclc.betterAppointments |filter: {patient_fullname: pclc.searchTerm}">
-										<th colspan="6" class="black white-text">Nombre: {{appointment.patient_fullname}} - Telefono: {{appointment.patient_data[0].phone_number || 'Sin Registro'}} - Celular: {{appointment.patient_data[0].mobile_number || 'Sin Registro'}} - RUN: {{appointment.patient_data[0].rut | rut}} - Alergico: {{appointment.patient_data[0].allergies || 'Sin Registro'}}</th>
-									</tr>
-									<tr class="grey darken-3 white-text">
-										<td><strong>Procedencia:</strong><br>{{appointment.comes_from}}</td>
-										<td><strong>Motivo:</strong><br>{{appointment.reason}}</td>
-										<td colspan="3" style="word-break: break-all;"><strong>Diagnostico:</strong><br>{{appointment.diagnosis_text}}</td>
-										<td><strong>Afiliación:</strong><br>{{appointment.membership}}</td>
-									</tr>
-									<tr class="blue-grey white-text">
-										<th>#</th>
-										<th>Turno próximo</th>
-										<th>Procedimiento<br>Realizado</th>
-										<th>Observaciones</th>
-										<th>Notas</th>
-										<th>Estado</th>
-									</tr>
-									<tr ng-repeat-end ng-repeat-start="item in appointment.data">
-										<td>{{item.id}}</td>
-										<td>{{item.date}} a las {{item.time}}</td>
-										<td style="word-break: break-all;">{{item.procedure_perform}}</td>
-										<td style="word-break: break-all;">{{item.observations}}</td>
-										<td style="word-break: break-all;">{{item.notes}}</td>
-										<td>
-											<div class="fixed-action-btn horizontal" style="position: relative; right: 10%; top: 0px">
-												<a class="btn-floating btn-flat waves-effect waves-light">
-													<i class="fas" ng-class="item.status == 'pending' ? 'fa-minus orange-text' : item.status == 'done' ? 'fa-check green-text' : 'fa-times red-text'"></i>
-												</a>
-												<ul style="right: 0px; top: 102%">
-													<li><a id="menu" class="btn-floating btn-flat waves-effect waves-light green" ng-click="pclc.changeAppointmentStatus('done', item)"><i class="fas fa-check white-text"></i></a></li>
-													<li><a class="btn-floating btn-flat waves-effect waves-light red" ng-click="pclc.changeAppointmentStatus('absent', item)"><i class="fas fa-times white-text"></i></a></li>
-												</ul>
-											</div>
-										</td>
-									</tr>
-									<tr ng-repeat-end><td colspan="6"><br><br><br><br></td></tr>
-								</tbody>
-							</table>
-						</div>
+				</div> -->
+				<br>
+				<div class="row">
+					<div input-field class="col l12">
+						<i class="prefix fas fa-search"></i>
+						<label>Buscar por Nombre de Paciente (Dejar en blanco para mostrar Todos)</label>
+						<input type="search" ng-model="pclc.searchTerm">
 					</div>
 				</div>
-				<div class="card-action">
+				<br>
+				<div class="row">
+					<div class="col l12">
+						<table class="bordered highlight centered-table">
+							<tbody>
+								<tr ng-repeat-start="appointment in pclc.betterAppointments |filter: {patient_fullname: pclc.searchTerm}">
+									<th colspan="6" class="black white-text">Nombre: {{appointment.patient_fullname}} - Telefono: {{appointment.patient_data[0].phone_number || 'Sin Registro'}} - Celular: {{appointment.patient_data[0].mobile_number || 'Sin Registro'}} - RUN: {{appointment.patient_data[0].rut | rut}} - Alergico: {{appointment.patient_data[0].allergies || 'Sin Registro'}}</th>
+								</tr>
+								<tr class="grey darken-3 white-text">
+									<td><strong>Procedencia:</strong><br>{{appointment.comes_from}}</td>
+									<td><strong>Motivo:</strong><br>{{appointment.reason}}</td>
+									<td colspan="3" style="word-break: break-all;"><strong>Diagnostico:</strong><br>{{appointment.diagnosis_text}}</td>
+									<td><strong>Afiliación:</strong><br>{{appointment.membership}}</td>
+								</tr>
+								<tr class="blue-grey white-text">
+									<th>#</th>
+									<th>Turno próximo</th>
+									<th>Procedimiento<br>Realizado</th>
+									<th>Observaciones</th>
+									<th>Notas</th>
+									<th>Estado</th>
+								</tr>
+								<tr ng-repeat-end ng-repeat-start="item in appointment.data">
+									<td>{{item.id}}</td>
+									<td>{{item.date}} a las {{item.time}}</td>
+									<td style="word-break: break-all;">{{item.procedure_perform}}</td>
+									<td style="word-break: break-all;">{{item.observations}}</td>
+									<td style="word-break: break-all;">{{item.notes}}</td>
+									<td>
+										<div class="fixed-action-btn horizontal" style="position: relative; right: 10%; top: 0px">
+											<a class="btn-floating btn-flat waves-effect waves-light">
+												<i class="fas" ng-class="item.status == 'pending' ? 'fa-minus orange-text' : item.status == 'done' ? 'fa-check green-text' : 'fa-times red-text'"></i>
+											</a>
+											<ul style="right: -15px; top: 102%">
+												<li><a id="menu" class="btn-floating btn-flat waves-effect waves-light green" ng-click="pclc.changeAppointmentStatus('done', item)"><i class="fas fa-check white-text"></i></a></li>
+												<li><a class="btn-floating btn-flat waves-effect waves-light red" ng-click="pclc.changeAppointmentStatus('absent', item)"><i class="fas fa-times white-text"></i></a></li>
+											</ul>
+										</div>
+									</td>
+								</tr>
+								<tr ng-repeat-end><td colspan="6"><br><br><br><br></td></tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
+			</div>
+			<div class="card-action">
 			</div>
 		</div>
 	</div>
+</div>

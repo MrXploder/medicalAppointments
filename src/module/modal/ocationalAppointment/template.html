@@ -2,58 +2,27 @@
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-user"></i>
-      <label ng-class="oac.form.patient_fullname != null && 'active'">Escribir Nombre del Usuario</label>
+      <label ng-class="oac.form.patient_fullname != null && 'active'">*Escribir Nombre del Usuario</label>
       <input type="text" ng-model="oac.form.patient_fullname" ng-class="{'invalid': oac.form.patient_id <= 0, 'valid': oac.form.patient_id > 0}" id="patient-autocomplete" class="autocomplete" required>
     </div>
   </div>
   <div class="row" ng-show="oac.form.patient_id <= 0">
     <div class="col l12">
-      <label class="red-text">**El Usuario no Existe por lo que deberas rellenar todos sus datos personales antes de continuar**</label>
-    </div>
-  </div>
-  <div class="row">
-    <div input-field class="col l12">
-      <i class="prefix fas fa-id-card"></i>
-      <label>RUN</label>
-      <input type="text" ng-rut ng-model="oac.form.patient_rut" required>
-    </div>
-  </div>
-  <div class="row">
-    <div input-field class="col l12">
-      <i class="prefix fas fa-phone"></i>
-      <label>Numero Fijo</label>
-      <input type="text" ng-model="oac.form.patient_phonenumber" required>
-    </div>
-  </div>
-  <div class="row">
-    <div input-field class="col l12">
-      <i class="prefix fas fa-mobile-alt"></i>
-      <label>Numero Celular</label>
-      <input type="text" ng-model="oac.form.patient_mobilenumber" required>
-    </div>
-  </div>
-  <div class="row">
-    <div input-field class="col l12">
-      <i class="prefix fas fa-diagnoses"></i>
-      <label ng-class="oac.form.patient_allergies != null && 'active'">Alergico</label>
-      <select material-select ng-model="oac.form.patient_allergies" required>
-        <option>Si</option>
-        <option>No</option>
-      </select>
+      <label class="orange-text">**El Usuario no Existe por lo que se creará como nuevo, si luego quieres editar sus datos personales, debes ir a "Administrar Usuarios" para evitar Usuarios Duplicados**</label>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-file-alt"></i>
-      <label>Diagnóstico</label>
+      <label>*Diagnóstico</label>
       <textarea type="text" ng-model="oac.form.diagnosis_text"  class="materialize-textarea" required></textarea>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-user-tie"></i>
-      <label ng-class="oac.form.operator_id != null && 'active'">Con: </label>
-      <select material-select ng-model="oac.form.operator_id">
+      <label ng-class="oac.form.operator_id != null && 'active'">*Con:</label>
+      <select material-select ng-model="oac.form.operator_id" required>
         <option ng-repeat="operator in oac.operators" value="{{operator.id}}">{{operator.full_name}}</option>
       </select>
     </div>
@@ -61,7 +30,7 @@
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-user-md"></i>
-      <label ng-class="oac.form.doctor_id != null && 'active'">Asignar Doctor</label>
+      <label ng-class="oac.form.doctor_id != null && 'active'">*Asignar Doctor</label>
       <select material-select ng-model="oac.form.doctor_id" watch ng-options="doctor.id as doctor.full_name for doctor in oac.doctors" required></select>
     </div>
   </div>
@@ -69,7 +38,7 @@
     <div input-field class="col l6 file-field">
       <button class="btn col l3 disabled"><i class="fas fa-calendar-alt"></i></button>
       <div class="file-path-wrapper">
-        <label style="left: 90px;">Fecha</label>
+        <label style="left: 100px;">Fecha</label>
         <input type="text" ng-model="oac.form.date" required readonly>
       </div>
     </div>
@@ -81,7 +50,7 @@
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-compass"></i>
-      <label ng-class="oac.form.comes_from != null && 'active'">Procedencia</label>
+      <label ng-class="oac.form.comes_from != null && 'active'">*Procedencia</label>
       <select ng-model="oac.form.comes_from" material-select required>
         <option>CAE Adulto</option>
         <option>CAE Pediatrico</option>
@@ -102,14 +71,14 @@
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-align-left"></i>
-      <label>Procedimiento Realizado</label>
+      <label>*Procedimiento Realizado</label>
       <textarea type="text" ng-model="oac.form.procedure_perform" class="materialize-textarea" required></textarea>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-list-ul"></i>
-      <label ng-class="oac.form.process_code != null && 'active'">Procedimiento Segun Estadistica Mensual</label>
+      <label ng-class="oac.form.process_code != null && 'active'">*Procedimiento Segun Estadistica Mensual</label>
       <select ng-model="oac.form.process_code" material-select required>
         <option value="21-01-001">21-01-001 - Infiltración local medicamentos (bursas, tendones, yuxta articular)</option>
         <option value="21-01-002">21-01-002 - Procedimiento para exploraciones radiologicas (incluye maniobra e inyeccion del medio de contraste)</option>
@@ -128,13 +97,14 @@
         <option value="21-05-012">21-05-012 - Corsets de risser o similares</option>
         <option value="21-05-013">21-05-013 - Corsets de yeso simple (tipo watson jones)</option>
         <option value="106002">106002    - Curaciones simples ambulatorias</option>
+        <option value="000000000">000000000 - Retiro de yeso cerrado, valva abierta o mod. de yeso</option>
       </select>
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-list-ul"></i>
-      <label ng-class="oac.form.diagnosis_code != null && 'active'">Procedimiento Segun Diagnostico Mensual</label>
+      <label ng-class="oac.form.diagnosis_code != null && 'active'">*Procedimiento Segun Diagnostico Mensual</label>
       <select ng-model="oac.form.diagnosis_code" material-select required>
         <option value="21-07-001">21-07-001 - Luxaciones de articulaciones medianas (hombro, codo, rodilla, tobillo, muñeca, torso y esternovascular)</option>
         <option value="21-07-003">21-07-003 - Luxaciones de articulaciones menores (resto)</option>
@@ -147,7 +117,7 @@
     <div input-field class="col l12">
       <i class="prefix fas fa-band-aid"></i>
       <label ng-class="oac.form.injury_type != null && 'active'">Tipo de Lesión</label>
-      <select ng-model="oac.form.injury_type" material-select required>
+      <select ng-model="oac.form.injury_type" material-select>
         <option>Curación Simple o Plana</option>
         <option>1</option>
         <option>2</option>
@@ -159,7 +129,7 @@
   <div class="row"> 
     <div input-field class="col l12">
       <i class="prefix fas fa-money-check"></i>
-      <label ng-class="oac.form.membership != null && 'active'">Afiliación</label>
+      <label ng-class="oac.form.membership != null && 'active'">*Afiliación</label>
       <select ng-model="oac.form.membership" material-select required>
         <option>Capredena</option>
         <option>Fonasa A</option>
@@ -171,10 +141,15 @@
       </select>
     </div>
   </div>
+  <div class="row">
+    <div input-field class="col l12"> 
+      <p>Los campos con * son obligatorios</p>
+    </div>
+  </div>
   <br>
   <div class="row">
     <div class="col l12">
-      <a class="btn btn-block waves-effect waves-light green" ng-class="!ocForm.$valid && 'disabled'" ng-click="oac.storeAppointment()">Agendar</a>
+      <a class="btn btn-block waves-effect waves-light green" ng-class="!ocForm.$valid && 'disabled'" ng-submit="oac.storeAppointment()">Agendar</a>
     </div>
   </div>
 </ng-form>

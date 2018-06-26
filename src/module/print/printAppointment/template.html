@@ -28,51 +28,53 @@ td, th {
 .condensed-table tr th{
 	line-height: 0px;
 }
-
 </style>
-<div style="width: 70%">
-	<img style="float: left" src="/img/traumatologylogo-small.png">
-	<p>
-		<br>
-		CAE Procedimientos
-		<br>
-		Unidad De Traumatología<span style="float:right;">{{::vm.meta.currentDate}}</span>
-		<br>
-		Pabellón de Yeso
-	</p>
-</div>
-<div style="width: 70%">
-	<h2 style="text-align: center;">Recibo de su Próximo Turno<br>en Pabellón Yeso</h2>
-</div>
-<div style="width: 70%">
-	<table class="bordered highlight condensed-table">
-		<tbody style="background-image: url('../img/traumatologylogo.png');  background-position: center; background-size: contain;">
-			<tr>
-				<th colspan="3">Nombre de Usuario</th>
-				<td colspan="5">{{::vm.data.patient_fullname}}</td>
-			</tr>
-			<tr>
-				<th colspan="3">Motivo del Turno</th>
-				<td colspan="5">{{::vm.data.reason}}</td>
-			</tr>
-			<tr>
-				<th colspan="3">Fecha del Turno: </th>
-				<td colspan="5">{{::vm.data.date}} a las {{::vm.data.time}}</td>
-			</tr>
-			<tr>
-				<th colspan="3">Turno con</th>
-				<td colspan="5">T.P. {{::vm.data.operator_fullname}}</td>
-			</tr>
-			<tr>
-				<td colspan="8">
-					1.- Presentarse con el turno en el mesón de atención para ser timbrada y recepcionada.<br>
-					2.- Todos los turnos deben ser timbrados.<br>
-					3.- Al asistir a su turno, no debe olvidar su carnet de control de procedimientos.<br>
-					4.- En caso que usted use sillas de ruedas o burrito, debe venir en compañía de alguien.<br>
-					5.- En caso de no poder asistir o pedir un cambio de turno llamar al 61-2293123<br>
-				</td>
-			</tr>				
-		</tbody>
-	</table>
-</div>
+<div style="text-align: center;">
+	<div style="display: inline-block;">
+		<div>
+			<img style="float: left" src="/img/traumatologylogo-small.png">
+			<p style="text-align: left;">
+				<br>
+				CAE Procedimientos
+				<br>
+				Unidad De Traumatología<span style="float:right;">{{::vm.meta.currentDate}}</span>
+				<br>
+				Pabellón de Yeso
+			</p>
+		</div>
+		<div>
+			<h2 style="text-align: center;">Recibo de su Próximo Turno<br>en Pabellón Yeso</h2>
+		</div>
+		<div>
+			<table class="bordered highlight condensed-table">
+				<tbody style="background-image: url('../img/traumatologylogo.png');  background-position: center; background-size: contain;">
+					<tr>
+						<th colspan="3">Nombre de Usuario</th>
+						<td colspan="5">{{::vm.data.patient_fullname}}</td>
+					</tr>
+					<tr>
+						<th colspan="3">Motivo del Turno</th>
+						<td colspan="5">{{::vm.data.reason}}</td>
+					</tr>
+					<tr>
+						<th colspan="3">Fecha del Turno: </th>
+						<td colspan="5">{{::vm.data.date}} a las {{::vm.data.time}}</td>
+					</tr>
+					<tr>
+						<th colspan="3">Turno con</th>
+						<td colspan="5">T.P. {{::vm.data.operator_fullname}}</td>
+					</tr>
+					<tr>
+						<td colspan="8">
+							1.- Presentarse con el turno en el mesón de atención para ser timbrada y recepcionada.<br>
+							2.- Todos los turnos deben ser timbrados.<br>
+							3.- Al asistir a su turno, no debe olvidar su carnet de control de procedimientos.<br>
+							4.- En caso que usted use sillas de ruedas o burrito, debe venir en compañía de alguien.<br>
+							5.- En caso de no poder asistir o pedir un cambio de turno llamar al 61-2293123<br>
+						</td>
+					</tr>				
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

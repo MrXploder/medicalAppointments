@@ -6,37 +6,35 @@
       <input type="text" ng-model="rac.form.patient_fullname" ng-class="{'invalid': rac.form.patient_id <= 0, 'valid': rac.form.patient_id > 0}" id="patient-autocomplete" class="autocomplete" required readonly>
     </div>
   </div>
-  <div class="row" ng-show="rac.form.patient_id <= 0">
-    <div class="col l12">
-      <label class="red-text">**El Usuario no Existe por lo que deberas rellenar todos sus datos personales antes de continuar**</label>
-    </div>
-  </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-id-card"></i>
       <label>RUN</label>
-      <input type="text" ng-rut ng-model="rac.form.patient_rut" required readonly>
+      <input type="text" ng-rut ng-model="rac.form.patient_rut">
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-phone"></i>
       <label>Numero Fijo</label>
-      <input type="text" ng-model="rac.form.patient_phonenumber" required readonly>
+      <input type="text" ng-model="rac.form.patient_phonenumber">
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-mobile-alt"></i>
       <label>Numero Celular</label>
-      <input type="text" ng-model="rac.form.patient_mobilenumber" required readonly>
+      <input type="text" ng-model="rac.form.patient_mobilenumber">
     </div>
   </div>
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-diagnoses"></i>
       <label ng-class="rac.form.patient_allergies != null && 'active'">Alergico</label>
-      <input type="text" ng-model="rac.form.patient_allergies" required readonly>
+      <select material-select ng-model="rac.form.patient_allergies">
+        <option>Si</option>
+        <option>No</option>
+      </select>
     </div>
   </div>
   <div class="row">
@@ -125,6 +123,7 @@
         <option value="21-05-012">21-05-012 - Corsets de risser o similares</option>
         <option value="21-05-013">21-05-013 - Corsets de yeso simple (tipo watson jones)</option>
         <option value="106002">106002    - Curaciones simples ambulatorias</option>
+        <option value="000000000">000000000 - Retiro de yeso cerrado, valva abierta o mod. de yeso</option>
       </select>
     </div>
   </div>
@@ -157,7 +156,7 @@
     <div input-field class="col l12">
       <i class="prefix fas fa-money-check"></i>
       <label ng-class="rac.form.membership != null && 'active'">Afiliación</label>
-      <select ng-model="rac.form.membership" material-select required>
+      <select ng-model="rac.form.membership" material-select>
         <option>Capredena</option>
         <option>Fonasa A</option>
         <option>Fonasa B</option>

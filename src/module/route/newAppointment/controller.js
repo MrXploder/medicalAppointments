@@ -14,8 +14,18 @@
 		nac.doctors           = Doctors.query();
 		nac.patients          = Patients.query();
 		nac.operators 				= Operators.query();
+		nac.isCreating				= false;
 		nac.showSchedule      = showSchedule;
 		nac.createAppointment = createAppointment;
+
+		// nac.printTest = function(){
+		// 	Printer.print("src/module/print/printAppointment/template.html", {
+		// 		vm: {
+		// 			data: nac.form,
+		// 			meta: { currentDate: moment().format("DD/MM/YYYY").toString() }
+		// 		}
+		// 	});
+		// }
 
 		angular.element(function(){
 			nac.patients
@@ -49,34 +59,35 @@
 		}
 
 		function createAppointment(){
-			console.log(nac.form);
+			nac.isCreating = true;
 			Printer.print("src/module/print/printAppointment/template.html", {
 				vm: {
 					data: nac.form,
-					meta: {
-						currentDate: moment().format("DD/MM/YYYY").toString(),
-					}
+					meta: { currentDate: moment().format("DD/MM/YYYY").toString() }
 				}
 			}, function(){
+				nac.form.end_status = "end";
 				Appointments 
 				.create(nac.form)
 				.$promise
 				.then(function(response){
 					Materialize.toast("Agendado", 5000, "green");
-					$rootScope.$evalAsync(function(){ $location.path("/patientControlList"); });
+					nac.isCreating = false;
+					$rootScope.$evalAsync(function(){ $location.path("/dailyStatistics"); });
 				})
 				.catch(function(response){
+					nac.isCreating = false;
 					Materialize.toast(response.statusText, 5000, "red");
 				});
 			});
 		};
 
 		$scope.$watch('nac.form.patient_fullname', function(){
-			if(nac.form.patient_fullname === undefined) return;
+			if(!nac.form.patient_fullname) return;
 
 			var filteredPatient = $filter('filter')(angular.copy(nac.patients), {full_name: nac.form.patient_fullname}, true)[0];
 
-			if(typeof filteredPatient === "undefined"){ 
+			if(!filteredPatient){ 
 				nac.form.patient_id 					= 0;
 				nac.form.patient_rut          = null;
 				nac.form.patient_mobilenumber = null; 

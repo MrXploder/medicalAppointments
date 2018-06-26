@@ -10,12 +10,18 @@
 	function monthlyReportController($scope, monthReport, Printer){
 		let mrc = this;
 
-		mrc.reportData  = monthReport.query({target: "data", date: moment().format("MM/YYYY")});
+		mrc.reportData  = monthReport.query({date: moment().format("MM/YYYY")});
 		mrc.selectMonth = moment().format("MM").toString();
 		mrc.selectYear  = moment().format("YYYY").toString();
 		mrc.print       = print;
+		mrc.isPrinting  = false;
+
+		// $scope.$on('$routeChangeSuccess', function(){
+		// 	$('.tap-target').tapTarget('open');
+		// });
 
 		function print(){
+			mrc.isPrinting = true;
 			Printer.print('src/module/print/printReport/template.html', {
 				vm:{
 					data: mrc.reportData,
@@ -24,6 +30,8 @@
 						reportDate : moment(`${mrc.selectMonth}/${mrc.selectYear}`, "MM/YYYY").format("MMMM [de] YYYY").toString(),
 					}
 				}
+			}, function(response){
+				mrc.isPrinting = false;
 			});
 		}
 

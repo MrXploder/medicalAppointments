@@ -65,20 +65,22 @@ try{
 			}
 
 			if(empty($request["doctor_id"])) $request["doctor_id"] = 0;
+			if(empty($request["end_status"])) $request["end_status"] = "pending";
 
 			$insertQuery = $db->insert("appointments", array(
-				"patient_id" 				=> $patient_id,
-				"doctor_id" 				=> $request["doctor_id"],
-				"operator_id"				=> $request["operator_id"],
-				"comes_from" 				=> $request["comes_from"],
-				"date" 							=> $request["date"],
-				"time" 							=> $request["time"],
-				"injury_type" 			=> $request["injury_type"],
-				"process_code"		 	=> $request["process_code"],
-				"diagnosis_code" 		=> $request["diagnosis_code"],
-				"diagnosis_text" 		=> $request["diagnosis_text"],
-				"membership" 				=> $request["membership"],
-				"reason"						=> $request["reason"],
+				"patient_id" 		 => $patient_id,
+				"doctor_id" 		 => $request["doctor_id"],
+				"operator_id"		 => $request["operator_id"],
+				"comes_from" 		 => $request["comes_from"],
+				"date" 					 => $request["date"],
+				"time" 					 => $request["time"],
+				"injury_type" 	 => $request["injury_type"],
+				"process_code"	 => $request["process_code"],
+				"diagnosis_code" => $request["diagnosis_code"],
+				"diagnosis_text" => $request["diagnosis_text"],
+				"membership" 		 => $request["membership"],
+				"reason"				 => $request["reason"],
+				"end_status"		 => $request["end_status"],
 			));
 			if($insertQuery->rowCount() > 0){
 				http_response_code(201); /* Created */

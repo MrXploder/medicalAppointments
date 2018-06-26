@@ -39,7 +39,7 @@
 			else{
 				appointment
 				.$update()
-				then(function(response){
+				.then(function(response){
 					Materialize.toast("Exito", 5000, "green");
 				})
 			}

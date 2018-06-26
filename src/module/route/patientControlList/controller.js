@@ -14,6 +14,7 @@
 		pclc.changeAppointmentStatus = changeAppointmentStatus;
 		pclc.chunckedAppointents		 = [];
 		pclc.searchTerm							 = "";
+		pclc.isAdding								 = false;
 
 		Appointments
 		.query()
@@ -31,6 +32,7 @@
 		});		
 
 		function addControlAppointment(){
+			pclc.isAdding = true;
 			ngDialog
 			.open({
 				templateUrl: "src/module/modal/controlAppointment/template.html",
@@ -46,6 +48,7 @@
 				.then(function(response){
 					pclc.appointments = response;
 					recalculateChunk(response);
+					pclc.isAdding = false;
 				});
 			});
 		}
@@ -247,7 +250,6 @@
 					data: item
 				});
 			});
-			console.log(pclc.betterAppointments);
 		}
 	}
 })();
