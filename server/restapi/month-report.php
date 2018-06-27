@@ -30,28 +30,28 @@ try{
 		$startDate    = $requestDate->modify("First day of this month");
 		$endDate      = $requestDate->modify("Last day of this month");
 		$payLoad  	  = array(
-			"21-01-001" => array("code" => "21-01-001", "codeText" => "Infiltración local medicamentos (bursas, tendones, yuxta articular)", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-01-002" => array("code" => "21-01-002", "codeText" => "Procedimiento para exploraciones radiológicas (incluye maniobra e inyección del medio de contraste)", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-01-003" => array("code" => "21-01-003", "codeText" => "Movilización articular bajo anestesia general", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-001" => array("code" => "21-05-001", "codeText" => "Calzón corto de yeso", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-002" => array("code" => "21-05-002", "codeText" => "Corbata de schantz", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-003" => array("code" => "21-05-003", "codeText" => "Minerva de yeso", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-004" => array("code" => "21-05-004", "codeText" => "Rodillera, bota larga o corta de yeso", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-005" => array("code" => "21-05-005", "codeText" => "Velpeau", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-006" => array("code" => "21-05-006", "codeText" => "Yeso antebraquial c/s ferula digital", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-007" => array("code" => "21-05-007", "codeText" => "Yeso braquicarpiano", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-008" => array("code" => "21-05-008", "codeText" => "Yeso pelvipedio bilateral", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-009" => array("code" => "21-05-009", "codeText" => "Yeso pelvipedio unilateral", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-010" => array("code" => "21-05-010", "codeText" => "Yeso toracobraqueal", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-011" => array("code" => "21-05-011", "codeText" => "Corsets de milwaukee o similares (incluye la toma de molde)", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-012" => array("code" => "21-05-012", "codeText" => "Corsets de risser o similares", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"21-05-013" => array("code" => "21-05-013", "codeText" => "Corsets de yeso simple (tipo watson jones)", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"106002" 		=> array("code" => "106002",    "codeText" => "Curaciones simples ambulatorias", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0),
-			"000000000" => array("code" => "000000000", "codeText" => "Retiro de yeso cerrado, valva abierta o mod. de yeso", "total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0)
+			"21-01-001" => array("code" => "21-01-001", "codeText" => "Infiltración local medicamentos (bursas, tendones, yuxta articular)", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-01-002" => array("code" => "21-01-002", "codeText" => "Procedimiento para exploraciones radiológicas (incluye maniobra e inyección del medio de contraste)", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-01-003" => array("code" => "21-01-003", "codeText" => "Movilización articular bajo anestesia general", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-001" => array("code" => "21-05-001", "codeText" => "Calzón corto de yeso", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-002" => array("code" => "21-05-002", "codeText" => "Corbata de schantz", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-003" => array("code" => "21-05-003", "codeText" => "Minerva de yeso", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-004" => array("code" => "21-05-004", "codeText" => "Rodillera, bota larga o corta de yeso", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-005" => array("code" => "21-05-005", "codeText" => "Velpeau", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-006" => array("code" => "21-05-006", "codeText" => "Yeso antebraquial c/s ferula digital", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-007" => array("code" => "21-05-007", "codeText" => "Yeso braquicarpiano", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-008" => array("code" => "21-05-008", "codeText" => "Yeso pelvipedio bilateral", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-009" => array("code" => "21-05-009", "codeText" => "Yeso pelvipedio unilateral", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-010" => array("code" => "21-05-010", "codeText" => "Yeso toracobraqueal", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-011" => array("code" => "21-05-011", "codeText" => "Corsets de milwaukee o similares (incluye la toma de molde)", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-012" => array("code" => "21-05-012", "codeText" => "Corsets de risser o similares", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"21-05-013" => array("code" => "21-05-013", "codeText" => "Corsets de yeso simple (tipo watson jones)", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"106002" 		=> array("code" => "106002",    "codeText" => "Curaciones simples ambulatorias", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"000000000" => array("code" => "000000000", "codeText" => "Retiro de yeso cerrado, valva abierta o mod. de yeso", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0)
 		);
-		$master = array("total" => 0, "beneficiario" => 0, "a-cerrada" => 0, "a-abierta" => 0, "urgencia" => 0);
+		$master = array("total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0);
 		$data = $db->select("appointments", "*", ["status" => "done"]);
-
+		// print_r($data);
 		foreach($data as $item){
 			$itemDate = DateTime::createFromFormat("d/m/Y", $item["date"]);
 			if($itemDate >= $startDate && $itemDate <= $endDate){
@@ -67,22 +67,23 @@ try{
 					}
 				}
 
+				// echo $item["comes_from"];
 				switch($item["comes_from"]){
 					case "Traumatologia":
 					case "Ginecologia"  :
 					case "Pensionado"   :
 					case "Pediatria"    : 
 					case "Medicina"     : 
-					case "Cirujia"      : 
+					case "Cirugia"      : 
 					case "UPC"          :
-						$payLoad[$item["process_code"]]["a-cerrada"]++;
+						$payLoad[$item["process_code"]]["a_cerrada"]++;
 						break;
 					case "CAE Adulto"       :
           case "CAE Pediatrico"   :
         	case "Pabellón de Yeso" :
         	case "Control"          :
         	case "Otro"							:
-        		$payLoad[$item["process_code"]]["a-abierta"]++;
+        		$payLoad[$item["process_code"]]["a_abierta"]++;
         		break;
         	case "Unidad de Emergencia Hospitalaria" :
         		$payLoad[$item["process_code"]]["urgencia"]++;
@@ -90,13 +91,13 @@ try{
 				}
 			}
 		}
+		// print_r($payLoad);
 		$toSend = array();
 		foreach($payLoad as $key => $value){
 			array_push($toSend, $value);
 		}
 		http_response_code(200); /* OK */ 
 		echo json_encode($toSend, JSON_UNESCAPED_UNICODE);
-		exit();
 	}
 }
 catch(PDOException $e){
