@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	 
+
 	angular
 	.module("angularApp")
 	.controller("patientControlListController", patientControlListController);
@@ -238,16 +238,22 @@
 			let notEndedOnly = $filter('filter')(angular.copy(data), {end_status: "pending"});
 			pclc.chunckedAppointents = _.groupBy(notEndedOnly, 'patient_id');
 			pclc.betterAppointments = [];
-			angular.forEach(pclc.chunckedAppointents, function(item){	
-				pclc.betterAppointments.push({
-					patient_id: item[0].patient_id,
-					patient_fullname: item[0].patient_fullname,
-					comes_from: item[0].comes_from,
-					reason: item[0].reason,
-					diagnosis_text: item[0].diagnosis_text,
-					membership: item[0].membership,
-					patient_data: $filter('filter')(pclc.patients, {id: item[0].patient_id}, true),
-					data: item
+			Patients
+			.query()
+			.$promise
+			.then(function(response){
+				pclc.patients = response;
+				angular.forEach(pclc.chunckedAppointents, function(item){	
+					pclc.betterAppointments.push({
+						patient_id			: item[0].patient_id,
+						patient_fullname: item[0].patient_fullname,
+						comes_from			: item[0].comes_from,
+						reason 					: item[0].reason,
+						diagnosis_text  : item[0].diagnosis_text,
+						membership			: item[0].membership,
+						patient_data		: $filter('filter')(pclc.patients, {id: item[0].patient_id}, true),
+						data 						: item
+					});
 				});
 			});
 		}

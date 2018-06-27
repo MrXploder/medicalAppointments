@@ -3,8 +3,39 @@
   <div class="row">
     <div input-field class="col l12">
       <i class="prefix fas fa-user"></i>
-      <label ng-class="cac.form.patient_fullname != null && 'active'">Escribir Nombre del Usuario</label>
-      <input-autocomplete bind="cac.form.patient_fullname" data="cac.patients" class-id="cac.form.patient_id"></input-autocomplete>
+      <label ng-class="cac.form.patient_fullname != null && 'active'">*Escribir Nombre del Usuario</label>
+      <input type="text" ng-model="cac.form.patient_fullname" ng-class="{'invalid': cac.form.patient_id <= 0, 'valid': cac.form.patient_id > 0}" id="patient-autocomplete" class="autocomplete" required>
+    </div>
+  </div>
+  <div class="row">
+    <div input-field class="col l12">
+      <i class="prefix fas fa-id-card"></i>
+      <label>RUN</label>
+      <input type="text" ng-rut ng-model="cac.form.patient_rut">
+    </div>
+  </div>
+  <div class="row">
+    <div input-field class="col l12">
+      <i class="prefix fas fa-phone"></i>
+      <label>Numero Fijo</label>
+      <input type="text" ng-model="cac.form.patient_phonenumber">
+    </div>
+  </div>
+  <div class="row">
+    <div input-field class="col l12">
+      <i class="prefix fas fa-mobile-alt"></i>
+      <label>Numero Celular</label>
+      <input type="text" ng-model="cac.form.patient_mobilenumber">
+    </div>
+  </div>
+  <div class="row">
+    <div input-field class="col l12">
+      <i class="prefix fas fa-diagnoses"></i>
+      <label ng-class="cac.form.patient_allergies != null && 'active'">Alergico</label>
+      <select material-select ng-model="cac.form.patient_allergies">
+        <option>Si</option>
+        <option>No</option>
+      </select>
     </div>
   </div>
   <div class="row">
