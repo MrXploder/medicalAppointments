@@ -1,3 +1,6 @@
+<div class="fixed-action-btn" style="bottom: 80px">
+	<a class="btn-floating btn-large waves-effect waves-light green" ng-class="mdc.isAdding && 'disabled'" ng-click="mdc.addDoctor()"><i class="fas" ng-class="mdc.isAdding ? 'fa-cog fa-spin black-text' : 'fa-plus'"></i></a>
+</div>
 <div class="container">
 	<div class="row">
 		<div class="col l12">
@@ -10,11 +13,11 @@
 							<input type="search" ng-class="mdc.searchTerm">
 						</div>
 					</div>
-					<div class="row">
+<!-- 					<div class="row">
 						<div class="col l12">
 							<a class="btn btn-block waves-effect waves-light grey darken-3">Agregar un nuevo Medico</a>
 						</div>
-					</div>
+					</div> -->
 					<div class="row">
 						<div class="col l12">
 							<table class="bordered highlight centered-table" style="table-layout: fixed">
@@ -22,6 +25,7 @@
 									<tr>
 										<th>#</th>
 										<th>Nombre</th>
+										<th>Eliminar</th>
 										<th>Info</th>
 									</tr>
 								</thead>
@@ -29,18 +33,19 @@
 									<tr dir-paginate="doctor in mdc.doctors | filter: mdc.searchTerm | orderBy:mdc.sortBy:mdc.sortReverse | itemsPerPage: mdc.itemsPerPage track by $index" pagination-id="manageDoctorsId" ng-show="$index > 0">
 										<td>{{doctor.id}}</td>
 										<td>{{doctor.full_name}}</td>
-										<td><a class="btn waves-effect waves-light"><i class="fas fa-info"></i></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						&nbsp;
-						<div class="row">
-							<dir-pagination-controls boundary-links="true" template-url="src/directive/dirPaginationControls/template.html" pagination-id="manageDoctorsId"></dir-pagination-controls>
+										<td><a class="btn waves-effect waves-light red" ng-click="mdc.erase(doctor)"><i class="fas fa-trash"></i></td>
+										<td><a class="btn waves-effect waves-light" ng-click="mdc.details(doctor)"><i class="fas fa-info"></i></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							&nbsp;
+							<div class="row">
+								<dir-pagination-controls boundary-links="true" template-url="src/directive/dirPaginationControls/template.html" pagination-id="manageDoctorsId"></dir-pagination-controls>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>

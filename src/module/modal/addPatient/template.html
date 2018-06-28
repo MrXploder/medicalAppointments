@@ -1,0 +1,13 @@
+<ng-form name="apForm">
+<div class="row">
+	<div input-field class="col l12">
+		<label>Nombre Completo</label>
+		<input type="text" ng-model="apc.form.full_name" required>
+	</div>
+</div>
+<div class="row">
+	<div class="col l12">
+		<a class="btn-floating btn-large halfway-fab waves-effect waves-light green" ng-class="!apForm.$valid && 'disabled'" ng-click="apc.commit()"><i class="fas fa-save"></i></a>
+	</div>
+</div>
+</ng-form>
