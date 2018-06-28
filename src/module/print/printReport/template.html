@@ -1,63 +1,33 @@
-<style type="text/css" media="print">
-@page {
-	size: auto;   /* auto is the initial value */
-	margin: 0;  /* this affects the margin in the printer settings */
-}
-table {
-  width: 100%;
-  display: table;
-}
-
-table.bordered > thead > tr,
-table.bordered > tbody > tr {
-  border-bottom: 1px solid #d0d0d0;
-}
-
-table.striped > tbody > tr:nth-child(odd) {
-  background-color: #f2f2f2;
-}
-
-table.striped > tbody > tr > td {
-  border-radius: 0;
-}
-.grey {
-  background-color: #9e9e9e !important;
-}
-.grey.darken-3 {
-  background-color: #424242 !important;
-}
-
-.white-text {
-  color: #FFFFFF !important;
-}
-</style>
-<div>
-	<p>{{::vm.meta.currentDate}}</p>
-	<p>Datos obtenidos el mes de: {{::vm.meta.reportDate}}</p>
-</div>
-<div>
-	<table class="borderder striped">
-		<thead class="grey darken-3 white-text">
-			<tr>
-				<th>Codigo</th>
-				<th>Descripción</th>
-				<th>Total</th>
-				<th>Beneficiario</th>
-				<th>A.Cerrada</th>
-				<th>A.Abierta</th>
-				<th>Urgencia</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="item in ::vm.data">
-				<td>{{item.code}}</td>
-				<td style="word-break: break-all;">{{item.codeText}}</td>
-				<td>{{item.total}}</td>
-				<td>{{item.beneficiario}}</td>
-				<td>{{item.a_cerrada}}</td>
-				<td>{{item.a_abierta}}</td>
-				<td>{{item.urgencia}}</td>
-			</tr>
-		</tbody>
-	</table>	
+<link rel="stylesheet" type="text/css" href="./src/module/print/printReport/style.css" media="print">
+<div style="">
+	<div>
+		<p>{{::vm.meta.currentDate}}</p>
+		<p>Datos obtenidos el mes de: {{::vm.meta.reportDate}}</p>
+	</div>
+	<div>
+		<table class="borderder striped">
+			<thead class="grey darken-3 white-text">
+				<tr>
+					<th>Codigo</th>
+					<th>Descripción</th>
+					<th>Total</th>
+					<th>Beneficiario</th>
+					<th>A.Cerrada</th>
+					<th>A.Abierta</th>
+					<th>Urgencia</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in ::vm.data">
+					<td>{{item.code}}</td>
+					<td style="word-break: break-all;">{{item.codeText}}</td>
+					<td>{{item.total}}</td>
+					<td>{{item.beneficiario}}</td>
+					<td>{{item.a_cerrada}}</td>
+					<td>{{item.a_abierta}}</td>
+					<td>{{item.urgencia}}</td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
 </div>

@@ -3,12 +3,12 @@
 	
 	angular
 	.module('angularApp')
-	.factory('Appointments', appointments);
+	.factory('Reminders', reminders);
 
-	appointments.$inject = ['$resource', '$localStorage'];
+	reminders.$inject = ['$resource'];
 
-	function appointments($resource, $localStorage){
-		return $resource("/server/restapi/appointments.php",{},{
+	function reminders($resource){
+		return $resource("/server/restapi/reminders.php",{},{
 			update:{
 				method: "POST",
 				headers: { "X-Http-Method-Override": "PUT" }

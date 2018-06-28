@@ -1,0 +1,35 @@
+<link rel="stylesheet" type="text/css" href="./src/module/print/printDaily/style.css" media="print">
+<div>
+	<table class="bordered striped">
+		<thead class="grey darken-3 white-text">
+			<tr>
+				<th>#</th>
+				<th>Nombre<br>Usuario</th>
+				<th>Nombre<br>Doctor</th>
+				<th>Nombre<br>Operador</th>
+				<th>Fecha</th>
+				<th>Procedencia</th>
+				<th>Motivo</th>
+				<th>Observaciones</th>
+				<th>Notas</th>
+				<th>Afiliación</th>
+				<th>Estado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in vm.data">
+				<td>{{item.id}}</td>
+				<td>{{item.patient_fullname}}</td>
+				<td>{{item.doctor_fullname}}</td>
+				<td>{{item.operator_fullname}}</td>
+				<td>{{item.date + ' ' + item.time}}</td>
+				<td>{{item.comes_from}}</td>
+				<td>{{item.reason}}</td>
+				<td style="word-break: break-all;">{{item.observations}}</td>
+				<td style="word-break: break-all;">{{item.notes}}</td>
+				<td>{{item.membership}}</td>
+				<td>{{item.status == "done" ? 'Presente' : item.status == "pending" ? 'Pendiente' : 'Ausente'}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

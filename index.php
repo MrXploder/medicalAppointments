@@ -71,9 +71,11 @@
             <img src="img/sidenav-background.jpg">
           </div>
           <a><img class="circle center" ng-src="img/avatar{{$storage.currentUser.id}}.png"></a>
-          <br>
+          <a><span class="white-text name">{{$storage.currentUser.full_name}}</span></a>
         </div>
       </li>
+      <li ng-class="$location.url() == '/home' && 'grey'"><a href="#!/home" ng-class="$location.url() == '/home' ? 'black-text':'white-text'"><i class="fas fa-home fa-2x" ng-class="$location.url() == '/home' ? 'black-text':'white-text'"></i>Home</a></li>
+      <li><div class="divider"></div></li>
       <li ng-class="$location.url() == '/newAppointment' && 'grey'"><a href="#!/newAppointment" ng-class="$location.url() == '/newAppointment' ? 'black-text':'white-text'"><i class="fas fa-notes-medical fa-2x" ng-class="$location.url() == '/newAppointment' ? 'black-text':'white-text'"></i>Nuevo Turno</a></li>
       <li ng-class="$location.url() == '/patientControlList' && 'grey'"><a href="#!/patientControlList" ng-class="$location.url() == '/patientControlList' ? 'black-text':'white-text'"><i class="fas fa-clipboard-list fa-2x" ng-class="$location.url() == '/patientControlList' ? 'black-text':'white-text'"></i>Usuarios en Control</a></li>
       <li ng-class="$location.url() == '/dailyStatistics' && 'grey'"><a href="#!/dailyStatistics" ng-class="$location.url() == '/dailyStatistics' ? 'black-text':'white-text'"><i class="fas fa-calendar-alt fa-2x" ng-class="$location.url() == '/dailyStatistics' ? 'black-text':'white-text'"></i>Estadística Diaria</a></li>

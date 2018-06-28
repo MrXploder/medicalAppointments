@@ -5,9 +5,9 @@
 	.module('angularApp')
 	.controller('dailyStatisticsController', dailyStatisticsController);
 
-	dailyStatisticsController.$inject = ["Appointments", "Doctors", "Patients", "Operators", "ngDialog", "$scope", "$timeout", "$location", "$localStorage"];
+	dailyStatisticsController.$inject = ["Appointments", "Doctors", "Patients", "Operators", "ngDialog", "$scope", "$timeout", "$location", "$localStorage", "Printer", "$filter"];
 
-	function dailyStatisticsController(Appointments, Doctors, Patients, Operators, ngDialog, $scope, $timeout, $location, $localStorage){
+	function dailyStatisticsController(Appointments, Doctors, Patients, Operators, ngDialog, $scope, $timeout, $location, $localStorage, Printer, $filter){
 		var dsc = this;
 		$scope.$storage = $localStorage;
 
@@ -19,6 +19,9 @@
 		dsc.changeAppointmentStatus = changeAppointmentStatus;
 		dsc.deleteAppointment       = deleteAppointment;
 		dsc.addOcationalAppointment = addOcationalAppointment;
+		dsc.isAdding								= false;
+		dsc.isPrinting 						  = false;
+		dsc.print 									= print;
 
 
 		function changeAppointmentStatus(statusText, appointment){
@@ -56,6 +59,7 @@
 		}
 
 		function addOcationalAppointment(){
+			dsc.isAdding = true;
 			ngDialog
 			.open({
 				templateUrl: "src/module/modal/ocationalAppointment/template.html",
@@ -66,6 +70,21 @@
 			.closePromise
 			.then(function(response){
 				dsc.appointments = Appointments.query();
+				dsc.isAdding 		 = false;
+			});
+		}
+
+		function print(){
+			dsc.isPrinting = true;
+			Printer.print('src/module/print/printDaily/template.html', {
+				vm:{
+					data: dsc.filteredAppointments,
+					meta:{
+						currentDate: moment().format("DD/MM/YYYY HH:mm").toString(),
+					},
+				}
+			}, function(response){
+				dsc.isPrinting = false;
 			});
 		}
 	}

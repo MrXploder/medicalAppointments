@@ -1,0 +1,40 @@
+<ng-form name="arForm">
+	<div class="row">
+		<div input-field class="col l12">
+			<label>Titulo: </label>
+			<input type="text" ng-model="arc.form.title">
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<label>Recordar: </label>
+			<textarea class="materialize-textarea" ng-model="arc.form.body" required></textarea>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12" ng-init="arc.form.background_color = ''">
+			<p>Color: </p>
+			<a class="btn-floating waves-effect waves-light red" ng-click="arc.form.background_color = 'red'"><i class="fas" ng-class="arc.form.background_color == 'red' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light pink" ng-click="arc.form.background_color = 'pink'"><i class="fas" ng-class="arc.form.background_color == 'pink' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light purple" ng-click="arc.form.background_color = 'purple'"><i class="fas" ng-class="arc.form.background_color == 'purple' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light deep-purple" ng-click="arc.form.background_color = 'deep-purple'"><i class="fas" ng-class="arc.form.background_color == 'deep-purple' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light indigo" ng-click="arc.form.background_color = 'indigo'"><i class="fas" ng-class="arc.form.background_color == 'indigo' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light blue" ng-click="arc.form.background_color = 'blue'"><i class="fas" ng-class="arc.form.background_color == 'blue' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light cyan" ng-click="arc.form.background_color = 'cyan'"><i class="fas" ng-class="arc.form.background_color == 'cyan' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light green" ng-click="arc.form.background_color = 'green'"><i class="fas" ng-class="arc.form.background_color == 'green' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light lime" ng-click="arc.form.background_color = 'lime'"><i class="fas" ng-class="arc.form.background_color == 'lime' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light yellow" ng-click="arc.form.background_color = 'yellow'"><i class="fas" ng-class="arc.form.background_color == 'yellow' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light amber" ng-click="arc.form.background_color = 'amber'"><i class="fas" ng-class="arc.form.background_color == 'amber' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light orange" ng-click="arc.form.background_color = 'orange'"><i class="fas" ng-class="arc.form.background_color == 'orange' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light brown" ng-click="arc.form.background_color = 'brown'"><i class="fas" ng-class="arc.form.background_color == 'brown' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light grey" ng-click="arc.form.background_color = 'grey'"><i class="fas" ng-class="arc.form.background_color == 'grey' && 'fa-check'"></i></a>
+			<a class="btn-floating waves-effect waves-light white" ng-click="arc.form.background_color = ''"><i class="fas" ng-class="arc.form.background_color == '' && 'fa-check black-text'"></i></a>
+		</div>
+	</div>
+	<br><br>
+	<div class="row">
+		<div class="col l12">
+			<a class="btn-floating btn-large halfway-fab waves-effect waves-light green" ng-class="!arForm.$valid && 'disabled'" ng-click="arc.commit()"><i class="fas fa-save"></i></a>
+		</div>
+	</div>
+</ng-form>

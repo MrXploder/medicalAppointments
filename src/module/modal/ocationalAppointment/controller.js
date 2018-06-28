@@ -34,6 +34,8 @@
 		});
 
 		function storeAppointment(){
+			oac.form.end_status = "end";
+			oac.form.status     = "done";
 			Appointments
 			.create(oac.form)
 			.$promise

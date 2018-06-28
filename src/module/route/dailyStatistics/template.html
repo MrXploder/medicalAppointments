@@ -1,3 +1,9 @@
+<div class="fixed-action-btn" style="bottom: 80px">
+	<a class="btn-floating btn-large waves-effect waves-light green white-text" ng-class="dsc.isAdding && 'disabled'" ng-click="dsc.addOcationalAppointment()"><i class="fas" ng-class="dsc.isAdding ? 'fa-cog fa-spin black-text' : 'fa-plus'"></i></a>
+</div>
+<div class="fixed-action-btn" style="bottom: 150px">
+	<a class="btn-floating btn-large waves-effect waves-light grey darken-3 white-text" ng-class="dsc.isPrinting && 'disabled'" ng-click="dsc.print()"><i class="fas" ng-class="dsc.isPrinting ? 'fa-cog fa-spin black-text' : 'fa-print'"></i></a>
+</div>
 <div class="container">
 	<div class="row">
 		<div class="col l12">
@@ -40,11 +46,11 @@
 							</select>
 						</div>
 					</div>
-					<div class="row">
+<!-- 					<div class="row">
 						<div class="col l12">
 							<a class="btn btn-block waves-effect waves-light grey darken-3" ng-click="dsc.addOcationalAppointment()">Agendar Usuario sin Turno</a>
 						</div>
-					</div>
+					</div> -->
 					<div class="row">
 						<div class="col l12">
 							<table class="bordered highlight centered-table">
