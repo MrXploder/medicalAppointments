@@ -8,8 +8,6 @@
 	httpProvider.$inject = ["$httpProvider"];
 
 	function httpProvider($httpProvider){
-		$httpProvider
-		.interceptors
-		.push('preventTemplateCache');
+		$httpProvider.interceptors.push('preventTemplateCache');
 	}
 })();

@@ -1,13 +1,40 @@
-<ng-form name="edForm">
-<div class="row">
-	<div input-field class="col l12">
-		<label>Nombre Completo</label>
-		<input type="text" ng-model="ddc.form.full_name" required>
+<ng-form name="apForm">
+	<div class="row">
+		<div input-field class="col l12">
+			<label>Nombre Completo</label>
+			<input type="text" ng-model="dpc.form.full_name" required>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col l12">
-		<a class="btn-floating btn-large halfway-fab waves-effect waves-light green" ng-class="!edForm.$valid && 'disabled'" ng-click="ddc.commit()"><i class="fas fa-save"></i></a>
+	<div class="row">
+		<div input-field class="col l12">
+			<label>RUT</label>
+			<input type="text" ng-rut ng-model="dpc.form.rut">
+		</div>
 	</div>
-</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<label>Numero de Telefono</label>
+			<input type="text" ng-model="dpc.form.phone_number">
+		</div>
+	</div>
+	<div class="row"> 
+		<div input-field class="col l12">
+			<label>Numero de Celular</label>
+			<input type="text" ng-model="dpc.form.mobile_number">
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<label ng-class="dpc.form.allergies != null && 'active'">Alergias</label>
+			<select material-select ng-model="dpc.form.allergies">
+				<option value="Si">Si</option>
+				<option value="No">No</option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col l12">
+			<a class="btn-floating btn-large halfway-fab waves-effect waves-light green" ng-class="!apForm.$valid && 'disabled'" ng-click="dpc.commit()"><i class="fas fa-save"></i></a>
+		</div>
+	</div>
 </ng-form>

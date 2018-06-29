@@ -59,6 +59,7 @@
 										<th>#</th>
 										<th>Fecha</th>
 										<th>Usuario</th>
+										<th>Operador</th>
 										<th>Medico</th>
 										<th>Eliminar</th>
 										<th>Estado</th>
@@ -69,6 +70,7 @@
 										<td>{{appointment.id}}</td>
 										<td>{{appointment.date + ' ' + appointment.time}}</td>
 										<td>{{appointment.patient_fullname}}</td>
+										<td>{{appointment.operator_fullname}}</td>
 										<td>{{appointment.doctor_fullname}}</td>
 										<td><a class="btn-floating btn-flat waves-effect waves-light" ng-click="dsc.deleteAppointment(appointment)"><i class="fas fa-trash red-text"></i></a></td>
 										<td>

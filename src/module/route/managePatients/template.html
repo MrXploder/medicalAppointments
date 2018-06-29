@@ -1,3 +1,6 @@
+<div class="fixed-action-btn" style="bottom: 80px">
+	<a class="btn-floating btn-large waves-effect waves-light green" ng-class="mpc.isAdding && 'disabled'" ng-click="mpc.addPatient()"><i class="fas" ng-class="mpc.isAdding ? 'fa-cog fa-spin black-text' : 'fa-plus'"></i></a>
+</div>
 <div class="container">
 	<div class="row">
 		<div class="col l12">
@@ -10,11 +13,11 @@
 							<input type="search" ng-class="mpc.searchTerm">
 						</div>
 					</div>
-					<div class="row">
+<!-- 					<div class="row">
 						<div class="col l12">
 							<a class="btn btn-block waves-effect waves-light grey darken-3">Agregar un nuevo Usuario</a>
 						</div>
-					</div>
+					</div> -->
 					<div class="row">
 						<div class="col l12">
 							<table class="bordered highlight centered-table" style="table-layout: fixed">
@@ -23,13 +26,15 @@
 										<th>#</th>
 										<th>Nombre</th>
 										<th>Info</th>
+										<th>Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr dir-paginate="patient in mpc.patients | filter: mpc.searchTerm | orderBy:mpc.sortBy:mpc.sortReverse | itemsPerPage: mpc.itemsPerPage track by $index" pagination-id="managepatientsId">
 										<td>{{patient.id}}</td>
 										<td>{{patient.full_name}}</td>
-										<td><a class="btn waves-effect waves-light"><i class="fas fa-info"></i></td>
+										<td><a class="btn waves-effect waves-light" ng-click="mpc.detailsPatient(patient)"><i class="fas fa-info"></i></td>
+										<td><a class="btn waves-effect waves-light red" ng-click="mpc.deletePatient(patient)"><i class="fas fa-trash"></i></a></td>
 									</tr>
 								</tbody>
 							</table>

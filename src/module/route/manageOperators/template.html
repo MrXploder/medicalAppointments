@@ -1,3 +1,6 @@
+<div class="fixed-action-btn" style="bottom: 80px">
+	<a class="btn-floating btn-large waves-effect waves-light green" ng-class="moc.isAdding && 'disabled'" ng-click="moc.addOperator()"><i class="fas" ng-class="moc.isAdding ? 'fa-cog fa-spin black-text' : 'fa-plus'"></i></a>
+</div>
 <div class="container">
 	<div class="row">
 		<div class="col l12">
@@ -10,11 +13,11 @@
 							<input type="search" ng-model="moc.searchTerm">
 						</div>
 					</div>
-					<div class="row">
+<!-- 					<div class="row">
 						<div class="col l12">
 							<a class="btn btn-block waves-effect waves-light grey darken-3" ng-click="moc.addOperator()">Agregar un nuevo Operador</a>
 						</div>
-					</div>
+					</div> -->
 					<div class="row">
 						<div class="col l12">
 							<table class="bordered highlight centered-table" style="table-layout: fixed">
@@ -33,18 +36,18 @@
 										<td>{{operator.full_name}}</td>
 										<td>{{operator.nick_name}}</td>
 										<td><a class="btn waves-effect waves-light" ng-click="moc.showDetails(operator)"><i class="fas fa-info"></i></td>
-										<td><a class="btn waves-effect waves-light red" ng-class="operator.id == 1 && 'disabled'" ng-click="moc.deleteOperator(operator)"><i class="fas fa-trash"></i></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-						&nbsp;
-						<div class="row">
-							<dir-pagination-controls boundary-links="true" template-url="src/directive/dirPaginationControls/template.html" pagination-id="manageOperatorsId"></dir-pagination-controls>
+											<td><a class="btn waves-effect waves-light red" ng-class="operator.id == 1 && 'disabled'" ng-click="moc.deleteOperator(operator)"><i class="fas fa-trash"></i></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								&nbsp;
+								<div class="row">
+									<dir-pagination-controls boundary-links="true" template-url="src/directive/dirPaginationControls/template.html" pagination-id="manageOperatorsId"></dir-pagination-controls>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>

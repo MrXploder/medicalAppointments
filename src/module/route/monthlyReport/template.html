@@ -47,8 +47,8 @@
  								<thead class="grey darken-3 white-text">
  									<tr>
  										<th>Código</th>
- 										<th>Total</th>
- 										<th>Beneficiario</th>
+ 										<th tooltipped="true" data-position="bottom" data-delay="50" data-tooltip="Suma de Todos los procedimientos dado el Codigo">Total</th>
+ 										<th tooltipped="true" data-position="bottom" data-delay="50" data-tooltip="Suma de Todos los Turnos en donde el Usuario es afiliado a Fonasa">Beneficiario</th>
  										<th>A.Cerrada</th>
  										<th>A.Abierta</th>
  										<th>Urgencia</th>
@@ -56,7 +56,7 @@
  								</thead>
  								<tbody>
  									<tr ng-repeat="item in mrc.reportData">
- 										<td><a class="btn btn-flat">{{item.code}}</a></td>
+ 										<td><a class="btn btn-flat" tooltipped="true" data-position="right" data-delay="50" data-tooltip="{{item.codeText}}">{{item.code}}</a></td>
  										<td>{{item.total}}</td>
  										<td>{{item.beneficiario}}</td>
  										<td>{{item.a_cerrada}}</td>

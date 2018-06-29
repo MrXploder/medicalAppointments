@@ -68,9 +68,9 @@
       <li>
         <div class="user-view">
           <div class="background">
-            <img src="img/sidenav-background.jpg">
+            <img class="responsive-img" src="img/sidenav-background.jpg">
           </div>
-          <a><img class="circle center" ng-src="img/avatar{{$storage.currentUser.id}}.png"></a>
+          <a><img materialboxed class="materialboxed responsive-img circle center" ng-src="img/avatar{{$storage.currentUser.id}}.png"></a>
           <a><span class="white-text name">{{$storage.currentUser.full_name}}</span></a>
         </div>
       </li>

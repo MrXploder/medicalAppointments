@@ -4,10 +4,10 @@
 		<thead class="grey darken-3 white-text">
 			<tr>
 				<th>#</th>
+				<th>Fecha</th>
 				<th>Nombre<br>Usuario</th>
 				<th>Nombre<br>Doctor</th>
 				<th>Nombre<br>Operador</th>
-				<th>Fecha</th>
 				<th>Procedencia</th>
 				<th>Motivo</th>
 				<th>Observaciones</th>
@@ -19,10 +19,10 @@
 		<tbody>
 			<tr ng-repeat="item in vm.data">
 				<td>{{item.id}}</td>
+				<td>{{item.date + ' ' + item.time}}</td>
 				<td>{{item.patient_fullname}}</td>
 				<td>{{item.doctor_fullname}}</td>
 				<td>{{item.operator_fullname}}</td>
-				<td>{{item.date + ' ' + item.time}}</td>
 				<td>{{item.comes_from}}</td>
 				<td>{{item.reason}}</td>
 				<td style="word-break: break-all;">{{item.observations}}</td>

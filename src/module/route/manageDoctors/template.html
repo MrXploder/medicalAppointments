@@ -25,16 +25,16 @@
 									<tr>
 										<th>#</th>
 										<th>Nombre</th>
-										<th>Eliminar</th>
 										<th>Info</th>
+										<th>Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr dir-paginate="doctor in mdc.doctors | filter: mdc.searchTerm | orderBy:mdc.sortBy:mdc.sortReverse | itemsPerPage: mdc.itemsPerPage track by $index" pagination-id="manageDoctorsId" ng-show="$index > 0">
 										<td>{{doctor.id}}</td>
 										<td>{{doctor.full_name}}</td>
-										<td><a class="btn waves-effect waves-light red" ng-click="mdc.erase(doctor)"><i class="fas fa-trash"></i></td>
 										<td><a class="btn waves-effect waves-light" ng-click="mdc.details(doctor)"><i class="fas fa-info"></i></td>
+										<td><a class="btn waves-effect waves-light red" ng-click="mdc.erase(doctor)"><i class="fas fa-trash"></i></td>
 										</tr>
 									</tbody>
 								</table>

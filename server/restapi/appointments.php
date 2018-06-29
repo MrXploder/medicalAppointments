@@ -66,6 +66,7 @@ try{
 
 			if(empty($request["doctor_id"])) $request["doctor_id"] = 0;
 			if(empty($request["end_status"])) $request["end_status"] = "pending";
+			if(empty($request["status"])) $request["status"] = "pending";
 
 			$insertQuery = $db->insert("appointments", array(
 				"patient_id" 		 => $patient_id,
@@ -81,6 +82,7 @@ try{
 				"membership" 		 => $request["membership"],
 				"reason"				 => $request["reason"],
 				"end_status"		 => $request["end_status"],
+				"status"				 => $request["status"],
 			));
 			if($insertQuery->rowCount() > 0){
 				http_response_code(201); /* Created */
