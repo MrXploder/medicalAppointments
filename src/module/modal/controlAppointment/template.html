@@ -62,6 +62,15 @@
   </div>
   <div class="row">
     <div input-field class="col l12">
+      <i class="prefix fas fa-user-md"></i>
+      <label ng-class="cac.form.doctor_id != null && 'active'">Doctor: </label>
+      <select material-select ng-model="cac.form.doctor_id">
+        <option ng-repeat="doctor in cac.doctors" value="{{doctor.id}}" ng-if="$index > 0">{{doctor.full_name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div input-field class="col l12">
       <i class="prefix fas fa-compass"></i>
       <label ng-class="cac.form.comes_from != null && 'active'">Procedencia</label>
       <select ng-model="cac.form.comes_from" material-select required>

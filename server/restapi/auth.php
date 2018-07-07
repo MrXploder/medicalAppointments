@@ -23,7 +23,7 @@ else { $ip_solicitante = $_SERVER['REMOTE_ADDR']; }
 //POST FOR AUTHENTICATE A USER GIVEN A USER NAME AND PASSWORD
 //RETURNS A 20 ALPHANUMERIC TOKEN
 
-//TOKEN -> 20 ALPHANUMERIC + 
+//TOKEN -> 20 ALPHANUMERIC +
 try{
 	if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		$postdata = file_get_contents("php://input");
@@ -42,14 +42,14 @@ try{
 					"hash"				=> $hash
 				));
 				$payLoad["user"] = array(
-					"id"	   			=> $userInfo["id"], 
+					"id"	   			=> $userInfo["id"],
 					"nick_name"   => $userInfo["nick_name"],
 					"full_name"		=> $userInfo["full_name"],
 					"token" 	 		=> $hash,
 				);
 				http_response_code(200);
 				echo json_encode($payLoad, JSON_UNESCAPED_UNICODE | JSON_NUMERIC_CHECK);
-				exit();	
+				exit();
 			}
 			else{
 				http_response_code(400);
@@ -64,7 +64,7 @@ try{
 	else if($_SERVER['REQUEST_METHOD'] === 'GET'){
 		$token = sanitizeInput($_GET["token"]);
 		$action = sanitizeInput($_GET["action"]);
-		
+
 		if(!empty($token) && $action === "verify"){
 			$sessionInfo = $db->select("sessions", "*", array("sessions.hash" => $token))[0];
 			if(!empty($sessionInfo)){
@@ -111,4 +111,4 @@ catch(PDOException $e){
 	http_response_code(500);
 	exit();
 }
-?> 
+?>

@@ -1,0 +1,23 @@
+<br>
+<table class="striped bordered">
+	<thead class="grey darken-3 white-text">
+		<tr>
+			<th>#</th>
+			<th>Fecha</th>
+			<th>Nombre Operador</th>
+			<th>Nombre Doctor</th>
+			<th>Diagnostico</th>
+			<th>Procedimiento Realizado</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="appointment in hpc.appointments track by $index">
+			<td class="center-align">{{$index + 1}}</td>
+			<td class="center-align">{{appointment.date}} {{appointment.time}}</td>
+			<td class="center-align">{{appointment.operator_fullname}}</td>
+			<td class="center-align">{{appointment.doctor_fullname}}</td>
+			<td class="center-align">{{appointment.diagnosis_text}}</td>
+			<td class="center-align">{{appointment.procedure_perform}}</td>
+		</tr>
+	</tbody>
+</table>

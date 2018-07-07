@@ -10,7 +10,7 @@
 	function firstTimeController(licenseVerificator, $localStorage, $timeout, $location){
 		var ftc = this;
 
-		ftc.key = null;
+		ftc.key 		 = null;
 		ftc.validate = validate;
 
 		function validate(){

@@ -30,7 +30,7 @@ try{
 		}
 
 		if(!empty($payLoad)){
-			http_response_code(200); /* OK */ 
+			http_response_code(200); /* OK */
 			echo json_encode($payLoad, JSON_UNESCAPED_UNICODE);
 			exit();
 		}
@@ -96,4 +96,4 @@ catch(PDOException $e){
 	http_response_code(500); /*Internal Server Error*/
 	exit();
 }
-?> 
+?>

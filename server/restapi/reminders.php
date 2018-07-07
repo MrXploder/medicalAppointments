@@ -18,10 +18,10 @@ if(isset($_SERVER["HTTP_X_HTTP_METHOD_OVERRIDE"])){
 $db->query("
 	CREATE TABLE IF NOT EXISTS
 	'reminders' (
-		'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-		'title' TEXT, 
-		'body' TEXT, 
-		'background_color' TEXT, 
+		'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+		'title' TEXT,
+		'body' TEXT,
+		'background_color' TEXT,
 		'text_color' TEXT
 	)"
 );
@@ -29,7 +29,7 @@ $db->query("
 try{
 	if($_SERVER['REQUEST_METHOD'] === 'GET'){
 		$payLoad = $db->select("reminders", "*");
-		http_response_code(200); /* OK */ 
+		http_response_code(200); /* OK */
 		echo json_encode($payLoad, JSON_UNESCAPED_UNICODE);
 		exit();
 	}
@@ -72,4 +72,4 @@ catch(PDOException $e){
 	http_response_code(500); /*Internal Server Error*/
 	exit();
 }
-?> 
+?>

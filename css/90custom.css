@@ -260,3 +260,11 @@ nav.top-nav a.page-title {
 .toolbar-fixed ul li {
  margin-bottom: 15px;
 }
+
+.break-text{
+ word-break: break-all;
+}
+
+.capitalize {
+   text-transform: capitalize;
+}

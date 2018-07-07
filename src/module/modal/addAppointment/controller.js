@@ -19,6 +19,7 @@
 		delete aac.form.ngDialogId;
 		delete aac.form.date;
 		delete aac.form.time;
+		delete aac.form.status;
 
 		function addAppointment(){
 			Appointments

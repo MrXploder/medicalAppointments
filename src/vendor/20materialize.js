@@ -2813,10 +2813,11 @@ if (Vel) {
 
     // Defaults
     var defaults = {
-      delay: 350,
+      delay: 50,
       tooltip: '',
       position: 'bottom',
-      html: false
+      html: false,
+      colorclass: '',
     };
 
     // Remove tooltip from the activator
@@ -2843,7 +2844,7 @@ if (Vel) {
       origin.attr('data-tooltip-id', tooltipId);
 
       // Get attributes.
-      var allowHtml, tooltipDelay, tooltipPosition, tooltipText, tooltipEl, backdrop;
+      var allowHtml, tooltipDelay, tooltipPosition, tooltipText, tooltipEl, backdrop, tooltipColorclass;
       var setAttributes = function () {
         allowHtml = origin.attr('data-html') ? origin.attr('data-html') === 'true' : options.html;
         tooltipDelay = origin.attr('data-delay');
@@ -2852,6 +2853,8 @@ if (Vel) {
         tooltipPosition = tooltipPosition === undefined || tooltipPosition === '' ? options.position : tooltipPosition;
         tooltipText = origin.attr('data-tooltip');
         tooltipText = tooltipText === undefined || tooltipText === '' ? options.tooltip : tooltipText;
+        tooltipColorclass = origin.attr('data-colorclass');
+        tooltipColorclass = tooltipColorclass === undefined || tooltipColorclass === '' ? options.colorclass : tooltipColorclass;
       };
       setAttributes();
 
@@ -2869,7 +2872,7 @@ if (Vel) {
         tooltip.append(tooltipText).appendTo($('body')).attr('id', tooltipId);
 
         // Create backdrop
-        backdrop = $('<div class="backdrop"></div>');
+        backdrop = $('<div class="backdrop '+tooltipColorclass+'"></div>');
         backdrop.appendTo(tooltip);
         return tooltip;
       };
@@ -5920,7 +5923,7 @@ if (Vel) {
       $this.find('ul .btn-floating').velocity({ scaleY: ".4", scaleX: ".4", translateY: offsetY + 'px', translateX: offsetX + 'px' }, { duration: 0 });
 
       var time = 0;
-      $this.find('ul .btn-floating').reverse().each(function () {
+      $this.find('ul .btn-floating').each(function () {
         $(this).velocity({ opacity: "1", scaleX: "1", scaleY: "1", translateY: "0", translateX: '0' }, { duration: 80, delay: time });
         time += 40;
       });

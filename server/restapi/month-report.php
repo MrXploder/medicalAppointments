@@ -11,7 +11,7 @@ error_reporting(E_ERROR);
 require $_SERVER['DOCUMENT_ROOT'].'/server/functions/sanitizeInput.php';
 require $_SERVER['DOCUMENT_ROOT'].'/server/enviroment.php';
 
-/* THIS WORKAROUND IS MADE TO PATCH THE NEED FOR "PUT", "DELETE" AND "HEAD" 
+/* THIS WORKAROUND IS MADE TO PATCH THE NEED FOR "PUT", "DELETE" AND "HEAD"
 METHODS NOT IMPLEMENTED IN PHPDESKTOP A.K.A MONGOOSE SERVER.
 
 HEAD, OPTIONS AND GET REQUESTS ARE MAPPED TO A GET REQUEST.
@@ -72,9 +72,9 @@ try{
 					case "Traumatologia":
 					case "Ginecologia"  :
 					case "Pensionado"   :
-					case "Pediatria"    : 
-					case "Medicina"     : 
-					case "Cirugia"      : 
+					case "Pediatria"    :
+					case "Medicina"     :
+					case "Cirugia"      :
 					case "UPC"          :
 						$payLoad[$item["process_code"]]["a_cerrada"]++;
 						break;
@@ -96,7 +96,7 @@ try{
 		foreach($payLoad as $key => $value){
 			array_push($toSend, $value);
 		}
-		http_response_code(200); /* OK */ 
+		http_response_code(200); /* OK */
 		echo json_encode($toSend, JSON_UNESCAPED_UNICODE);
 	}
 }
@@ -110,4 +110,4 @@ catch(Exception $e){
 finally{
 	exit();
 }
-?> 
+?>

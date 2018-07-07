@@ -19,6 +19,7 @@
 		mpc.addPatient     = addPatient;
 		mpc.detailsPatient = detailsPatient;
 		mpc.deletePatient  = deletePatient;
+		mpc.historyPatient = historyPatient;
 
 		function addPatient(){
 			mpc.isAdding = true;
@@ -32,7 +33,7 @@
 				Materialize.toast("Exito", 5000, "green");
 				Patients.query().$promise.then(response => mpc.patients = response);
 			})
-			.finally(function(response){
+			.finally(function(){
 				mpc.isAdding = false;
 			})
 		}
@@ -55,6 +56,16 @@
 				mpc.patients.splice(mpc.patients.indexOf(patient),1);
 				Materialize.toast("Erased", 5000, "red");
 			});
+		}
+
+		function historyPatient(patient){
+			ngDialog.open({
+				templateUrl: "src/module/modal/historyPatient/template.html",
+				controller: "historyPatientController",
+				controllerAs: "hpc",
+				showClose: true,
+				data: patient,
+			})
 		}
 	}
 })();
