@@ -62,7 +62,7 @@ function formatRutOnBlur($element, ngModel) {
   });
 }
 
-angular.module('platanus.rut', [])
+angular.module('ngRut', [])
 
   .directive('ngRut', function() {
     return {

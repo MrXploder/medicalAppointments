@@ -1,9 +1,9 @@
 (function(angular, undefined) {
 'use strict';
 
-angular.module('angularApp', ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'cp.ngConfirm', 'platanus.rut', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'indexedDB', 'templates-main'])
+angular.module('angularApp', ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'ngRut', 'ngLoadingBar', 'ngDirPagination', 'ngMaterialize', 'ngFlow', 'ngTemplates'])
 
-.constant('ENV', {currentUser:'MrXploder',SHA:'2628908e589117b04664d8e8747dabaa199e9509',name:'development',shortSHA:'2628908',lastCommitTime:'"2018-06-29 23:02:29 -0400"',lastCommitMessage:'"fix\r\n\r\n1.- Revertida la orientacion de las plantillas de resumen -> diario, mensual.\r\n"',lastCommitAuthor:'"MrXploder"',lastCommitNumber:'42'})
+.constant('ENV', {currentUser:'MrXploder',lastCommitTime:'"2018-07-07 18:44:04 -0400"',lastCommitMessage:'"update\r\n\r\n1.- Refactorizado "usuarios en control"\r\n2.- Pequeñas mejoras.\r\n"',name:'development',SHA:'62b33a4ce68497bc11a5341c84e5d246db59d067',shortSHA:'62b33a4',lastCommitAuthor:'"MrXploder"',lastCommitNumber:'43'})
 
 ;
 })(angular);

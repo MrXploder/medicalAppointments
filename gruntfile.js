@@ -7,7 +7,7 @@ module.exports = function(grunt) {
       options: {
         space: ' ',
         wrap: true,
-        deps: ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'cp.ngConfirm', 'platanus.rut', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'indexedDB', 'templates-main'],
+        deps: ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'ngRut', 'ngLoadingBar', 'ngDirPagination', 'ngMaterialize', 'ngFlow', 'ngTemplates'],
         dest: "src/module/10index.js",
         name: 'angularApp'
       },
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
     html2js: {
       options: {
         base: "",
-        module: 'templates-main',
+        module: 'ngTemplates',
       },
       main: {
         src: ['src/**/*.html'],
