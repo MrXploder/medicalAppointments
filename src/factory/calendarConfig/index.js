@@ -8,7 +8,7 @@
 	CalendarConfig.$inject = ['$resource'];
 
 	function CalendarConfig($resource){
-		const Resource = $resource("/server/restapi/calendar-config/", {}, {
+		const Resource = $resource("/server/restapi/calendar-config.php", {}, {
 			create: {
 				method: "POST",
 			},

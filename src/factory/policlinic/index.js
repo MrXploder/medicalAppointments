@@ -8,7 +8,7 @@
 	Policlinic.$inject = ['$resource'];
 
 	function Policlinic($resource){
-		const Resource = $resource("/server/restapi/policlinic/", {}, {
+		const Resource = $resource("/server/restapi/policlinic.php", {}, {
 			create: {
 				method: "POST",
 			},

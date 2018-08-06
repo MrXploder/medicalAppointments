@@ -8,7 +8,7 @@
 	monthReport.$inject = ['$resource'];
 
 	function monthReport($resource){
-		const Resource = $resource("/server/restapi/month-report/", {}, {
+		const Resource = $resource("/server/restapi/month-report.php", {}, {
 			create: {
 				method: "POST",
 			},
