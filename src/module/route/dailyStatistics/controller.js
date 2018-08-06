@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	 
+
 	angular
 	.module('angularApp')
 	.controller('dailyStatisticsController', dailyStatisticsController);
@@ -12,21 +12,40 @@
 		$scope.$storage = $localStorage;
 
 		dsc.filters 		 						= { byPatient: '-1', byDoctor: '-1', searchTerm: '', sinceDate: null, tillDate: null};
-		dsc.hover 			 						= { details: false, delete: false, status: false };
-		dsc.appointments 						= Appointments.query();
-		dsc.doctors 							  = Doctors.query();
-		dsc.patients 		 					  = Patients.query();
+		dsc.appointments 						= [];
+		dsc.doctors 							  = [];
+		dsc.patients 		 					  = [];
 		dsc.changeAppointmentStatus = changeAppointmentStatus;
 		dsc.deleteAppointment       = deleteAppointment;
 		dsc.addOcationalAppointment = addOcationalAppointment;
+		dsc.checkPoliclinic 				= checkPoliclinic;
 		dsc.isAdding								= false;
+		dsc.isAddingAnother  				= false;
 		dsc.isPrinting 						  = false;
 		dsc.print 									= print;
 
+		activate();
+		//////////////////////////////////////////////////////////
+
+		function activate(){
+			Doctors.query().$promise.then(function(response){
+				dsc.doctors = response;
+			});
+
+			Patients.query().$promise.then(function(response){
+				dsc.patients = response;
+			});
+
+			Appointments.query().$promise.then(function(response){
+				dsc.appointments = response;
+			});
+		}
 
 		function changeAppointmentStatus(statusText, appointment){
 			let oldStatus = angular.copy(appointment.status);
+
 			appointment.status = statusText;
+
 			if(statusText === "done"){
 				ngDialog.openConfirm({
 					templateUrl: "src/module/modal/refillAppointment/template.html",
@@ -36,13 +55,12 @@
 				})
 				.then(function(response){
 					Materialize.toast("Exito", 5000, "green");
-					dsc.appointments = Appointments.query();
+					activate();
 				});
 			}
+
 			else{
-				appointment
-				.$update()
-				.then(function(response){
+				appointment.$update().then(function(response){
 					Materialize.toast("Exito", 5000, "green");
 				})
 			}
@@ -51,17 +69,16 @@
 		function deleteAppointment(appointment){
 			appointment
 			.$delete({id: appointment.id})
-			.then(function success(response){
-				let index = dsc.appointments.indexOf(appointment);
-				dsc.appointments.splice(index, 1);
+			.then(function(response){
 				Materialize.toast("Borrado", 5000, "green");
+				activate();
 			});
 		}
 
 		function addOcationalAppointment(){
 			dsc.isAdding = true;
-			ngDialog
-			.open({
+
+			ngDialog.open({
 				templateUrl: "src/module/modal/ocationalAppointment/template.html",
 				controller: "ocationalAppointmentController",
 				controllerAs: "oac",
@@ -69,8 +86,8 @@
 			})
 			.closePromise
 			.then(function(response){
-				dsc.appointments = Appointments.query();
-				dsc.isAdding 		 = false;
+				dsc.isAdding = false;
+				activate();
 			});
 		}
 
@@ -85,6 +102,16 @@
 				}
 			}, function(response){
 				dsc.isPrinting = false;
+			});
+		}
+
+		function checkPoliclinic(){
+			ngDialog.open({
+				controller: "policlinicController",
+				controllerAs: "pcc",
+				templateUrl: "src/module/modal/policlinic/template.html",
+				showClose: true,
+				width: "60%",
 			});
 		}
 	}

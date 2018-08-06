@@ -1,5 +1,8 @@
 <br>
-<table class="striped bordered">
+<table class="striped bordered nonsense-table">
+	<colgroup>
+		<col style="width: 10%">
+	</colgroup>
 	<thead class="grey darken-3 white-text">
 		<tr>
 			<th>#</th>
@@ -14,10 +17,10 @@
 		<tr ng-repeat="appointment in hpc.appointments track by $index">
 			<td class="center-align">{{$index + 1}}</td>
 			<td class="center-align">{{appointment.date}} {{appointment.time}}</td>
-			<td class="center-align">{{appointment.operator_fullname}}</td>
-			<td class="center-align">{{appointment.doctor_fullname}}</td>
-			<td class="center-align">{{appointment.diagnosis_text}}</td>
-			<td class="center-align">{{appointment.procedure_perform}}</td>
+			<td class="center-align">{{appointment.operator_fullname | capitalize}}</td>
+			<td class="center-align break-text">{{appointment.doctor_fullname | capitalize}}</td>
+			<td class="center-align break-text">{{appointment.diagnosis_text | lowercase}}</td>
+			<td class="center-align break-text">{{appointment.procedure_perform | lowercase}}</td>
 		</tr>
 	</tbody>
 </table>

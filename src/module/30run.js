@@ -2,21 +2,21 @@
 *
 * @author  "MrXploder"
 * @company "EleDevelopment SpA."
-* @date		 "May/2018" 
-* @about   "This is a Run method from AngularJS that handles 
+* @date		 "May/2018"
+* @about   "This is a Run method from AngularJS that handles
 					 the initialization of the ngStorage enviroment variables"
-*	
+*
 */
 (function(){
 	'use strict';
-	 
+
 	angular
 	.module('angularApp')
 	.run(support);
 
-	support.$inject = ["$rootScope", "$localStorage", "$ngConfirmDefaults"];
+	support.$inject = ["$rootScope", "$localStorage"];
 
-	function support($rootScope, $localStorage, $ngConfirmDefaults){
+	function support($rootScope, $localStorage){
 		var _default = {
 			currentLicense: {
 				key: null,
@@ -32,9 +32,6 @@
 			}
 		};
 
-		$ngConfirmDefaults.useBootstrap = false;
-		$ngConfirmDefaults.boxWidth     = '30%';
-		
 		angular.element(function(){
 			if(typeof $localStorage.currentUser === "undefined"){
 				$localStorage.currentUser = _default.currentUser;

@@ -3,7 +3,7 @@
 
 angular.module('angularApp', ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'ngRut', 'ngLoadingBar', 'ngDirPagination', 'ngMaterialize', 'ngFlow', 'ngTemplates'])
 
-.constant('ENV', {currentUser:'MrXploder',lastCommitTime:'"2018-07-07 18:44:04 -0400"',lastCommitMessage:'"update\r\n\r\n1.- Refactorizado "usuarios en control"\r\n2.- Pequeñas mejoras.\r\n"',name:'development',SHA:'62b33a4ce68497bc11a5341c84e5d246db59d067',shortSHA:'62b33a4',lastCommitAuthor:'"MrXploder"',lastCommitNumber:'43'})
+.constant('ENV', {SHA:'152463d00167f0487dc9d0dffe22d0a680f9f8fd',name:'development',currentUser:'MrXploder',shortSHA:'152463d',lastCommitAuthor:'"MrXploder"',lastCommitTime:'"2018-07-11 18:29:04 -0400"',lastCommitMessage:'"update\r\n"',lastCommitNumber:'44'})
 
 ;
 })(angular);

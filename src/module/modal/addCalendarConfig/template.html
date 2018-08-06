@@ -1,0 +1,41 @@
+<ng-form name="accForm">
+	<div class="row">
+		<div input-field class="col l12">
+			<label>Motivo</label>
+			<input type="text" ng-model="accc.form.title" required>
+		</div>
+	</div>
+
+	<div class="row">
+		<div input-field class="col l5">
+			<label>Fecha de Inicio</label>
+			<input input-date type="text" ng-model="accc.form.start_date" format="dd/mm/yyyy" required>
+		</div>
+
+		<div class="col l2"></div>
+
+		<div input-field class="col l5">
+			<label>Hora de Inicio</label>
+			<input input-clock data-twelvehour="false" type="text" ng-model="accc.form.start_time" required>
+		</div>
+	</div>
+
+	<div class="row">
+		<div input-field class="col l5">
+			<label>Fecha de Termino</label>
+			<input input-date type="text" ng-model="accc.form.end_date" format="dd/mm/yyyy" required>
+		</div>
+
+		<div class="col l2"></div>
+
+		<div input-field class="col l5">
+			<label>Hora de Termino</label>
+			<input input-clock data-twelvehour="false" type="text" ng-model="accc.form.end_time" required>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col l12">
+			<save-button ng-click="accc.save()" dr-disabled="!accForm.$valid"></save-button>
+		</div>
+	</div>
+</ng-form>

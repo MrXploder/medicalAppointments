@@ -1,7 +1,8 @@
 <?php require $_SERVER['DOCUMENT_ROOT'].'/server/enviroment.php'; ?>
 <?php
-  /*backup sqlite db at startup*/
-  if(constant("envBranch") != "development") copy((string)$_SERVER['DOCUMENT_ROOT']."/medicalapointments.db", (string)$_SERVER['DOCUMENT_ROOT']."/databasebackup/bk".date("d-m-Y H-i-s").".db");
+// echo $localIP = getHostByName(getHostName());
+/*backup sqlite db at startup*/
+if(constant("envBranch") != "development") copy((string)$_SERVER['DOCUMENT_ROOT']."/medicalapointments.db", (string)$_SERVER['DOCUMENT_ROOT']."/databasebackup/bk".date("d-m-Y H-i-s").".db");
 ?>
 <!DOCTYPE html>
 <html ng-app="angularApp" ng-controller="mainController as mc" ng-strict-di>
@@ -70,7 +71,7 @@
           <div class="background">
             <img class="responsive-img" src="img/sidenav-background.jpg">
           </div>
-          <a><img materialboxed class="materialboxed responsive-img circle center" ng-src="img/avatar{{$storage.currentUser.id}}.png"></a>
+          <a><img materialboxed class="materialboxed responsive-img circle center" ng-src="img/avatar{{$storage.currentUser.id}}.png" onerror="this.src='img/avatardefault.png'"></a>
           <a><span class="white-text name">{{$storage.currentUser.full_name}}</span></a>
         </div>
       </li>
@@ -85,10 +86,11 @@
       <li ng-class="$location.url() == '/managePatients' && 'grey'"><a href="#!/managePatients" ng-class="$location.url() == '/managePatients' ? 'black-text':'white-text'"><i class="fas fa-user fa-2x" ng-class="$location.url() == '/managePatients' ? 'black-text':'white-text'"></i>Administrar Usuarios</a></li>
       <li ng-class="$location.url() == '/manageOperators' && 'grey'"><a href="#!/manageOperators" ng-class="$location.url() == '/manageOperators' ? 'black-text':'white-text'"><i class="fas fa-user-tie fa-2x" ng-class="$location.url() == '/manageOperators' ? 'black-text':'white-text'"></i>Administrar Operadores</a></li>
       <li><div class="divider"></div></li>
+      <li ng-class="$location.url() == '/appConfig' && 'grey'"><a href="#!/appConfig" ng-class="$location.url() == '/appConfig' ? 'black-text':'white-text'"><i class="fas fa-cog fa-2x" ng-class="$location.url() == '/appConfig' ? 'black-text':'white-text'"></i>Configurar Aplicación</a></li>
+      <li><div class="divider"></div></li>
       <li><a href="#!/exit" class="white-text"><i class="fas fa-sign-out-alt fa-2x white-text"></i>LogOut</a></li>
     </ul>
     <a class="btn-floating btn-large btn-flat waves-effect waves-light button-collapse hide-on-med-and-up" data-activates="apps-side-nav"><i class="fas fa-plus"></i></a>
-    
   </header>
   <main>
     <div class="row">

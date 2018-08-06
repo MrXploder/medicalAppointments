@@ -9,7 +9,7 @@
 
 	function controlAppointmentController($scope, Operators, Patients, Doctors, Appointments, ngDialog, $filter, $localStorage){
 		let cac = this;
-		
+
 		cac.form        			= {};
 		cac.patients  	 			= Patients.query();
 		cac.doctors      			= Doctors.query();
@@ -25,12 +25,12 @@
 				cac.patients.forEach(function(patient){
 					autocompleteData[patient.full_name] = null;
 				});
-				$('#patient-autocomplete').autocomplete({ 
+				$('#patient-autocomplete').autocomplete({
 					data: autocompleteData,
 					limit: 20,
 					minLength: 1,
 				});
-			});		
+			});
 		});
 
 		function showSchedule(){
@@ -40,6 +40,7 @@
 				controller: "eventCalendarController",
 				controllerAs: "ecc",
 				width: "60%",
+				showClose: true,
 			})
 			.closePromise
 			.then(function(response){
@@ -67,17 +68,17 @@
 
 			var filteredPatient = $filter('filter')(angular.copy(cac.patients), {full_name: cac.form.patient_fullname}, true)[0];
 
-			if(typeof filteredPatient === "undefined"){ 
+			if(typeof filteredPatient === "undefined"){
 				cac.form.patient_id 					= 0;
 				cac.form.patient_rut          = null;
-				cac.form.patient_mobilenumber = null; 
+				cac.form.patient_mobilenumber = null;
 				cac.form.patient_phonenumber  = null;
 				cac.form.patient_allergies    = null;
 			}
-			else { 
+			else {
 				cac.form.patient_id 			    = filteredPatient.id;
 				cac.form.patient_rut          = filteredPatient.rut;
-				cac.form.patient_mobilenumber = filteredPatient.mobile_number; 
+				cac.form.patient_mobilenumber = filteredPatient.mobile_number;
 				cac.form.patient_phonenumber  = filteredPatient.phone_number;
 				cac.form.patient_allergies    = filteredPatient.allergies;
 			}

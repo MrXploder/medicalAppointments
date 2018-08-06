@@ -10,7 +10,7 @@
 						<div input-field class="col l12">
 							<i class="prefix fas fa-search"></i>
 							<label>Buscar... </label>
-							<input type="search" ng-class="mdc.searchTerm">
+							<input type="search" ng-model="mdc.searchTerm">
 						</div>
 					</div>
 <!-- 					<div class="row">
@@ -32,7 +32,7 @@
 								<tbody>
 									<tr dir-paginate="doctor in mdc.doctors | filter: mdc.searchTerm | orderBy:mdc.sortBy:mdc.sortReverse | itemsPerPage: mdc.itemsPerPage track by $index" pagination-id="manageDoctorsId" ng-show="$index > 0">
 										<td>{{doctor.id}}</td>
-										<td>{{doctor.full_name}}</td>
+										<td>{{doctor.full_name | capitalize}}</td>
 										<td><a class="btn waves-effect waves-light" ng-click="mdc.details(doctor)"><i class="fas fa-info"></i></td>
 										<td><a class="btn waves-effect waves-light red" ng-click="mdc.erase(doctor)"><i class="fas fa-trash"></i></td>
 										</tr>

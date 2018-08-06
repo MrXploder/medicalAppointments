@@ -1,0 +1,47 @@
+<ng-form name="pcForm">
+	<div class="row">
+		<div class="col l12">
+			<span class="card-title">Consultas Policlinico</span>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div input-field class="col l12">
+			<i class="fas fa-calendar-alt prefix"></i>
+			<label>Fecha</label>
+			<input input-date type="text" ng-model="pcc.form.date" format="dd/mm/yyyy" required>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<i class="fas fa-clock prefix"></i>
+			<label>Hora de Inicio</label>
+			<input input-clock type="text" ng-model="pcc.form.start_time" data-twelvehour="false" required>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<i class="fas fa-user-tie prefix"></i>
+			<label ng-class="pcc.form.operator_id != null && 'active'">Eligir Operador</label>
+			<select material-select ng-model="pcc.form.operator_id" watch ng-options="operator.id as operator.full_name for operator in pcc.operators" required></select>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<i class="fas fa-list-ol prefix"></i>
+			<label>Cantidad de Pacientes</label>
+			<input type="number" ng-model="pcc.form.amount" min="0" string-to-number required>
+		</div>
+	</div>
+	<div class="row">
+		<div input-field class="col l12">
+			<i class="fas fa-notes-medical prefix"></i>
+			<label>Notas</label>
+			<input type="text" ng-model="pcc.form.notes">
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<save-button ng-click="pcc.save()" dr-disabled="!pcForm.$valid"></save-button>
+	</div>
+</ng-form>

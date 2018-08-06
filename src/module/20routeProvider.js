@@ -6,7 +6,6 @@
 	.config(routeProvider);
 
 	routeProvider.$inject  = ["$routeProvider"];
-	
 
 	function routeProvider($routeProvider){
 		$routeProvider
@@ -72,6 +71,12 @@
 			templateUrl: "src/module/route/manageOperators/template.html",
 			resolve: { preCondition: authorized },
 		})
+		.when("/appConfig", {
+			controller: "appConfigController",
+			controllerAs: "acc",
+			templateUrl: "src/module/route/appConfig/template.html",
+			resolve: {preCondition: authorized },
+		})
 		.otherwise({
 			redirectTo: "/home",
 		});
@@ -89,7 +94,7 @@
 		})
 		.catch(function(){
 			$rootScope.$evalAsync(function(){ $location.path("/login"); });
-		}); 
+		});
 	};
 
 	authorized.$inject = ["userAuthentication", "$rootScope", "$location", "$localStorage"];
@@ -102,8 +107,8 @@
 				$rootScope.$evalAsync(function(){ $location.path("/firstTime"); });
 			}
 		})
-		.catch(function(response){
+		.catch(function(){
 			$rootScope.$evalAsync(function(){ $location.path("/login"); });
-		}); 
+		});
 	};
 })();

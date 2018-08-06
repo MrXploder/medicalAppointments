@@ -26,6 +26,7 @@ if(isset($_SERVER["HTTP_X_HTTP_METHOD_OVERRIDE"])){
 //METHODS///////////////////////////////////////////////////////
 try{
 	if($_SERVER['REQUEST_METHOD'] === 'GET'){
+		$toSend = array("data" => [], "meta" => []);
 		$requestDate  = DateTimeImmutable::createFromFormat('m/Y', sanitizeInput($_GET["date"]));
 		$startDate    = $requestDate->modify("First day of this month");
 		$endDate      = $requestDate->modify("Last day of this month");
@@ -47,10 +48,21 @@ try{
 			"21-05-012" => array("code" => "21-05-012", "codeText" => "Corsets de risser o similares", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
 			"21-05-013" => array("code" => "21-05-013", "codeText" => "Corsets de yeso simple (tipo watson jones)", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
 			"106002" 		=> array("code" => "106002",    "codeText" => "Curaciones simples ambulatorias", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
-			"000000000" => array("code" => "000000000", "codeText" => "Retiro de yeso cerrado, valva abierta o mod. de yeso", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0)
+			"000000000" => array("code" => "000000000", "codeText" => "Retiro de yeso cerrado, valva abierta o mod. de yeso", "total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0),
+			"111111111" => array("code" => "111111111", "codeText" => "Consultas Policlinico", "total" => 0),
 		);
-		$master = array("total" => 0, "beneficiario" => 0, "a_cerrada" => 0, "a_abierta" => 0, "urgencia" => 0);
-		$data = $db->select("appointments", "*", ["status" => "done"]);
+		$data  = $db->select("appointments", "*", ["status" => "done"]);
+		$extra = $db->select("policlinic", "*");
+
+		foreach($extra as $item){
+			$itemDate = DateTime::createFromFormat("d/m/Y", $item["date"]);
+
+			if($itemDate >= $startDate && $itemDate <= $endDate){
+				$payLoad["111111111"]["total"] += $item["amount"];
+			}
+		}
+
+		unset($item);
 		// print_r($data);
 		foreach($data as $item){
 			$itemDate = DateTime::createFromFormat("d/m/Y", $item["date"]);
@@ -67,7 +79,6 @@ try{
 					}
 				}
 
-				// echo $item["comes_from"];
 				switch($item["comes_from"]){
 					case "Traumatologia":
 					case "Ginecologia"  :
@@ -91,10 +102,11 @@ try{
 				}
 			}
 		}
+
 		// print_r($payLoad);
-		$toSend = array();
+		
 		foreach($payLoad as $key => $value){
-			array_push($toSend, $value);
+			array_push($toSend["data"], $value);
 		}
 		http_response_code(200); /* OK */
 		echo json_encode($toSend, JSON_UNESCAPED_UNICODE);

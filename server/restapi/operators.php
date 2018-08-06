@@ -40,11 +40,12 @@ try{
 		}
 	}
 	else if($_SERVER["REQUEST_METHOD"] === 'POST'){
-		$postdata = file_get_contents("php://input");
+		$postdata = $_POST["model"];
 		if(!empty($postdata)){
 			$request = json_decode($postdata, true);
 			$insertQuery = $db->insert("operators", $request);
 			if($insertQuery->rowCount() > 0){
+				move_uploaded_file($_FILES["file0"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/img/avatar".$db->id().".png");
 				http_response_code(201); /* Created */
 				exit();
 			}

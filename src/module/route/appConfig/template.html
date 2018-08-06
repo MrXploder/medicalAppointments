@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col l12">
+		<div class="card grey lighten-4">
+			<div class="card-content">
+				<div class="row">
+					<div class="col l12">
+						<div class="card hoverable">
+							<div class="card-content">
+								<span class="card-title">Bloquear Periodos del Calendario</span>
+								<table class="striped centered-table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Fecha de Inicio</th>
+											<th>Fecha de Termino</th>
+											<th>Motivo</th>
+											<th>Eliminar</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr dir-paginate="item in acc.calendarConfig | itemsPerPage: 10 track by item.id">
+											<td>{{item.id}}</td>
+											<td>{{item.start_date}} a las {{item.start_time}}</td>
+											<td>{{item.end_date}} a las {{item.end_time}}</td>
+											<td>{{item.title}}</td>
+											<td><delete-button ng-click="acc.remove(item)"></delete-button></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="card-action">
+								<add-button ng-click="acc.addNewCalendarConfig()" dr-position="'left'"></add-button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

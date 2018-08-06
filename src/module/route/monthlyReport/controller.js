@@ -10,15 +10,30 @@
 	function monthlyReportController($scope, monthReport, Printer){
 		let mrc = this;
 
-		mrc.reportData  = monthReport.query({date: moment().format("MM/YYYY")});
+		mrc.reportData  = {};
 		mrc.selectMonth = moment().format("MM").toString();
 		mrc.selectYear  = moment().format("YYYY").toString();
 		mrc.print       = print;
 		mrc.isPrinting  = false;
 
-		// $scope.$on('$routeChangeSuccess', function(){
-		// 	$('.tap-target').tapTarget('open');
-		// });
+		activate();
+		//////////////////////////////////////////////////////
+
+		function activate(){
+			monthReport.find({date: moment().format("MM/YYYY")}).then(function(response){
+				mrc.reportData = response;
+				mrc.reportData.meta = {allTotal: 0, allF: 0, allA: 0, allB: 0, allU: 0};
+
+				mrc.reportData.data.forEach(function(item){
+					mrc.reportData.meta.allTotal += item.total || 0;
+					mrc.reportData.meta.allF += item.beneficiario || 0;
+					mrc.reportData.meta.allA += item.a_cerrada || 0;
+					mrc.reportData.meta.allB += item.a_abierta || 0;
+					mrc.reportData.meta.allU += item.urgencia || 0;
+				})
+				console.log(mrc.reportData.meta);
+			});
+		}
 
 		function print(){
 			mrc.isPrinting = true;
@@ -38,12 +53,21 @@
 		$scope.$watchGroup(['mrc.selectMonth', 'mrc.selectYear'], function(){
 			if(!mrc.selectMonth || !mrc.selectYear) return;
 			else{
-				monthReport
-				.query({
+				monthReport.find({
 					date: `${mrc.selectMonth}/${mrc.selectYear}`
 				})
-				.$promise
-				.then(function(response){ mrc.reportData = response; });
+				.then(function(response){
+					mrc.reportData = response;
+					mrc.reportData.meta = {allTotal: 0, allF: 0, allA: 0, allB: 0, allU: 0};
+
+					mrc.reportData.data.forEach(function(item){
+						mrc.reportData.meta.allTotal += item.total || 0;
+						mrc.reportData.meta.allF += item.beneficiario || 0;
+						mrc.reportData.meta.allA += item.a_cerrada || 0;
+						mrc.reportData.meta.allB += item.a_abierta || 0;
+						mrc.reportData.meta.allU += item.urgencia || 0;
+					})
+				});
 			}
 		}, true);
 	}

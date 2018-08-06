@@ -43,20 +43,36 @@
  					</div>
  					<div class="row">
  						<div class="col l12">
- 							<table class="bordered highlight centered-table">
+ 							<table class="bordered striped centered-table nonsense-table">
+ 								<colgroup>
+ 									<col style="width: 20%">
+ 									<col style="width: 30%">
+ 								</colgroup>
  								<thead class="grey darken-3 white-text">
  									<tr>
  										<th>Código</th>
- 										<th tooltipped="true" data-position="bottom" data-delay="50" data-tooltip="Suma de Todos los procedimientos dado el Codigo">Total</th>
- 										<th tooltipped="true" data-position="bottom" data-delay="50" data-tooltip="Suma de Todos los Turnos en donde el Usuario es afiliado a Fonasa">Beneficiario</th>
+ 										<th>Descripción</th>
+ 										<th>Total</th>
+ 										<th>Benef.</th>
  										<th>A.Cerrada</th>
  										<th>A.Abierta</th>
  										<th>Urgencia</th>
  									</tr>
  								</thead>
+ 								<tfoot>
+ 									<tr class="grey darken-3 white-text">
+ 										<th colspan="2">Totales Verticales</th>
+ 										<td>{{mrc.reportData.meta.allTotal}}</td>
+ 										<td>{{mrc.reportData.meta.allF}}</td>
+ 										<td>{{mrc.reportData.meta.allA}}</td>
+ 										<td>{{mrc.reportData.meta.allB}}</td>
+ 										<td>{{mrc.reportData.meta.allU}}</td>
+ 									</tr>
+ 								</tfoot>
  								<tbody>
- 									<tr ng-repeat="item in mrc.reportData">
- 										<td><a class="btn btn-flat" tooltipped="true" data-position="right" data-delay="50" data-tooltip="{{item.codeText}}">{{item.code}}</a></td>
+ 									<tr ng-repeat="item in mrc.reportData.data">
+ 										<td>{{item.code}}</td>
+ 										<td class="break-text">{{item.codeText}}</td>
  										<td>{{item.total}}</td>
  										<td>{{item.beneficiario}}</td>
  										<td>{{item.a_cerrada}}</td>

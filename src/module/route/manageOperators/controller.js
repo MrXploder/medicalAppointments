@@ -1,6 +1,6 @@
 (function(){
 	'use strict';
-	 
+
 	angular
 	.module('angularApp')
 	.controller('manageOperatorsController', manageOperatorsController);
@@ -28,7 +28,6 @@
 				showClose: true,
 				data: operator,
 			}).then(function(response){
-				console.log(operator);
 				operator
 				.$update()
 				.then(function(response){

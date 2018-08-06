@@ -1,31 +1,50 @@
-<ng-form name="onForm">
-	<div class="row">
-		<div input-field class="col l12">
-			<label class="active">Nombre Completo</label>
-			<input type="text" ng-model="onc.form.full_name" required>
-		</div>
+<div style="margin-top: -1rem;">
+	<div class="right" style="position: absolute; right: 0">
+		<img id="imgpreview" src="img/avatardefaultbig.png" style="width: 421px; height: auto; border-top-right-radius: 8px; border-bottom-right-radius: 8px; z-index: -1">
+		<div class="slant" style="z-index: 0"></div>
 	</div>
-	<div class="row">
-		<div input-field class="col l12">
-			<label class="active">Nick</label>
-			<input type="text" ng-model="onc.form.nick_name" required>
+	<ng-form name="onForm" enctype="multipart/form-data">
+		<div class="row" style="margin-right: 48%;">
+			<div input-field class="col l12">
+				<label class="active">Nombre Completo</label>
+				<input type="text" ng-model="onc.form.model.full_name" required>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div input-field class="col l12">
-			<label class="active">RUN</label>
-			<input type="text" ng-rut ng-model="onc.form.rut" required>
+		<div class="row" style="margin-right: 46%;">
+			<div input-field class="col l12">
+				<label class="active">Nick</label>
+				<input type="text" ng-model="onc.form.model.nick_name" required>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div input-field class="col l12">
-			<label class="active">Contraseña</label>
-			<input type="text" ng-model="onc.form.pass" required>
+		<div class="row" style="margin-right: 44%;">
+			<div input-field class="col l12">
+				<label class="active">RUN</label>
+				<input type="text" ng-rut ng-model="onc.form.model.rut" required>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col l12">
-			<a class="btn btn-block waves-effect waves-light green" ng-class="!onForm.$valid && 'disabled'" ng-click="onc.saveAndExit()">Crear</a>
+		<div class="row" style="margin-right: 42%;">
+			<div input-field class="col l12">
+				<label class="active">Contraseña</label>
+				<input type="text" ng-model="onc.form.model.pass" required>
+			</div>
 		</div>
-	</div>
-</ng-form>
+		<div class="row" style="margin-right: 40%;">
+			<div input-field class="col l12">
+				<div class="file-field input-field">
+					<div class="btn">
+						<span>Avatar</span>
+						<input type="file" file-uploader>
+					</div>
+					<div class="file-path-wrapper">
+						<input class="file-path validate" type="text">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col l12">
+				<a class="btn-floating btn-large halfway-fab waves-effect waves-light green" ng-class="!onForm.$valid && 'disabled'" ng-click="onc.saveAndExit()"><i class="fas fa-save"></i></a>
+			</div>
+		</div>
+	</ng-form>
+</div>

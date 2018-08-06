@@ -2549,8 +2549,7 @@ html {
 
 ul:not(.browser-default) {
   padding-left: 0;
-  /* list-style-type: none; */
-  ne; */
+  list-style-type: none;
 }
 
 ul:not(.browser-default) > li {
@@ -2879,7 +2878,7 @@ ul.staggered-list li {
 }
 
 .page-footer {
-  /* padding-top: 20px; */
+  padding-top: 20px;
   color: #fff;
   background-color: #ee6e73;
 }
@@ -7524,7 +7523,7 @@ input[type=range]:focus::-ms-fill-upper {
 .side-nav.fixed {
   left: 0;
   -webkit-transform: translateX(0);
-  transform: translateX(0);
+          transform: translateX(0);
   position: fixed;
 }
 
@@ -7536,7 +7535,7 @@ input[type=range]:focus::-ms-fill-upper {
 @media only screen and (max-width: 992px) {
   .side-nav.fixed {
     -webkit-transform: translateX(-105%);
-    transform: translateX(-105%);
+            transform: translateX(-105%);
   }
   .side-nav.fixed.right-aligned {
     -webkit-transform: translateX(105%);

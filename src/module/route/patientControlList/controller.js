@@ -5,15 +5,15 @@
 	.module("angularApp")
 	.controller("patientControlListController", patientControlListController);
 
-	patientControlListController.$inject = ["$scope", "ngDialog", "$ngConfirm", "Appointments", "Patients", "$filter", "Printer", "$q"];
+	patientControlListController.$inject = ["$scope", "ngDialog", "Appointments", "Patients", "$filter", "Printer", "$q"];
 
-	function patientControlListController($scope, ngDialog, $ngConfirm, Appointments, Patients, $filter, Printer, $q){
+	function patientControlListController($scope, ngDialog, Appointments, Patients, $filter, Printer, $q){
 		let pclc = this;
 
 		pclc.patients                   = [];
+		pclc.appointments               = [];
 		pclc.isAdding								    = false;
 		pclc.searchTerm							    = "";
-		pclc.appointments               = [];
 		pclc.addPatientToControl 	      = addPatientToControl;
 		pclc.changeAppointmentStatus    = changeAppointmentStatus;
 		pclc.addNewAppointmentToPatient = addNewAppointmentToPatient;
@@ -24,22 +24,17 @@
 		///////////////////////////////////////////////////////
 
 		function activate(){
-			$q.all([
-				Appointments.query().$promise,
-				Patients.query().$promise
-				])
-			.then(function(response){
+			$q.all([Appointments.query().$promise, Patients.query().$promise]).then(function(response){
 				pclc.patients 	  = response[1];
 				pclc.appointments = [];
 
-				let _filtered = $filter('filter')(response[0], {end_status: "pending"});
-				let _grouped  = _.groupBy(_filtered, 'patient_id');
-				angular.forEach(_grouped, function(item){
-					let _private  = $filter('filter')(pclc.patients, {id: item[0].patient_id}, true)[0];
+				let _grouped  = _.groupBy(_.filter(response[0], {end_status: "pending"}), 'patient_id');
+
+				_.forEach(_grouped, function(item){
 					pclc.appointments.push({
 						data: item,
 						meta: {
-							private: _private,
+							private: _.filter(pclc.patients, {id: item[0].patient_id})[0],
 							public:{
 								patient_id      : item[0].patient_id,
 								patient_fullname: item[0].patient_fullname,
@@ -73,7 +68,7 @@
 
 		function changeAppointmentStatus(statusText, appointment){
 			let oldStatus = angular.copy(appointment.status);
-			
+
 			if(statusText === "absent"){
 				appointment.status = statusText;
 				appointment.$update().then(function(response){

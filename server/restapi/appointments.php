@@ -23,7 +23,6 @@ if(isset($_SERVER["HTTP_X_HTTP_METHOD_OVERRIDE"])){
 	$_SERVER["REQUEST_METHOD"] = $_SERVER["HTTP_X_HTTP_METHOD_OVERRIDE"];
 }
 
-
 //METHODS///////////////////////////////////////////////////////
 try{
 	if($_SERVER['REQUEST_METHOD'] === 'GET'){
@@ -92,6 +91,7 @@ try{
 				"patient_id" 		 => $patient_id,
 				"doctor_id" 		 => $request["doctor_id"],
 				"operator_id"		 => $request["operator_id"],
+				"notes"          => $request["notes"],
 				"comes_from" 		 => $request["comes_from"],
 				"date" 					 => $request["date"],
 				"time" 					 => $request["time"],
