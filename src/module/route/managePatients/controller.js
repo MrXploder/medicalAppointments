@@ -64,6 +64,7 @@
 				controller: "historyPatientController",
 				controllerAs: "hpc",
 				showClose: true,
+				closeByDocument: true,
 				data: patient,
 			})
 		}

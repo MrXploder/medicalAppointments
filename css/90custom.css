@@ -263,7 +263,7 @@ nav.top-nav a.page-title {
 
 .break-text{
   word-break: keep-all;
-  text-align: justify;
+  text-align: left;
   vertical-align: top;
 }
 

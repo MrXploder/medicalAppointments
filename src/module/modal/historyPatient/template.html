@@ -1,26 +1,35 @@
+<div class="row">
+	<div class="col l12">
+		<table class="striped bordered nonsense-table">
+			<colgroup>
+				<col style="width: 10%">
+			</colgroup>
+			<thead class="grey darken-3 white-text">
+				<tr>
+					<th>#</th>
+					<th>Fecha</th>
+					<th>Nombre Operador</th>
+					<th>Nombre Doctor</th>
+					<th>Diagnostico</th>
+					<th>Procedimiento Realizado</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="appointment in hpc.appointments track by $index">
+					<td class="center-align">{{$index + 1}}</td>
+					<td class="center-align">{{appointment.date}} {{appointment.time}}</td>
+					<td class="center-align">{{appointment.operator_fullname | capitalize}}</td>
+					<td class="center-align break-text">{{appointment.doctor_fullname | capitalize}}</td>
+					<td class="center-align break-text">{{appointment.diagnosis_text | lowercase}}</td>
+					<td class="center-align break-text">{{appointment.procedure_perform | lowercase}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
 <br>
-<table class="striped bordered nonsense-table">
-	<colgroup>
-		<col style="width: 10%">
-	</colgroup>
-	<thead class="grey darken-3 white-text">
-		<tr>
-			<th>#</th>
-			<th>Fecha</th>
-			<th>Nombre Operador</th>
-			<th>Nombre Doctor</th>
-			<th>Diagnostico</th>
-			<th>Procedimiento Realizado</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="appointment in hpc.appointments track by $index">
-			<td class="center-align">{{$index + 1}}</td>
-			<td class="center-align">{{appointment.date}} {{appointment.time}}</td>
-			<td class="center-align">{{appointment.operator_fullname | capitalize}}</td>
-			<td class="center-align break-text">{{appointment.doctor_fullname | capitalize}}</td>
-			<td class="center-align break-text">{{appointment.diagnosis_text | lowercase}}</td>
-			<td class="center-align break-text">{{appointment.procedure_perform | lowercase}}</td>
-		</tr>
-	</tbody>
-</table>
+<div class="row">
+	<div class="col l12">
+		<a class="btn-floating btn-large halfway-fab waves-effect waves-light grey darken-3" ng-click="hpc.printHistory()"><i class="fas fa-print"></i></a>
+	</div>
+</div>

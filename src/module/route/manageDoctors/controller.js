@@ -40,6 +40,8 @@
 				controller: "addDoctorController",
 				controllerAs: "adc",
 				showClose: true,
+				closeByDocument: true,
+				width: "30%",
 			})
 			.then(function(response){
 				Materialize.toast("Exito", 5000, "green");
@@ -61,7 +63,7 @@
 			.$promise
 			.then(function(response){
 				mdc.doctors.splice(mdc.doctors.indexOf(doctor),1);
-				Materialize.toast("Erased", 5000, "red");
+				Materialize.toast("Borrado", 5000, "red");
 			});
 		}
 
@@ -72,6 +74,8 @@
 				controllerAs: "ddc",
 				data: doctor,
 				showClose: true,
+				closeByDocument: true,
+				width: "30%"
 			})
 			.then(function(response){
 				Materialize.toast("Exito", 5000, "green");

@@ -1,0 +1,27 @@
+<link rel="stylesheet" type="text/css" href="./src/module/print/printHistory/style.css" media="print">
+<div>
+	<table class="bordered striped">
+		<thead class="grey darken-3 white-text">
+			<tr>
+				<th>#</th>
+				<th>ID</th>
+				<th>Fecha</th>
+				<th>Nombre<br>Operador</th>
+				<th>Nombre<br>Doctor</th>
+				<th>Diagnostico</th>
+				<th>Procedimiento<br>Realizado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in vm.data">
+				<td>{{$index}}</td>
+				<td>{{item.id}}</td>
+				<td>{{item.date + ' ' + item.time}}</td>
+				<td>{{item.operator_fullname | capitalize}}</td>
+				<td>{{item.doctor_fullname | capitalize}}</td>
+				<td style="word-break: break-all;">{{item.diagnosis_text | lowercase}}</td>
+				<td style="word-break: break-all;">{{item.procedure_perform | lowercase}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
