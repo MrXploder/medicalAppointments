@@ -3,7 +3,7 @@
 
 angular.module('angularApp', ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'ngRut', 'ngLoadingBar', 'ngDirPagination', 'ngMaterialize', 'ngTemplates'])
 
-.constant('ENV', {SHA:'b3c6b8cfaf4b913adceb89f6d52625694c36f78b',name:'development',currentUser:'MrXploder',shortSHA:'b3c6b8c',lastCommitMessage:'"bugfix\r\n"',lastCommitTime:'"2018-08-06 10:33:18 -0400"',lastCommitAuthor:'"MrXploder"',lastCommitNumber:'46'})
+.constant('ENV', {currentUser:'MrXploder',lastCommitTime:'"2018-08-28 22:10:22 -0300"',shortSHA:'3300f63',lastCommitNumber:'48',name:'development',SHA:'3300f6327ac68a01675afd027b454e8a8e9d428d',lastCommitMessage:'"adds\r\n\r\n- agregado boton para imprimir historial de pacientes\r\n"',lastCommitAuthor:'"MrXploder"'})
 
 ;
 })(angular);

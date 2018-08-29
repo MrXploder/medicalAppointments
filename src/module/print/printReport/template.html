@@ -1,8 +1,8 @@
 <link rel="stylesheet" type="text/css" href="./src/module/print/printReport/style.css" media="print">
 <div style="">
 	<div>
-		<p>{{::vm.meta.currentDate}}</p>
-		<p>Datos obtenidos el mes de: {{::vm.meta.reportDate}}</p>
+		<p>{{vm.meta.currentDate}}</p>
+		<p>Datos obtenidos el mes de: {{vm.meta.reportDate}}</p>
 	</div>
 	<div>
 		<table class="borderder striped">
@@ -17,8 +17,18 @@
 					<th>Urgencia</th>
 				</tr>
 			</thead>
+			<tfoot class="grey darken-3 white-text">
+				<tr>
+					<td colspan="2" style="text-align: center;">Totales Verticales</td>
+					<td>{{vm.meta.totals.allTotal}}</td>
+					<td>{{vm.meta.totals.allF}}</td>
+					<td>{{vm.meta.totals.allA}}</td>
+					<td>{{vm.meta.totals.allB}}</td>
+					<td>{{vm.meta.totals.allU}}</td>
+				</tr>
+			</tfoot>
 			<tbody>
-				<tr ng-repeat="item in ::vm.data">
+				<tr ng-repeat="item in vm.data">
 					<td>{{item.code}}</td>
 					<td style="word-break: break-all;">{{item.codeText}}</td>
 					<td>{{item.total}}</td>
@@ -28,6 +38,6 @@
 					<td>{{item.urgencia}}</td>
 				</tr>
 			</tbody>
-		</table>	
+		</table>
 	</div>
 </div>

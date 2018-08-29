@@ -39,8 +39,9 @@
 			mrc.isPrinting = true;
 			Printer.print('src/module/print/printReport/template.html', {
 				vm:{
-					data: mrc.reportData,
+					data: mrc.reportData.data,
 					meta: {
+						totals: mrc.reportData.meta,
 						currentDate: moment().format("dddd DD [de] MMMM [de] YYYY [a las] HH:mm").toString(),
 						reportDate : moment(`${mrc.selectMonth}/${mrc.selectYear}`, "MM/YYYY").format("MMMM [de] YYYY").toString(),
 					}
