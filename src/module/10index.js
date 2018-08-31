@@ -3,7 +3,7 @@
 
 angular.module('angularApp', ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'ngRut', 'ngLoadingBar', 'ngDirPagination', 'ngMaterialize', 'ngTemplates'])
 
-.constant('ENV', {currentUser:'MrXploder',lastCommitTime:'"2018-08-28 22:10:22 -0300"',shortSHA:'3300f63',lastCommitNumber:'48',name:'development',SHA:'3300f6327ac68a01675afd027b454e8a8e9d428d',lastCommitMessage:'"adds\r\n\r\n- agregado boton para imprimir historial de pacientes\r\n"',lastCommitAuthor:'"MrXploder"'})
+.constant('ENV', {shortSHA:'68893da',name:'development',SHA:'68893dae932144fdc16c66777efd3dcb47807985',currentUser:'MrXploder',lastCommitMessage:'"bugfix\r\n\r\nCorregido el error que no pasaba los datos para imprimir al Printer en el reporte mensual.\r\nel objeto mcd.monthReport se agregaron las propiedades de meta y data por lo que habia que cambiar eso.\r\nY en la plantilla de impresion no se veian los totales.\r\n"',lastCommitTime:'"2018-08-29 16:12:11 -0300"',lastCommitNumber:'49',lastCommitAuthor:'"MrXploder"'})
 
 ;
 })(angular);

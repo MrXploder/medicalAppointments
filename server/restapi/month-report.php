@@ -80,20 +80,20 @@ try{
 				}
 
 				switch($item["comes_from"]){
-					case "Traumatologia":
-					case "Ginecologia"  :
-					case "Pensionado"   :
-					case "Pediatria"    :
-					case "Medicina"     :
-					case "Cirugia"      :
 					case "UPC"          :
+					case "Cirugia"      :
+					case "Medicina"     :
+					case "Pediatria"    :
+					case "Pensionado"   :
+					case "Ginecologia"  :
+					case "Traumatologia":
 						$payLoad[$item["process_code"]]["a_cerrada"]++;
 						break;
-					case "CAE Adulto"       :
-          case "CAE Pediatrico"   :
-        	case "Pabellón de Yeso" :
-        	case "Control"          :
-        	case "Otro"							:
+        	case "Otro"						 :
+        	case "Control"         :
+					case "CAE Adulto"      :
+          case "CAE Pediatrico"  :
+        	case "Pabellon de Yeso":
         		$payLoad[$item["process_code"]]["a_abierta"]++;
         		break;
         	case "Unidad de Emergencia Hospitalaria" :
@@ -104,7 +104,7 @@ try{
 		}
 
 		// print_r($payLoad);
-		
+
 		foreach($payLoad as $key => $value){
 			array_push($toSend["data"], $value);
 		}
