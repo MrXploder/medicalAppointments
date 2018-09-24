@@ -14,9 +14,11 @@
 					</div>
 				</div>
 				<br>
-				<div class="row" ng-repeat-start="appointment in pclc.appointments | filter: pclc.searchTerm track by $index">
+				<dir-pagination-controls template-url="src/directive/dirPaginationControls/template.html"></dir-pagination-controls>
+				<br>
+				<div class="row" dir-paginate-start="appointment in pclc.appointments | filter: pclc.searchTerm | itemsPerPage: 5">
 					<div class="col l12">
-						<div class="card hoverable">
+						<div class="card">
 							<div class="card-content">
 								<span class="card-title capitalize">{{appointment.meta.public.patient_fullname | capitalize}}</span>
 								<span class="h4" style=""><strong>Numero de Telefono: </strong> {{appointment.meta.private.phone_number || 'Sin Registro'}}</span><br>
@@ -67,7 +69,7 @@
 						</div>
 					</div>
 				</div>
-				<br ng-repeat-end>
+				<br dir-paginate-end>
 			</div>
 		</div>
 	</div>

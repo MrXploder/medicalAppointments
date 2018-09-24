@@ -7,12 +7,7 @@
 
 	function toString(){
 		return function(item){
-			if(_.isNull(item)){
-				return "";
-			}
-			else{
-				return item.toString();
-			}
+			return item ? item.toString() : "";
 		}
 	}
 })();

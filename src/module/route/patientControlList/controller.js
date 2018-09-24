@@ -1,30 +1,28 @@
-(function(){
+(function() {
 	'use strict';
 
 	angular
-	.module("angularApp")
-	.controller("patientControlListController", patientControlListController);
+		.module("angularApp")
+		.controller("patientControlListController", patientControlListController);
 
-	patientControlListController.$inject = ["$scope", "ngDialog", "Appointments", "Patients", "$filter", "Printer", "$q"];
+	patientControlListController.$inject = ["$scope", "ngDialog", "Appointments", "Patients", "$filter", "Printer"];
 
-	function patientControlListController($scope, ngDialog, Appointments, Patients, $filter, Printer, $q){
+	function patientControlListController($scope, ngDialog, Appointments, Patients, $filter, Printer) {
 		let pclc = this;
 
-		pclc.patients                   = [];
-		pclc.appointments               = [];
-		pclc.isAdding								    = false;
-		pclc.searchTerm							    = "";
-		pclc.addPatientToControl 	      = addPatientToControl;
-		pclc.changeAppointmentStatus    = changeAppointmentStatus;
+		pclc.isAdding = false;
+		pclc.dischargePatient = dischargePatient;
+		pclc.addPatientToControl = addPatientToControl;
+		pclc.changeAppointmentStatus = changeAppointmentStatus;
+		pclc.printAppointmentSummary = printAppointmentSummary;
+		pclc.searchTerm = "";
 		pclc.addNewAppointmentToPatient = addNewAppointmentToPatient;
-		pclc.dischargePatient           = dischargePatient;
-		pclc.printAppointmentSummary    = printAppointmentSummary;
 
 		activate();
 		///////////////////////////////////////////////////////
 
 		function activate(){
-			$q.all([Appointments.query().$promise, Patients.query().$promise]).then(function(response){
+			Promise.all([Appointments.query().$promise, Patients.query().$promise]).then(function(response){
 				pclc.patients 	  = response[1];
 				pclc.appointments = [];
 
@@ -50,88 +48,89 @@
 			});
 		}
 
-		function addPatientToControl(){
+		function addPatientToControl() {
 			pclc.isAdding = true;
 			ngDialog.open({
-				templateUrl: "src/module/modal/controlAppointment/template.html",
-				controller: "controlAppointmentController",
-				controllerAs: "cac",
-				showClose: true,
-			})
-			.closePromise.then(doThis => {
-				Appointments.query().$promise.then(doThis => {
-					activate();
-					pclc.isAdding = false;
-				});
-			});
-		}
-
-		function changeAppointmentStatus(statusText, appointment){
-			let oldStatus = angular.copy(appointment.status);
-
-			if(statusText === "absent"){
-				appointment.status = statusText;
-				appointment.$update().then(function(response){
-					activate();
-				});
-			}
-
-			else if(statusText === "done"){
-				ngDialog.openConfirm({
-					templateUrl: "src/module/modal/fulfillAppointment/template.html",
-					controller: "fulfillAppointmentController",
-					controllerAs: "fac",
-					data: appointment,
+					templateUrl: "src/module/modal/controlAppointment/template.html",
+					controller: "controlAppointmentController",
+					controllerAs: "cac",
 					showClose: true,
 				})
-				.then(doThis => {
-					appointment.status = statusText;
-					appointment.$update().then(doThis => activate());
+				.closePromise.then(doThis => {
+					Appointments.query().$promise.then(doThis => {
+						activate();
+						pclc.isAdding = false;
+					});
 				});
+		}
+
+		function changeAppointmentStatus(statusText, appointment) {
+			let oldStatus = angular.copy(appointment.status);
+
+			if (statusText === "absent") {
+				appointment.status = statusText;
+				appointment.$update().then(function(response) {
+					activate();
+				});
+			} else if (statusText === "done") {
+				ngDialog.openConfirm({
+						templateUrl: "src/module/modal/fulfillAppointment/template.html",
+						controller: "fulfillAppointmentController",
+						controllerAs: "fac",
+						data: appointment,
+						showClose: true,
+					})
+					.then(doThis => {
+						appointment.status = statusText;
+						appointment.$update().then(doThis => activate());
+					});
 			}
 		}
 
-		function addNewAppointmentToPatient(appointment){
+		function addNewAppointmentToPatient(appointment) {
 			let _data = angular.copy(appointment.data[0]);
 			_data.full_name = appointment.meta.private.full_name;
 			ngDialog.openConfirm({
-				templateUrl: "src/module/modal/addAppointment/template.html",
-				controller: "addAppointmentController",
-				controllerAs: "aac",
-				showClose: true,
-				data: _data,
-			})
-			.then(thisData => {
-				Printer.print("src/module/print/printAppointment/template.html", {
-					vm: {
-						data: thisData,
-						meta: {
-							currentDate: moment().format("DD/MM/YYYY").toString(),
-						},
-					}
-				}, thenDoThis => activate());
-			});
+					templateUrl: "src/module/modal/addAppointment/template.html",
+					controller: "addAppointmentController",
+					controllerAs: "aac",
+					showClose: true,
+					data: _data,
+				})
+				.then(thisData => {
+					Printer.print("src/module/print/printAppointment/template.html", {
+						vm: {
+							data: thisData,
+							meta: {
+								currentDate: moment().format("DD/MM/YYYY").toString(),
+							},
+						}
+					}, thenDoThis => activate());
+				});
 		}
 
-		function dischargePatient(appointment){
-			ngDialog.openConfirm({
-				templateUrl: "src/module/modal/dischargePatient/template.html",
-				controller: "dischargePatientController",
-				controllerAs: "dpc",
-				data: appointment,
-				showClose: true,
-			})
-			.then(function(response){
-				appointment.meta.public.end_text = response;
-				printAppointmentSummary(appointment);
-			});
+		function dischargePatient(appointment) {
+			ngDialog
+				.openConfirm({
+					templateUrl: "src/module/modal/dischargePatient/template.html",
+					controller: "dischargePatientController",
+					controllerAs: "dpc",
+					data: appointment,
+					showClose: true,
+					width: "30%",
+				})
+				.then(function(response) {
+					appointment.meta.public.end_text = response;
+					console.log(appointment);
+					printAppointmentSummary(appointment);
+				});
 		}
 
-		function printAppointmentSummary(appointment){
-			console.log(appointment);
-			Printer.print('src/module/print/printSummary/template.html',{
+		function printAppointmentSummary(appointment) {
+			appointment.meta.currentDate = moment().utc().format("DD/MM/YYYY").toString();
+			Printer.print('src/module/print/printSummary/template.html', {
 				vm: appointment
-			}, thenDoThis => activate());
+			}, () => activate());
 		}
 	}
 })();

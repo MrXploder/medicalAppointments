@@ -1,9 +1,9 @@
 (function(angular, undefined) {
 'use strict';
 
-angular.module('angularApp', ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'ngRut', 'ngLoadingBar', 'ngDirPagination', 'ngMaterialize', 'ngTemplates'])
+angular.module('angularApp', ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'ngRut', 'ngLoadingBar', 'ngDirPagination', 'ngMaterialize', 'ngTemplates', 'ui.bootstrap.contextMenu'])
 
-.constant('ENV', {shortSHA:'68893da',name:'development',SHA:'68893dae932144fdc16c66777efd3dcb47807985',currentUser:'MrXploder',lastCommitMessage:'"bugfix\r\n\r\nCorregido el error que no pasaba los datos para imprimir al Printer en el reporte mensual.\r\nel objeto mcd.monthReport se agregaron las propiedades de meta y data por lo que habia que cambiar eso.\r\nY en la plantilla de impresion no se veian los totales.\r\n"',lastCommitTime:'"2018-08-29 16:12:11 -0300"',lastCommitNumber:'49',lastCommitAuthor:'"MrXploder"'})
+.constant('ENV', {name:'development',SHA:'d59ef0b8d5293a064ce7fb2cd7916ad7e8fe10ea',shortSHA:'d59ef0b',currentUser:'MrXploder',lastCommitTime:'"2018-08-31 18:07:01 -0300"',lastCommitMessage:'"bugfix\r\n\r\ncorregido un bug que no contaba bien las atenciones "a.abierta" en la estadistica mensual.\r\nEl error era que se consideraba "Pabellon de Yeso" con tilde y el dato obtenido de la base de datos\r\n"',lastCommitNumber:'50',lastCommitAuthor:'"MrXploder"'})
 
 ;
 })(angular);

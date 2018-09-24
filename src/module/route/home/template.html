@@ -1,7 +1,16 @@
 <div class="fixed-action-btn" style="bottom: 80px">
-	<a class="btn-floating btn-large waves-effect waves-light green white-text" ng-class="hmc.isAdding && 'disabled'" ng-click="hmc.addReminder()"><i class="fas" ng-class="hmc.isAdding ? 'fa-cog fa-spin black-text' : 'fa-plus'"></i></a>
+	<!-- <a class="btn-floating btn-large waves-effect waves-light green white-text" ng-class="hmc.isAdding && 'disabled'" ng-click="hmc.addReminder()"><i class="fas" ng-class="hmc.isAdding ? 'fa-cog fa-spin black-text' : 'fa-plus'"></i></a> -->
 </div>
-<div class="container">
+<div class="row">
+	<div class="col l12">
+		<div class="card">
+			<div class="card-content">
+				<event-calendar></event-calendar>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <div class="container">
 	<div class="container">
 		<div class="row" ng-repeat-start="reminder in hmc.reminders">
 			<div class="col l12">
@@ -18,4 +27,4 @@
 		</div>
 		<br ng-repeat-end>
 	</div>
-</div>
+</div> -->
