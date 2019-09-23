@@ -7,7 +7,7 @@ module.exports = function(grunt) {
       options: {
         space: ' ',
         wrap: true,
-        deps: ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'ngRut', 'ngLoadingBar', 'ngDirPagination', 'ngMaterialize', 'ngTemplates', 'ui.bootstrap.contextMenu'],
+        deps: ['ngRoute', 'ngStorage', 'ngResource', 'ngDialog', 'cp.ngConfirm', 'platanus.rut', 'angular-loading-bar', 'angularUtils.directives.dirPagination', 'ui.materialize', 'indexedDB', 'templates-main'],
         dest: "src/module/10index.js",
         name: 'angularApp'
       },
@@ -19,22 +19,13 @@ module.exports = function(grunt) {
     },
     php_constants: {
       static_option: {
-        options: [{
-          constName: 'envSHA',
-          constValue: '<%= gitinfo.local.branch.current.SHA %>'
-        }, {
-          constName: 'envShortSHA',
-          constValue: '<%= gitinfo.local.branch.current.shortSHA %>'
-        }, {
-          constName: 'envAuthor',
-          constValue: '<%= gitinfo.local.branch.current.lastCommitAuthor %>'
-        }, {
-          constName: 'envLastCommitTime',
-          constValue: '<%= gitinfo.local.branch.current.lastCommitTime %>'
-        }, {
-          constName: 'envBranch',
-          constValue: '<%= gitinfo.local.branch.current.name %>'
-        }],
+        options: [
+        {constName: 'envSHA', constValue: '<%= gitinfo.local.branch.current.SHA %>'},
+        {constName: 'envShortSHA', constValue: '<%= gitinfo.local.branch.current.shortSHA %>'},
+        {constName: 'envAuthor', constValue: '<%= gitinfo.local.branch.current.lastCommitAuthor %>'},
+        {constName: 'envLastCommitTime', constValue: '<%= gitinfo.local.branch.current.lastCommitTime %>'},
+        {constName: 'envBranch', constValue: '<%= gitinfo.local.branch.current.name %>'}
+        ],
         src: 'server/enviroment.php',
         dest: 'server/enviroment.php'
       },
@@ -42,7 +33,7 @@ module.exports = function(grunt) {
     html2js: {
       options: {
         base: "",
-        module: 'ngTemplates',
+        module: 'templates-main',
       },
       main: {
         src: ['src/**/*.html'],
@@ -58,10 +49,10 @@ module.exports = function(grunt) {
         separator: '\n',
       },
       js: {
-        src: ['src/vendor/*.js', 'src/module/*.js', 'src/directive/**/*.js', 'src/factory/**/*.js', 'src/filter/**/*.js', 'src/module/dialog/**/*.js', 'src/module/route/**/*.js'],
+        src: ['src/vendor/*.js', 'src/module/*.js', 'src/directive/**/*.js', 'src/factory/**/*.js', 'src/filter/**/*.js',  'src/module/dialog/**/*.js', 'src/module/route/**/*.js'],
         dest: 'dist/<%= gitinfo.local.branch.current.SHA %>.js',
       },
-      css: {
+      css:{
         src: ['css/*.css'],
         dest: 'dist/<%= gitinfo.local.branch.current.SHA %>.css',
       }
@@ -88,9 +79,11 @@ module.exports = function(grunt) {
       }
     },
     obfuscator: {
-      options: {},
+      options: {
+      },
       task1: {
-        options: {},
+        options: {
+        },
         files: {
           'dist/<%= gitinfo.local.branch.current.SHA %>.min.obs.js': ['dist/<%= gitinfo.local.branch.current.SHA %>.min.js']
         }
@@ -116,7 +109,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-obfuscator');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-html2js');
-  grunt.loadNpmTasks('grunt-ng-annotate');
 
   grunt.registerTask('default', ['gitinfo', 'ngconstant', 'php_constants', 'html2js:main', 'concat', 'uglify', 'cssmin', 'obfuscator', 'clean']);
   grunt.registerTask('dev', ['gitinfo', 'html2js:dev', 'ngconstant', 'php_constants']);

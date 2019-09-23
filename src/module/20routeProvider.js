@@ -103,13 +103,6 @@
 				token: $localStorage.currentUser.token
 			})
 			.$promise
-			.then(function(response) {
-				if ($localStorage.currentLicense.status !== "pristine") {
-					$rootScope.$evalAsync(function() {
-						$location.path("/firstTime");
-					});
-				}
-			})
 			.catch(function() {
 				$rootScope.$evalAsync(function() {
 					$location.path("/login");

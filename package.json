@@ -17,7 +17,6 @@
     "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-gitinfo": "^0.1.8",
     "grunt-html2js": "^0.5.1",
-    "grunt-ng-annotate": "^3.0.0",
     "grunt-ng-constant": "^2.0.1",
     "grunt-php-config": "^0.1.6",
     "grunt-php-constants": "^0.2.0"
