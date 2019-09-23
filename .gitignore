@@ -1,2 +1,4 @@
 node_modules/
 dist/
+databasebackup/
+medicalapointments.db

@@ -93,9 +93,7 @@ module.exports = function(grunt) {
       options: {
         'no-write': false
       },
-      src_folder: ['src/'],
       tmp_folder: ['tmp/'],
-      css_folder: ['css/'],
       final_cleanup: ['dist/*.css', 'dist/*.js', '!dist/*.min.css', '!dist/*.min.obs.js'],
     }
   });
